@@ -1,0 +1,23 @@
+package Model;
+
+public enum Genero {
+    ACAO,
+    AVENTURA,
+    ANIMACAO,
+    BIOGRAFIA,
+    COMEDIA,
+    DOCUMENTARIO,
+    DRAMA,
+    FANTASIA,
+    FICCAO_CIENTIFICA,
+    GUERRA,
+    HISTORICO,
+    MUSICAL,
+    MISTERIO,
+    POLICIAL,
+    ROMANCE,
+    SUSPENSE,
+    TERROR,
+    THRILLER,
+    FAROESTE,
+}
