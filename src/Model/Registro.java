@@ -12,13 +12,11 @@ public class Registro {
     public String review;
     public int pontuacao;
 
-    public Registro(String titulo, HashSet<Genero> generos, int anoLancamento, boolean visto,
-                    int anoVisto) {
+    public Registro(String titulo, HashSet<Genero> generos, int anoLancamento, boolean visto) {
         this.titulo = titulo;
         this.generos = new HashSet<Genero>(generos);
         this.anoLancamento = anoLancamento;
         this.visto = visto;
-        this.anoVisto = anoVisto;
     }
 
     public String getReview() {

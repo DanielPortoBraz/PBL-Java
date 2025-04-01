@@ -9,8 +9,8 @@ public class Livro extends Registro{
     private boolean exemplar;
 
     public Livro(String titulo, HashSet<Genero> generos, int anoLancamento, boolean visto,
-                 int anoVisto, String autor, String editora, String isbn, boolean exemplar) {
-        super(titulo, generos, anoLancamento, visto, anoVisto);
+                 String autor, String editora, String isbn, boolean exemplar) {
+        super(titulo, generos, anoLancamento, visto);
         this.autor = autor;
         this.editora = editora;
         this.isbn = isbn;

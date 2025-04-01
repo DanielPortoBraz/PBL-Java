@@ -12,10 +12,10 @@ public class Filme extends Registro {
 
 
     public Filme(String titulo, HashSet<Genero> generos, int anoLancamento,
-                 boolean visto, int anoVisto, int tempoDuracao, HashSet<String> direcao,
+                 boolean visto, int tempoDuracao, HashSet<String> direcao,
                  String roteiro, HashSet<String> elenco, String tituloOriginal,
                  HashSet<String> ondeAssistir) {
-        super(titulo, generos, anoLancamento, visto, anoVisto);
+        super(titulo, generos, anoLancamento, visto);
         this.tempoDuracao = tempoDuracao;
         this.direcao = new HashSet<String>(direcao);
         this.roteiro = roteiro;

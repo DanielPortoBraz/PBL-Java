@@ -11,11 +11,11 @@ public class Serie extends Registro{
 
 
     public Serie(String titulo, HashSet<Genero> generos, int anoLancamento,
-                 boolean visto, int anoVisto, int anoEncerramento,
+                 boolean visto, int anoEncerramento,
                  HashSet<String> elenco, String tituloOriginal,
                  HashSet<String> ondeAssistir, HashSet<Temporada> temporadas) {
 
-        super(titulo, generos, anoLancamento, visto, anoVisto);
+        super(titulo, generos, anoLancamento, visto);
         this.anoEncerramento = anoEncerramento;
         this.elenco = new HashSet<String>(elenco);
         this.tituloOriginal = tituloOriginal;
