@@ -21,4 +21,10 @@ public class SerieController {
         seriesR.addSerie(new Serie(titulo, generos, anoLancamento, visto, anoEncerramento,
                 elenco, tituloOriginal, ondeAssistir, temporadas));
     }
+
+    public void listarSeries(){
+        for (Serie i : seriesR.getSeries()){
+            System.out.println(i.toString());
+        }
+    }
 }

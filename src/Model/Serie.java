@@ -34,6 +34,20 @@ public class Serie extends Registro{
         return comparacao;
     }
 
+    @Override
+    public String toString() {
+        return  "Título: " + getTitulo() + '\n' +
+                "Título Original: " + getTituloOriginal() + '\n' +
+                "Gêneros: " + getGenero() + '\n' +
+                "Ano de Lançamento: " + getAnoLancamento() + '\n' +
+                "Ano de Encerramento: " + (getAnoEncerramento() > 0 ? getAnoEncerramento() : "Ainda em andamento") + '\n' +
+                "Visto: " + (isVisto() ? "Sim" : "Não") + '\n' +
+                "Elenco: " + getElenco() + '\n' +
+                "Onde Assistir: " + getOndeAssistir() + '\n' +
+                "Temporadas: " + getTemporadas().toString() + '\n';
+    }
+
+
     public int getAnoEncerramento() {
         return anoEncerramento;
     }

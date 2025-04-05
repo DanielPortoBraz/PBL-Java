@@ -11,6 +11,13 @@ public class Temporada {
         this.numero = numero;
     }
 
+    @Override
+    public String toString(){
+        return "\nTemporada: " + getNumero() + '\n' +
+                "Episódios: " + getQuantEpisodios() + '\n' +
+                "Ano: " + getAno() + '\n';
+    }
+
     public int getAno() {
         return ano;
     }
