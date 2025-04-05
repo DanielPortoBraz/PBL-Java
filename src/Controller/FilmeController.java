@@ -21,6 +21,36 @@ public class FilmeController {
                     direcao, roteiro, elenco, tituloOriginal, ondeAssistir));
     }
 
+    public void buscarFilmes(int categoria, String filtro){
+
+        switch(categoria){
+            case 1: // Titulo
+                filmesR.buscarTitulo(filtro).forEach(System.out::println);
+                break;
+
+            case 2: // Ator
+                filmesR.buscarAtor(filtro).forEach(System.out::println);
+                break;
+
+            case 3: // Gênero
+                //filmesR.buscarGenero(filtro).forEach(System.out::println);
+                break;
+
+            case 4: // Ano
+                int filtroNum = Integer.parseInt(filtro);
+                filmesR.buscarAno(filtroNum).forEach(System.out::println);
+                break;
+
+            case 5: // Diretor
+                filmesR.buscarDiretor(filtro).forEach(System.out::println);
+                break;
+
+            default:
+                System.out.println("Não encontrado.");
+
+        }
+    }
+
     public void listarFilmes(){
         for (Filme i : filmesR.getFilmes()){
             System.out.println(i.toString());
