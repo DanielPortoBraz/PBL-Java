@@ -22,6 +22,36 @@ public class SerieController {
                 elenco, tituloOriginal, ondeAssistir, temporadas));
     }
 
+    public void buscarSeries(int categoria, String filtro){
+
+        switch(categoria){
+            case 1: // Titulo
+                seriesR.buscarTitulo(filtro).forEach(System.out::println);
+                break;
+
+            case 2: // Ator
+                seriesR.buscarAtor(filtro).forEach(System.out::println);
+                break;
+
+            case 3: // Gênero
+                //seriesR.buscarGenero(filtro).forEach(System.out::println);
+                break;
+
+            case 4: // Ano
+                int filtroNum = Integer.parseInt(filtro);
+                seriesR.buscarAno(filtroNum).forEach(System.out::println);
+                break;
+
+            case 5: // Onde assistir
+                seriesR.buscarOndeAssistir(filtro).forEach(System.out::println);
+                break;
+
+            default:
+                System.out.println("Não encontrado.");
+
+        }
+    }
+
     public void listarSeries(){
         for (Serie i : seriesR.getSeries()){
             System.out.println(i.toString());
