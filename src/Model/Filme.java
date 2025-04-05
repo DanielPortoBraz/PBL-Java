@@ -47,6 +47,20 @@ public class Filme extends Registro {
         return comparacao;
     }
 
+    @Override
+    public String toString() {
+        return  "Título: " + getTitulo() + '\n' +
+                "Título Original: " + getTituloOriginal() + '\n' +
+                "Gêneros: " + getGenero() + '\n' +
+                "Ano de Lançamento: " + getAnoLancamento() + '\n' +
+                "Duração: " + getTempoDuracao() + " minutos" + '\n' +
+                "Visto: " + (isVisto() ? "Sim" : "Não") + '\n' +
+                "Direção: " + getDirecao() + '\n' +
+                "Roteiro: " + getRoteiro() + '\n' +
+                "Elenco: " + getElenco() + '\n' +
+                "Onde Assistir: " + getOndeAssistir() + '\n';
+    }
+
     public int getTempoDuracao() {
         return tempoDuracao;
     }
