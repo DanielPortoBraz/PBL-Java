@@ -17,6 +17,21 @@ public class Livro extends Registro{
         this.exemplar = exemplar;
     }
 
+    @Override
+    public int compareTo(Registro inserido){ // Adiciona a ordenação por autor e/ou isbn, respecitvamente
+        inserido = (Livro) inserido;
+        int comparacao = super.compareTo(inserido);
+
+        if (comparacao == 0){
+            comparacao = this.getAutor().compareToIgnoreCase(((Livro) inserido).getAutor());
+            if (comparacao != 0) return comparacao;
+
+            return this.getIsbn().compareToIgnoreCase(((Livro) inserido).getIsbn());
+        }
+
+        return comparacao;
+    }
+
     public String getAutor() {
         return autor;
     }

@@ -23,6 +23,17 @@ public class Serie extends Registro{
         this.temporadas = new HashSet<Temporada>(temporadas);
     }
 
+    @Override
+    public int compareTo(Registro inserido){ // Adiciona a ordenação por título original
+        inserido = (Serie) inserido;
+        int comparacao = super.compareTo(inserido);
+
+        if (comparacao == 0)
+            return this.getTituloOriginal().compareToIgnoreCase(((Serie) inserido).getTituloOriginal());
+
+        return comparacao;
+    }
+
     public int getAnoEncerramento() {
         return anoEncerramento;
     }

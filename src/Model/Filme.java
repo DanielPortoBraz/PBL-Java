@@ -24,6 +24,29 @@ public class Filme extends Registro {
         this.ondeAssistir = new HashSet<String>(ondeAssistir);
     }
 
+    @Override
+    public int compareTo(Registro inserido){ // Adiciona a ordenação por título original e/ou direção
+        inserido = (Filme) inserido;
+        int comparacao = super.compareTo(inserido);
+
+        if (comparacao == 0){
+            comparacao = this.getTituloOriginal().compareToIgnoreCase(((Filme) inserido).getTituloOriginal());
+            if (comparacao != 0) return comparacao;
+
+            HashSet<String> inseridoDirecao = ((Filme) inserido).getDirecao();
+            HashSet<String> inclusoDirecao = this.getDirecao();
+
+            for (String diretor1 : inseridoDirecao){
+                for (String diretor2 : inclusoDirecao){
+                    comparacao = diretor1.compareToIgnoreCase(diretor2);
+                    if (comparacao != 0) return comparacao;
+                }
+            }
+        }
+
+        return comparacao;
+    }
+
     public int getTempoDuracao() {
         return tempoDuracao;
     }

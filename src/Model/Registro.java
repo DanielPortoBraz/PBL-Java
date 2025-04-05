@@ -2,7 +2,7 @@ package Model;
 
 import java.util.HashSet;
 
-public class Registro {
+public class Registro implements Comparable<Registro> {
     private String titulo;
     private HashSet<Genero> generos;
     private int anoLancamento;
@@ -17,6 +17,17 @@ public class Registro {
         this.generos = new HashSet<Genero>(generos);
         this.anoLancamento = anoLancamento;
         this.visto = visto;
+    }
+
+    @Override
+    public int compareTo(Registro inserido){ // Ordena por pontuação e/ou título, respectivamente
+        int comparacao;
+
+        comparacao = Integer.compare(this.getPontuacao(), inserido.getPontuacao());
+        if (comparacao != 0) return comparacao;
+
+        return comparacao = this.getTitulo().compareToIgnoreCase(inserido.getTitulo());
+
     }
 
     public String getReview() {
