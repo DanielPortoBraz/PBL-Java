@@ -5,6 +5,9 @@ import Model.Genero;
 import Model.Livro;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Stream;
 
 
 public class LivroController extends RegistroController{
@@ -20,5 +23,8 @@ public class LivroController extends RegistroController{
     }
 
     public void listarLivros(){
+        for (Livro i : livrosR.getLivros()){
+            System.out.println(i.toString());
+        }
     }
 }

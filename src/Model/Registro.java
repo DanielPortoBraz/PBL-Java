@@ -62,7 +62,7 @@ public class Registro implements Comparable<Registro> {
         this.anoLancamento = anoLancamento;
     }
 
-    public boolean getVisto() {
+    public boolean isVisto() {
         return visto;
     }
 

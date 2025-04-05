@@ -32,6 +32,18 @@ public class Livro extends Registro{
         return comparacao;
     }
 
+    @Override
+    public String toString() {
+        return  "Título: " + getTitulo() + '\n' +
+                "Gêneros: " + getGenero() + '\n' +
+                "Ano de Lançamento: " + getAnoLancamento() + '\n' +
+                "Visto: " + (isVisto() ? "Sim" : "Não") + '\n' +
+                "Autor: " + getAutor() + '\n' +
+                "Editora: " + getEditora() + '\n' +
+                "ISBN: " + getIsbn() + '\n' +
+                "Exemplar disponível: " + (isExemplar() ? "Sim" : "Não") + '\n';
+    }
+
     public String getAutor() {
         return autor;
     }

@@ -17,18 +17,6 @@ public class LivroRepositorio {
         return this.livros.remove(livro);
     }
 
-    public TreeSet<Livro> buscarTitulo(String titulo){
-        TreeSet<Livro> livrosFiltrados = new TreeSet<>();
-
-        for (Livro i : this.livros){
-
-            if (i.getTitulo().equalsIgnoreCase(titulo)){
-                livrosFiltrados.add(i);
-            }
-        }
-        return livrosFiltrados;
-    }
-
     public TreeSet<Livro> getLivros() {
         return livros;
     }
