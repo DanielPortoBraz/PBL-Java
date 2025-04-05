@@ -1,12 +1,12 @@
 package Model;
 
-import java.util.HashSet;
+import java.util.TreeSet;
 
 public class SerieRepositorio {
-    private HashSet<Serie> series;
+    private TreeSet<Serie> series;
 
     public SerieRepositorio() {
-        this.series = new HashSet<Serie>();
+        this.series = new TreeSet<Serie>();
     }
 
     public boolean addSerie(Serie serie){
@@ -17,7 +17,7 @@ public class SerieRepositorio {
         return this.series.remove(serie);
     }
 
-    public HashSet<Serie> getSeries() {
+    public TreeSet<Serie> getSeries() {
         return series;
     }
 }

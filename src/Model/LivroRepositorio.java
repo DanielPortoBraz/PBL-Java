@@ -1,12 +1,12 @@
 package Model;
 
-import java.util.HashSet;
+import java.util.TreeSet;
 
 public class LivroRepositorio {
-    private HashSet<Livro> livros;
+    private TreeSet<Livro> livros;
 
     public LivroRepositorio() {
-        this.livros = new HashSet<Livro>();
+        this.livros = new TreeSet<Livro>();
     }
 
     public boolean addLivro(Livro livro){
@@ -17,7 +17,19 @@ public class LivroRepositorio {
         return this.livros.remove(livro);
     }
 
-    public HashSet<Livro> getLivros() {
+    public TreeSet<Livro> buscarTitulo(String titulo){
+        TreeSet<Livro> livrosFiltrados = new TreeSet<>();
+
+        for (Livro i : this.livros){
+
+            if (i.getTitulo().equalsIgnoreCase(titulo)){
+                livrosFiltrados.add(i);
+            }
+        }
+        return livrosFiltrados;
+    }
+
+    public TreeSet<Livro> getLivros() {
         return livros;
     }
 }

@@ -1,12 +1,12 @@
 package Model;
 
-import java.util.HashSet;
+import java.util.TreeSet;
 
 public class FilmeRepositorio {
-    private HashSet<Filme> filmes;
+    private TreeSet<Filme> filmes;
 
     public FilmeRepositorio() {
-        this.filmes = new HashSet<Filme>();
+        this.filmes = new TreeSet<Filme>();
     }
 
     public boolean addFilme(Filme filme){
@@ -17,7 +17,7 @@ public class FilmeRepositorio {
         return this.filmes.remove(filme);
     }
 
-    public HashSet<Filme> getFilmes() {
+    public TreeSet<Filme> getFilmes() {
         return filmes;
     }
 }
