@@ -5,6 +5,9 @@ public class Temporada {
     private int quantEpisodios;
     private int numero;
 
+    public int pontuacao;
+    public String review;
+
     public Temporada(int ano, int quantEpisodios, int numero) {
         this.ano = ano;
         this.quantEpisodios = quantEpisodios;
@@ -15,7 +18,9 @@ public class Temporada {
     public String toString(){
         return "\nTemporada: " + getNumero() + '\n' +
                 "Episódios: " + getQuantEpisodios() + '\n' +
-                "Ano: " + getAno() + '\n';
+                "Ano: " + getAno() + '\n' +
+                "Pontuação: " + getPontuacao() + '\n' +
+                "Review: " + getReview() + '\n';
     }
 
     public int getAno() {
@@ -40,5 +45,21 @@ public class Temporada {
 
     public void setNumero(int numero) {
         this.numero = numero;
+    }
+
+    public int getPontuacao() {
+        return pontuacao;
+    }
+
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
     }
 }

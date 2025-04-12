@@ -1,5 +1,6 @@
 package Model;
 
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
 
 public class Serie extends Registro{
@@ -25,7 +26,6 @@ public class Serie extends Registro{
 
     @Override
     public int compareTo(Registro inserido){ // Adiciona a ordenação por título original
-        inserido = (Serie) inserido;
         int comparacao = super.compareTo(inserido);
 
         if (comparacao == 0)
@@ -36,6 +36,9 @@ public class Serie extends Registro{
 
     @Override
     public String toString() {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFormatada = (this.getDataVisto() != null) ? formato.format(getDataVisto().getTime()) : "--/--/----";
+
         return  "Título: " + getTitulo() + '\n' +
                 "Título Original: " + getTituloOriginal() + '\n' +
                 "Gêneros: " + getGenero() + '\n' +
@@ -44,7 +47,10 @@ public class Serie extends Registro{
                 "Visto: " + (isVisto() ? "Sim" : "Não") + '\n' +
                 "Elenco: " + getElenco() + '\n' +
                 "Onde Assistir: " + getOndeAssistir() + '\n' +
-                "Temporadas: " + getTemporadas().toString() + '\n';
+                "Temporadas: " + getTemporadas().toString() + '\n' +
+                "Pontuação: " + getPontuacao() + '\n' +
+                "Review: " + getReview() + '\n' +
+                "Lido em: " + dataFormatada + '\n';
     }
 
 

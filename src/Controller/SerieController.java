@@ -1,9 +1,6 @@
 package Controller;
 
-import Model.Genero;
-import Model.SerieRepositorio;
-import Model.Serie;
-import Model.Temporada;
+import Model.*;
 
 import java.util.HashSet;
 
@@ -56,5 +53,32 @@ public class SerieController {
         for (Serie i : seriesR.getSeries()){
             System.out.println(i.toString());
         }
+    }
+
+    public void avaliarSerie(String titulo, String reviewSerie, int numero, String reviewTemporada, int pontuacao){
+        Serie serieAvaliada = seriesR.buscarTitulo(titulo).getFirst();
+        HashSet<Temporada> temporadas = serieAvaliada.getTemporadas();
+        int pontuacaoTotal = 0;
+        int quantTemporadas = temporadas.size();
+
+        if (serieAvaliada != null) {
+            serieAvaliada.setVisto(true); // Marca a série como vista
+            serieAvaliada.setReview(reviewSerie);// Atualiza a review da série
+
+            for (Temporada i : temporadas){
+
+                if (i.getNumero() == numero){
+                    i.setReview(reviewTemporada);
+                    i.setPontuacao(pontuacao);
+                }
+                pontuacaoTotal += i.getPontuacao();
+            }
+
+            if (quantTemporadas != 0)
+                serieAvaliada.setPontuacao(pontuacaoTotal / quantTemporadas);
+        }
+
+        else
+            System.out.println("Série não encontrada. Não foi possível realizar a avaliação.");
     }
 }
