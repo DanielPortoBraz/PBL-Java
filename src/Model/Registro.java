@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.Calendar;
 import java.util.HashSet;
 
 public class Registro implements Comparable<Registro> {
@@ -8,8 +9,8 @@ public class Registro implements Comparable<Registro> {
     private int anoLancamento;
     private boolean visto; // Inicia qualquer registro como não visto
 
-    private int anoVisto;
-    public String review;
+    private Calendar dataVisto;
+    public String review = " ";
     public int pontuacao;
 
     public Registro(String titulo, HashSet<Genero> generos, int anoLancamento, boolean visto) {
@@ -22,12 +23,11 @@ public class Registro implements Comparable<Registro> {
     @Override
     public int compareTo(Registro inserido){ // Ordena por pontuação e/ou título, respectivamente
         int comparacao;
+        comparacao = Integer.compare(inserido.getPontuacao(), this.getPontuacao());
 
-        comparacao = Integer.compare(this.getPontuacao(), inserido.getPontuacao());
         if (comparacao != 0) return comparacao;
 
-        return comparacao = this.getTitulo().compareToIgnoreCase(inserido.getTitulo());
-
+        return this.getTitulo().compareToIgnoreCase(inserido.getTitulo());
     }
 
     public String getReview() {
@@ -78,11 +78,11 @@ public class Registro implements Comparable<Registro> {
         this.pontuacao = pontuacao;
     }
 
-    public int getAnoVisto() {
-        return anoVisto;
+    public Calendar getDataVisto() {
+        return dataVisto;
     }
 
-    public void setAnoVisto(int anoVisto) {
-        this.anoVisto = anoVisto;
+    public void setDataVisto(Calendar dataVisto) {
+        this.dataVisto = dataVisto;
     }
 }

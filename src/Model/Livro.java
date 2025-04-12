@@ -1,5 +1,7 @@
 package Model;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashSet;
 
 public class Livro extends Registro{
@@ -18,8 +20,7 @@ public class Livro extends Registro{
     }
 
     @Override
-    public int compareTo(Registro inserido){ // Adiciona a ordenação por autor e/ou isbn, respecitvamente
-        inserido = (Livro) inserido;
+    public int compareTo(Registro inserido){ // Adiciona a ordenação por autor e/ou isbn, respectivamente
         int comparacao = super.compareTo(inserido);
 
         if (comparacao == 0){
@@ -34,6 +35,9 @@ public class Livro extends Registro{
 
     @Override
     public String toString() {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFormatada = (this.getDataVisto() != null) ? formato.format(getDataVisto().getTime()) : "--/--/----";
+
         return  "Título: " + getTitulo() + '\n' +
                 "Gêneros: " + getGenero() + '\n' +
                 "Ano de Lançamento: " + getAnoLancamento() + '\n' +
@@ -41,7 +45,10 @@ public class Livro extends Registro{
                 "Autor: " + getAutor() + '\n' +
                 "Editora: " + getEditora() + '\n' +
                 "ISBN: " + getIsbn() + '\n' +
-                "Exemplar disponível: " + (isExemplar() ? "Sim" : "Não") + '\n';
+                "Exemplar disponível: " + (isExemplar() ? "Sim" : "Não") + '\n' +
+                "Pontuação: " + getPontuacao() + '\n' +
+                "Review: " + getReview() + '\n' +
+                "Lido em: " + dataFormatada + '\n';
     }
 
     public String getAutor() {
