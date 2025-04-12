@@ -1,11 +1,12 @@
 package Model;
 
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
 
 public class Filme extends Registro {
     private int tempoDuracao; // Em minutos
     private HashSet<String> direcao;
-    private String roteiro;
+    private HashSet<String> roteiro;
     private HashSet<String> elenco;
     private String tituloOriginal;
     private HashSet<String> ondeAssistir;
@@ -13,12 +14,12 @@ public class Filme extends Registro {
 
     public Filme(String titulo, HashSet<Genero> generos, int anoLancamento,
                  boolean visto, int tempoDuracao, HashSet<String> direcao,
-                 String roteiro, HashSet<String> elenco, String tituloOriginal,
+                 HashSet<String> roteiro, HashSet<String> elenco, String tituloOriginal,
                  HashSet<String> ondeAssistir) {
         super(titulo, generos, anoLancamento, visto);
         this.tempoDuracao = tempoDuracao;
         this.direcao = new HashSet<String>(direcao);
-        this.roteiro = roteiro;
+        this.roteiro = new HashSet<String>(roteiro);
         this.elenco = new HashSet<String>(elenco);
         this.tituloOriginal = tituloOriginal;
         this.ondeAssistir = new HashSet<String>(ondeAssistir);
@@ -26,7 +27,6 @@ public class Filme extends Registro {
 
     @Override
     public int compareTo(Registro inserido){ // Adiciona a ordenação por título original e/ou direção
-        inserido = (Filme) inserido;
         int comparacao = super.compareTo(inserido);
 
         if (comparacao == 0){
@@ -49,6 +49,9 @@ public class Filme extends Registro {
 
     @Override
     public String toString() {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFormatada = (this.getDataVisto() != null) ? formato.format(getDataVisto().getTime()) : "--/--/----";
+
         return  "Título: " + getTitulo() + '\n' +
                 "Título Original: " + getTituloOriginal() + '\n' +
                 "Gêneros: " + getGenero() + '\n' +
@@ -58,7 +61,10 @@ public class Filme extends Registro {
                 "Direção: " + getDirecao() + '\n' +
                 "Roteiro: " + getRoteiro() + '\n' +
                 "Elenco: " + getElenco() + '\n' +
-                "Onde Assistir: " + getOndeAssistir() + '\n';
+                "Onde Assistir: " + getOndeAssistir() + '\n' +
+                "Pontuação: " + getPontuacao() + '\n' +
+                "Review: " + getReview() + '\n' +
+                "Lido em: " + dataFormatada + '\n';
     }
 
     public int getTempoDuracao() {
@@ -77,11 +83,11 @@ public class Filme extends Registro {
         this.direcao = direcao;
     }
 
-    public String getRoteiro() {
+    public HashSet<String> getRoteiro() {
         return roteiro;
     }
 
-    public void setRoteiro(String roteiro) {
+    public void setRoteiro(HashSet<String> roteiro) {
         this.roteiro = roteiro;
     }
 

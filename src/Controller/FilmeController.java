@@ -3,6 +3,7 @@ package Controller;
 import Model.Genero;
 import Model.FilmeRepositorio;
 import Model.Filme;
+import Model.Filme;
 
 import java.util.HashSet;
 
@@ -15,7 +16,7 @@ public class FilmeController {
 
     public void cadastrarFilme(String titulo, HashSet<Genero> generos, int anoLancamento,
                               boolean visto,int tempoDuracao, HashSet<String> direcao,
-                              String roteiro, HashSet<String> elenco, String tituloOriginal,
+                              HashSet<String> roteiro, HashSet<String> elenco, String tituloOriginal,
                               HashSet<String> ondeAssistir){
             filmesR.addFilme(new Filme(titulo, generos, anoLancamento, visto, tempoDuracao,
                     direcao, roteiro, elenco, tituloOriginal, ondeAssistir));
@@ -55,5 +56,20 @@ public class FilmeController {
         for (Filme i : filmesR.getFilmes()){
             System.out.println(i.toString());
         }
+    }
+
+    public void avaliarFilme(String titulo, String review, int pontuacao){
+        Filme filmeAvaliado = filmesR.buscarTitulo(titulo).getFirst();
+
+        if (filmeAvaliado != null) {
+            filmesR.removeFilme(filmeAvaliado);
+            filmeAvaliado.setVisto(true); // Marca o filme como visto
+            filmeAvaliado.setReview(review); // Atualiza a review do filme
+            filmeAvaliado.setPontuacao(pontuacao); // Atualiza a pontuação do filme
+            filmesR.addFilme(filmeAvaliado);
+        }
+
+        else
+            System.out.println("Filme não encontrado. Não foi possível realizar a avaliação.");
     }
 }
