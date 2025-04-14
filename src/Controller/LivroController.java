@@ -24,32 +24,57 @@ public class LivroController extends RegistroController {
     }
 
     public boolean buscarLivros(int categoria, String filtro) {
-        TreeSet<Livro> livrosEncontrados = new TreeSet<>();
+        TreeSet<Livro> livrosEncontrados;
+        Livro livroEncontrado;
 
         switch (categoria) {
             case 1: // Titulo
                 livrosEncontrados = livrosR.buscarTitulo(filtro);
-                livrosEncontrados.forEach(System.out::println);
+
+                if (!livrosEncontrados.isEmpty()) {
+                    livrosEncontrados.forEach(System.out::println);
+                    return true;
+                }
                 break;
 
             case 2: // Autor
                 livrosEncontrados = livrosR.buscarAutor(filtro);
-                livrosEncontrados.forEach(System.out::println);
+
+                if (!livrosEncontrados.isEmpty()) {
+                    livrosEncontrados.forEach(System.out::println);
+                    return true;
+                }
                 break;
 
             case 3: // Gênero
-                //livrosR.buscarGenero(filtro).forEach(System.out::println);
+
+                for (Genero i : Genero.values()){
+
+                    if (filtro.equalsIgnoreCase(i.getNomeFormatado())){
+                        livrosEncontrados = livrosR.buscarGenero(i);
+                        livrosEncontrados.forEach(System.out::println);
+                        return true;
+                    }
+                }
                 break;
 
             case 4: // Ano
                 int filtroNum = Integer.parseInt(filtro);
                 livrosEncontrados = livrosR.buscarAno(filtroNum);
-                livrosEncontrados.forEach(System.out::println);
+
+                if (!livrosEncontrados.isEmpty()) {
+                    livrosEncontrados.forEach(System.out::println);
+                    return true;
+                }
                 break;
 
             case 5: // Isbn
-                livrosEncontrados.add(livrosR.buscarIsbn(filtro));
-                System.out.println(livrosEncontrados.getFirst().toString());
+                livroEncontrado = livrosR.buscarIsbn(filtro);
+
+                if (livroEncontrado != null){
+                    System.out.println(livroEncontrado);
+                    return true;
+                }
                 break;
 
             default:
@@ -57,10 +82,7 @@ public class LivroController extends RegistroController {
 
         }
 
-        if (livrosEncontrados.isEmpty()) {
-            return false;
-        }
-        return true;
+        return false;
 
     }
 
@@ -70,7 +92,7 @@ public class LivroController extends RegistroController {
         }
     }
 
-    public void avaliarLivro(String isbn, String review, int pontuacao, Calendar dataVisto){
+    public boolean avaliarLivro(String isbn, String review, int pontuacao, Calendar dataVisto){
         Livro livroAvaliado = livrosR.buscarIsbn(isbn);
 
         if (livroAvaliado != null) {
@@ -80,9 +102,12 @@ public class LivroController extends RegistroController {
             livroAvaliado.setReview(review); // Atualiza a review do livro
             livroAvaliado.setPontuacao(pontuacao); // Atualiza a pontuação do livro
             livrosR.addLivro(livroAvaliado);
+
+            return true;
         }
 
         else
             System.out.println("Livro não encontrado. Não foi possível realizar a avaliação.");
+        return false;
     }
 }

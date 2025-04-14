@@ -6,6 +6,7 @@ import Model.Filme;
 import Model.Filme;
 
 import java.util.HashSet;
+import java.util.TreeSet;
 
 public class FilmeController {
     private FilmeRepositorio filmesR;
@@ -22,34 +23,64 @@ public class FilmeController {
                     direcao, roteiro, elenco, tituloOriginal, ondeAssistir));
     }
 
-    public void buscarFilmes(int categoria, String filtro){
+    public boolean buscarFilmes(int categoria, String filtro){
+        TreeSet<Filme> filmesEncontrados;
+        Filme filmeEncontrado;
 
         switch(categoria){
             case 1: // Titulo
-                filmesR.buscarTitulo(filtro).forEach(System.out::println);
+                filmesEncontrados = filmesR.buscarTitulo(filtro);
+
+                if (!filmesEncontrados.isEmpty()){
+                    filmesEncontrados.forEach(System.out::println);
+                    return true;
+                }
                 break;
 
             case 2: // Ator
-                filmesR.buscarAtor(filtro).forEach(System.out::println);
+                filmesEncontrados = filmesR.buscarAtor(filtro);
+
+                if (!filmesEncontrados.isEmpty()){
+                    filmesEncontrados.forEach(System.out::println);
+                    return true;
+                }
                 break;
 
             case 3: // Gênero
-                //filmesR.buscarGenero(filtro).forEach(System.out::println);
+                for (Genero i : Genero.values()){
+
+                    if (filtro.equalsIgnoreCase(i.getNomeFormatado())){
+                        filmesEncontrados = filmesR.buscarGenero(i);
+                        filmesEncontrados.forEach(System.out::println);
+                        return true;
+                    }
+                }
                 break;
 
             case 4: // Ano
                 int filtroNum = Integer.parseInt(filtro);
-                filmesR.buscarAno(filtroNum).forEach(System.out::println);
+                filmesEncontrados = filmesR.buscarAno(filtroNum);
+
+                if (!filmesEncontrados.isEmpty()){
+                    filmesEncontrados.forEach(System.out::println);
+                    return true;
+                }
                 break;
 
             case 5: // Diretor
-                filmesR.buscarDiretor(filtro).forEach(System.out::println);
+                filmesEncontrados = filmesR.buscarDiretor(filtro);
+
+                if (!filmesEncontrados.isEmpty()){
+                    filmesEncontrados.forEach(System.out::println);
+                    return true;
+                }
                 break;
 
             default:
-                System.out.println("Não encontrado.");
-
+                System.out.println("Categoria Inexistente.");
         }
+
+        return false;
     }
 
     public void listarFilmes(){
@@ -58,7 +89,7 @@ public class FilmeController {
         }
     }
 
-    public void avaliarFilme(String titulo, String review, int pontuacao){
+    public boolean avaliarFilme(String titulo, String review, int pontuacao){
         Filme filmeAvaliado = filmesR.buscarTitulo(titulo).getFirst();
 
         if (filmeAvaliado != null) {
@@ -67,9 +98,12 @@ public class FilmeController {
             filmeAvaliado.setReview(review); // Atualiza a review do filme
             filmeAvaliado.setPontuacao(pontuacao); // Atualiza a pontuação do filme
             filmesR.addFilme(filmeAvaliado);
+
+            return true;
         }
 
         else
             System.out.println("Filme não encontrado. Não foi possível realizar a avaliação.");
+        return false;
     }
 }

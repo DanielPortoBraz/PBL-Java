@@ -3,6 +3,7 @@ package Controller;
 import Model.*;
 
 import java.util.HashSet;
+import java.util.TreeSet;
 
 public class SerieController {
     private SerieRepositorio seriesR;
@@ -19,34 +20,64 @@ public class SerieController {
                 elenco, tituloOriginal, ondeAssistir, temporadas));
     }
 
-    public void buscarSeries(int categoria, String filtro){
+    public boolean buscarSeries(int categoria, String filtro){
+        TreeSet<Serie> seriesEncontradas;
+        Serie serieEncontrada;
 
         switch(categoria){
             case 1: // Titulo
-                seriesR.buscarTitulo(filtro).forEach(System.out::println);
+                seriesEncontradas = seriesR.buscarTitulo(filtro);
+
+                if (!seriesEncontradas.isEmpty()){
+                    seriesEncontradas.forEach(System.out::println);
+                    return true;
+                }
                 break;
 
             case 2: // Ator
-                seriesR.buscarAtor(filtro).forEach(System.out::println);
+                seriesEncontradas = seriesR.buscarAtor(filtro);
+
+                if (!seriesEncontradas.isEmpty()){
+                    seriesEncontradas.forEach(System.out::println);
+                    return true;
+                }
                 break;
 
             case 3: // Gênero
-                //seriesR.buscarGenero(filtro).forEach(System.out::println);
+                for (Genero i : Genero.values()){
+
+                    if (filtro.equalsIgnoreCase(i.getNomeFormatado())){
+                        seriesEncontradas = seriesR.buscarGenero(i);
+                        seriesEncontradas.forEach(System.out::println);
+                        return true;
+                    }
+                }
                 break;
 
             case 4: // Ano
                 int filtroNum = Integer.parseInt(filtro);
-                seriesR.buscarAno(filtroNum).forEach(System.out::println);
+                seriesEncontradas = seriesR.buscarAno(filtroNum);
+
+                if (!seriesEncontradas.isEmpty()){
+                    seriesEncontradas.forEach(System.out::println);
+                    return true;
+                }
                 break;
 
             case 5: // Onde assistir
-                seriesR.buscarOndeAssistir(filtro).forEach(System.out::println);
+                seriesEncontradas = seriesR.buscarOndeAssistir(filtro);
+
+                if (!seriesEncontradas.isEmpty()){
+                    seriesEncontradas.forEach(System.out::println);
+                    return true;
+                }
                 break;
 
             default:
-                System.out.println("Não encontrado.");
-
+                System.out.println("Categoria inexistente.");
         }
+
+        return false;
     }
 
     public void listarSeries(){
@@ -55,7 +86,7 @@ public class SerieController {
         }
     }
 
-    public void avaliarSerie(String titulo, String reviewSerie, int numero, String reviewTemporada, int pontuacao){
+    public boolean avaliarSerie(String titulo, String reviewSerie, int numero, String reviewTemporada, int pontuacao){
         Serie serieAvaliada = seriesR.buscarTitulo(titulo).getFirst();
         HashSet<Temporada> temporadas = serieAvaliada.getTemporadas();
         int pontuacaoTotal = 0;
@@ -76,9 +107,11 @@ public class SerieController {
 
             if (quantTemporadas != 0)
                 serieAvaliada.setPontuacao(pontuacaoTotal / quantTemporadas);
+            return true;
         }
 
         else
             System.out.println("Série não encontrada. Não foi possível realizar a avaliação.");
+        return false;
     }
 }
