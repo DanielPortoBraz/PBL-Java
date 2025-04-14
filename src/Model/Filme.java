@@ -64,7 +64,7 @@ public class Filme extends Registro {
                 "Onde Assistir: " + getOndeAssistir() + '\n' +
                 "Pontuação: " + getPontuacao() + '\n' +
                 "Review: " + getReview() + '\n' +
-                "Lido em: " + dataFormatada + '\n';
+                "Visto em: " + dataFormatada + '\n';
     }
 
     public int getTempoDuracao() {

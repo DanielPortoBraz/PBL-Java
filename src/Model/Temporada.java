@@ -6,7 +6,7 @@ public class Temporada {
     private int numero;
 
     public int pontuacao;
-    public String review;
+    public String review = " ";
 
     public Temporada(int ano, int quantEpisodios, int numero) {
         this.ano = ano;

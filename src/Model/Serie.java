@@ -50,7 +50,7 @@ public class Serie extends Registro{
                 "Temporadas: " + getTemporadas().toString() + '\n' +
                 "Pontuação: " + getPontuacao() + '\n' +
                 "Review: " + getReview() + '\n' +
-                "Lido em: " + dataFormatada + '\n';
+                "Vista em: " + dataFormatada + '\n';
     }
 
 
