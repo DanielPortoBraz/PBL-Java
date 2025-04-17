@@ -54,4 +54,11 @@ public class SerieRepositorio {
                 .filter(serie -> serie.getOndeAssistir().contains(ondeAssistir))
                 .collect(Collectors.toCollection(TreeSet::new));
     }
+
+    public Serie buscarId(int id){
+        for (Serie i : series){
+            if (i.getId() == id) return i;
+        }
+        return null;
+    }
 }

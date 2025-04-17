@@ -60,4 +60,11 @@ public class FilmeRepositorio {
                 )
                 .collect(Collectors.toCollection(TreeSet::new));
     }
+
+    public Filme buscarId(int id){
+        for (Filme i : filmes){
+            if (i.getId() == id) return i;
+        }
+        return null;
+    }
 }

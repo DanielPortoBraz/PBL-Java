@@ -86,8 +86,8 @@ public class SerieController {
         }
     }
 
-    public boolean avaliarSerie(String titulo, String reviewSerie, int numero, String reviewTemporada, int pontuacao){
-        Serie serieAvaliada = seriesR.buscarTitulo(titulo).getFirst();
+    public boolean avaliarSerie(int id, String reviewSerie, int numero, String reviewTemporada, int pontuacao){
+        Serie serieAvaliada = seriesR.buscarId(id);
         HashSet<Temporada> temporadas = serieAvaliada.getTemporadas();
         int pontuacaoTotal = 0;
         int quantTemporadas = temporadas.size();

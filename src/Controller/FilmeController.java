@@ -89,8 +89,8 @@ public class FilmeController {
         }
     }
 
-    public boolean avaliarFilme(String titulo, String review, int pontuacao){
-        Filme filmeAvaliado = filmesR.buscarTitulo(titulo).getFirst();
+    public boolean avaliarFilme(int id, String review, int pontuacao){
+        Filme filmeAvaliado = filmesR.buscarId(id);
 
         if (filmeAvaliado != null) {
             filmesR.removeFilme(filmeAvaliado);

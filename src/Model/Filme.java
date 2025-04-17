@@ -3,6 +3,7 @@ package Model;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 
+
 public class Filme extends Registro {
     private int tempoDuracao; // Em minutos
     private HashSet<String> direcao;
@@ -10,6 +11,8 @@ public class Filme extends Registro {
     private HashSet<String> elenco;
     private String tituloOriginal;
     private HashSet<String> ondeAssistir;
+    private static HashSet<Integer> listaId = new HashSet<Integer>();
+    private int id;
 
 
     public Filme(String titulo, HashSet<Genero> generos, int anoLancamento,
@@ -23,21 +26,22 @@ public class Filme extends Registro {
         this.elenco = new HashSet<String>(elenco);
         this.tituloOriginal = tituloOriginal;
         this.ondeAssistir = new HashSet<String>(ondeAssistir);
+        this.id = GeradorID.gerarID(listaId);
     }
 
     @Override
-    public int compareTo(Registro inserido){ // Adiciona a ordenação por título original e/ou direção
+    public int compareTo(Registro inserido) { // Adiciona a ordenação por título original e/ou direção
         int comparacao = super.compareTo(inserido);
 
-        if (comparacao == 0){
+        if (comparacao == 0) {
             comparacao = this.getTituloOriginal().compareToIgnoreCase(((Filme) inserido).getTituloOriginal());
             if (comparacao != 0) return comparacao;
 
             HashSet<String> inseridoDirecao = ((Filme) inserido).getDirecao();
             HashSet<String> inclusoDirecao = this.getDirecao();
 
-            for (String diretor1 : inseridoDirecao){
-                for (String diretor2 : inclusoDirecao){
+            for (String diretor1 : inseridoDirecao) {
+                for (String diretor2 : inclusoDirecao) {
                     comparacao = diretor1.compareToIgnoreCase(diretor2);
                     if (comparacao != 0) return comparacao;
                 }
@@ -52,7 +56,7 @@ public class Filme extends Registro {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String dataFormatada = (this.getDataVisto() != null) ? formato.format(getDataVisto().getTime()) : "--/--/----";
 
-        return  "Título: " + getTitulo() + '\n' +
+        return "Título: " + getTitulo() + '\n' +
                 "Título Original: " + getTituloOriginal() + '\n' +
                 "Gêneros: " + getGenero() + '\n' +
                 "Ano de Lançamento: " + getAnoLancamento() + '\n' +
@@ -64,7 +68,8 @@ public class Filme extends Registro {
                 "Onde Assistir: " + getOndeAssistir() + '\n' +
                 "Pontuação: " + getPontuacao() + '\n' +
                 "Review: " + getReview() + '\n' +
-                "Visto em: " + dataFormatada + '\n';
+                "Visto em: " + dataFormatada + '\n' +
+                "ID: " + getId() + '\n';
     }
 
     public int getTempoDuracao() {
@@ -113,5 +118,9 @@ public class Filme extends Registro {
 
     public void setOndeAssistir(HashSet<String> ondeAssistir) {
         this.ondeAssistir = ondeAssistir;
+    }
+
+    public int getId() {
+        return id;
     }
 }

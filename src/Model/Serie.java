@@ -9,6 +9,8 @@ public class Serie extends Registro{
     private String tituloOriginal;
     private HashSet<String> ondeAssistir;
     private HashSet<Temporada> temporadas;
+    private static HashSet<Integer> listaId = new HashSet<Integer>();
+    private int id;
 
 
     public Serie(String titulo, HashSet<Genero> generos, int anoLancamento,
@@ -22,6 +24,7 @@ public class Serie extends Registro{
         this.tituloOriginal = tituloOriginal;
         this.ondeAssistir = new HashSet<String>(ondeAssistir);
         this.temporadas = new HashSet<Temporada>(temporadas);
+        this.id = GeradorID.gerarID(listaId);
     }
 
     @Override
@@ -50,7 +53,8 @@ public class Serie extends Registro{
                 "Temporadas: " + getTemporadas().toString() + '\n' +
                 "Pontuação: " + getPontuacao() + '\n' +
                 "Review: " + getReview() + '\n' +
-                "Vista em: " + dataFormatada + '\n';
+                "Vista em: " + dataFormatada + '\n' +
+                "ID: " + getId() + '\n';
     }
 
 
@@ -92,5 +96,9 @@ public class Serie extends Registro{
 
     public void setTemporadas(HashSet<Temporada> temporadas) {
         this.temporadas = temporadas;
+    }
+
+    public int getId() {
+        return id;
     }
 }
