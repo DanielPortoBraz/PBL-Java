@@ -26,6 +26,7 @@ public class FilmeController {
     public boolean buscarFilmes(int categoria, String filtro){
         TreeSet<Filme> filmesEncontrados;
         Filme filmeEncontrado;
+        int filtroNum;
 
         switch(categoria){
             case 1: // Titulo
@@ -58,7 +59,7 @@ public class FilmeController {
                 break;
 
             case 4: // Ano
-                int filtroNum = Integer.parseInt(filtro);
+                filtroNum = Integer.parseInt(filtro);
                 filmesEncontrados = filmesR.buscarAno(filtroNum);
 
                 if (!filmesEncontrados.isEmpty()){
@@ -72,6 +73,16 @@ public class FilmeController {
 
                 if (!filmesEncontrados.isEmpty()){
                     filmesEncontrados.forEach(System.out::println);
+                    return true;
+                }
+                break;
+
+            case 6: // ID
+                filtroNum = Integer.parseInt(filtro);
+                filmeEncontrado = filmesR.buscarId(filtroNum);
+
+                if (filmeEncontrado != null){
+                    System.out.println(filmeEncontrado);
                     return true;
                 }
                 break;

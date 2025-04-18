@@ -23,6 +23,7 @@ public class SerieController {
     public boolean buscarSeries(int categoria, String filtro){
         TreeSet<Serie> seriesEncontradas;
         Serie serieEncontrada;
+        int filtroNum;
 
         switch(categoria){
             case 1: // Titulo
@@ -55,7 +56,7 @@ public class SerieController {
                 break;
 
             case 4: // Ano
-                int filtroNum = Integer.parseInt(filtro);
+                filtroNum = Integer.parseInt(filtro);
                 seriesEncontradas = seriesR.buscarAno(filtroNum);
 
                 if (!seriesEncontradas.isEmpty()){
@@ -69,6 +70,16 @@ public class SerieController {
 
                 if (!seriesEncontradas.isEmpty()){
                     seriesEncontradas.forEach(System.out::println);
+                    return true;
+                }
+                break;
+
+            case 6: // ID
+                filtroNum = Integer.parseInt(filtro);
+                serieEncontrada = seriesR.buscarId(filtroNum);
+
+                if (serieEncontrada != null){
+                    System.out.println(serieEncontrada);
                     return true;
                 }
                 break;
