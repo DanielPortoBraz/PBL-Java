@@ -66,7 +66,7 @@ public class Filme extends Registro {
                 "Roteiro: " + getRoteiro() + '\n' +
                 "Elenco: " + getElenco() + '\n' +
                 "Onde Assistir: " + getOndeAssistir() + '\n' +
-                "Pontuação: " + getPontuacao() + '\n' +
+                "Pontuação: " + (getPontuacao() != 0 ? getPontuacao() : " ") + '\n' +
                 "Review: " + getReview() + '\n' +
                 "Visto em: " + dataFormatada + '\n' +
                 "ID: " + getId() + '\n';

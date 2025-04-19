@@ -94,8 +94,12 @@ public class Serie extends Registro{
         return temporadas;
     }
 
-    public void setTemporadas(HashSet<Temporada> temporadas) {
-        this.temporadas = temporadas;
+    public void addTemporada(Temporada temporada) {
+        this.temporadas.add(temporada);
+    }
+
+    public void removeTemporada(Temporada temporada) {
+        this.temporadas.remove(temporada);
     }
 
     public int getId() {

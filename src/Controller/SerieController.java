@@ -20,6 +20,10 @@ public class SerieController {
                 elenco, tituloOriginal, ondeAssistir, temporadas));
     }
 
+    public void cadastrarTemporada(int id, int ano, int quantEpisodios, int numero){
+        seriesR.buscarId(id).addTemporada(new Temporada(ano, quantEpisodios, numero));
+    }
+
     public boolean buscarSeries(int categoria, String filtro){
         TreeSet<Serie> seriesEncontradas;
         Serie serieEncontrada;
@@ -106,23 +110,41 @@ public class SerieController {
         if (serieAvaliada != null) {
             serieAvaliada.setVisto(true); // Marca a série como vista
             serieAvaliada.setReview(reviewSerie);// Atualiza a review da série
-
-            for (Temporada i : temporadas){
-
-                if (i.getNumero() == numero){
-                    i.setReview(reviewTemporada);
-                    i.setPontuacao(pontuacao);
-                }
-                pontuacaoTotal += i.getPontuacao();
-            }
-
-            if (quantTemporadas != 0)
-                serieAvaliada.setPontuacao(pontuacaoTotal / quantTemporadas);
             return true;
         }
 
         else
             System.out.println("Série não encontrada. Não foi possível realizar a avaliação.");
+        return false;
+    }
+
+    public boolean avaliarTemporada(int id, int numero, String reviewTemporada, int pontuacao){
+        Serie serieAvaliada = seriesR.buscarId(id);
+        HashSet<Temporada> temporadas = serieAvaliada.getTemporadas();
+        int pontuacaoTotal = 0;
+        int quantTemporadas = temporadas.size();
+
+        if (temporadas != null) {
+
+            for (Temporada i : temporadas) {
+
+                if (i.getNumero() == numero) {
+                    i.setReview(reviewTemporada); // Atualiza a review da temporada
+                    i.setPontuacao(pontuacao); // Atualiza a pontuação da temporada
+                }
+
+                if (i.getPontuacao() != 0) // Se a temporada foi avaliada
+                    pontuacaoTotal += i.getPontuacao();
+            }
+
+            if (quantTemporadas != 0)
+                // Atualiza a pontuação da Série pela média das pontuações das temporadas
+                serieAvaliada.setPontuacao(pontuacaoTotal / quantTemporadas);
+            return true;
+        }
+
+        else
+            System.out.println("Temporada não encontrada. Não foi possível realizar a avaliação.");
         return false;
     }
 }

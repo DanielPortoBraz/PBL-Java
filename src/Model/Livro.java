@@ -46,7 +46,7 @@ public class Livro extends Registro{
                 "Editora: " + getEditora() + '\n' +
                 "ISBN: " + getIsbn() + '\n' +
                 "Exemplar disponível: " + (isExemplar() ? "Sim" : "Não") + '\n' +
-                "Pontuação: " + getPontuacao() + '\n' +
+                "Pontuação: " + (getPontuacao() != 0 ? getPontuacao() : " ") + '\n' +
                 "Review: " + getReview() + '\n' +
                 "Lido em: " + dataFormatada + '\n';
     }

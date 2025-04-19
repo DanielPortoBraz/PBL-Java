@@ -19,7 +19,7 @@ public class Temporada {
         return "\nTemporada: " + getNumero() + '\n' +
                 "Episódios: " + getQuantEpisodios() + '\n' +
                 "Ano: " + getAno() + '\n' +
-                "Pontuação: " + getPontuacao() + '\n' +
+                "Pontuação: " + (getPontuacao() != 0 ? getPontuacao() : " ") + '\n' +
                 "Review: " + getReview() + '\n';
     }
 
