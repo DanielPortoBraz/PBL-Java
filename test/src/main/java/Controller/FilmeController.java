@@ -3,8 +3,8 @@ package Controller;
 import Model.Genero;
 import Model.FilmeRepositorio;
 import Model.Filme;
-import Model.Filme;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.TreeSet;
 
@@ -23,13 +23,13 @@ public class FilmeController {
                     direcao, roteiro, elenco, tituloOriginal, ondeAssistir));
     }
 
-    public boolean buscarFilmes(int categoria, String filtro){
+    public boolean buscarFilmes(String categoria, String filtro){
         TreeSet<Filme> filmesEncontrados;
         Filme filmeEncontrado;
         int filtroNum;
 
         switch(categoria){
-            case 1: // Titulo
+            case "1": // Titulo
                 filmesEncontrados = filmesR.buscarTitulo(filtro);
 
                 if (!filmesEncontrados.isEmpty()){
@@ -38,7 +38,7 @@ public class FilmeController {
                 }
                 break;
 
-            case 2: // Ator
+            case "2": // Ator
                 filmesEncontrados = filmesR.buscarAtor(filtro);
 
                 if (!filmesEncontrados.isEmpty()){
@@ -47,7 +47,7 @@ public class FilmeController {
                 }
                 break;
 
-            case 3: // Gênero
+            case "3": // Gênero
                 for (Genero i : Genero.values()){
 
                     if (filtro.equalsIgnoreCase(i.getNomeFormatado())){
@@ -58,7 +58,7 @@ public class FilmeController {
                 }
                 break;
 
-            case 4: // Ano
+            case "4": // Ano
                 filtroNum = Integer.parseInt(filtro);
                 filmesEncontrados = filmesR.buscarAno(filtroNum);
 
@@ -68,7 +68,7 @@ public class FilmeController {
                 }
                 break;
 
-            case 5: // Diretor
+            case "5": // Diretor
                 filmesEncontrados = filmesR.buscarDiretor(filtro);
 
                 if (!filmesEncontrados.isEmpty()){
@@ -77,7 +77,7 @@ public class FilmeController {
                 }
                 break;
 
-            case 6: // ID
+            case "6": // ID
                 filtroNum = Integer.parseInt(filtro);
                 filmeEncontrado = filmesR.buscarId(filtroNum);
 
@@ -100,12 +100,13 @@ public class FilmeController {
         }
     }
 
-    public boolean avaliarFilme(int id, String review, int pontuacao){
+    public boolean avaliarFilme(int id, String review, int pontuacao,  Calendar dataVisto){
         Filme filmeAvaliado = filmesR.buscarId(id);
 
         if (filmeAvaliado != null) {
             filmesR.removeFilme(filmeAvaliado);
             filmeAvaliado.setVisto(true); // Marca o filme como visto
+            filmeAvaliado.setDataVisto(dataVisto);
             filmeAvaliado.setReview(review); // Atualiza a review do filme
             filmeAvaliado.setPontuacao(pontuacao); // Atualiza a pontuação do filme
             filmesR.addFilme(filmeAvaliado);
@@ -114,7 +115,6 @@ public class FilmeController {
         }
 
         else
-            System.out.println("Filme não encontrado. Não foi possível realizar a avaliação.");
-        return false;
+            return false;
     }
 }

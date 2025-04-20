@@ -28,6 +28,12 @@ public class Serie extends Registro{
     }
 
     @Override
+    public boolean equals(Object obj){
+        Serie serie = (Serie) obj;
+        return this.getId() == serie.getId();
+    }
+
+    @Override
     public int compareTo(Registro inserido){ // Adiciona a ordenação por título original
         int comparacao = super.compareTo(inserido);
 
@@ -104,5 +110,10 @@ public class Serie extends Registro{
 
     public int getId() {
         return id;
+    }
+
+    // Usado somente para testes
+    public void setId(int id){
+        this.id = id;
     }
 }

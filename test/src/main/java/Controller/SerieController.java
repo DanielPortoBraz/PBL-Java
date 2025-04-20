@@ -2,6 +2,7 @@ package Controller;
 
 import Model.*;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.TreeSet;
 
@@ -20,17 +21,17 @@ public class SerieController {
                 elenco, tituloOriginal, ondeAssistir, temporadas));
     }
 
-    public void cadastrarTemporada(int id, int ano, int quantEpisodios, int numero){
-        seriesR.buscarId(id).addTemporada(new Temporada(ano, quantEpisodios, numero));
+    public void cadastrarTemporada(int id, Temporada temporada){
+        seriesR.buscarId(id).addTemporada(temporada);
     }
 
-    public boolean buscarSeries(int categoria, String filtro){
+    public boolean buscarSeries(String categoria, String filtro){
         TreeSet<Serie> seriesEncontradas;
         Serie serieEncontrada;
         int filtroNum;
 
         switch(categoria){
-            case 1: // Titulo
+            case "1": // Titulo
                 seriesEncontradas = seriesR.buscarTitulo(filtro);
 
                 if (!seriesEncontradas.isEmpty()){
@@ -39,7 +40,7 @@ public class SerieController {
                 }
                 break;
 
-            case 2: // Ator
+            case "2": // Ator
                 seriesEncontradas = seriesR.buscarAtor(filtro);
 
                 if (!seriesEncontradas.isEmpty()){
@@ -48,7 +49,7 @@ public class SerieController {
                 }
                 break;
 
-            case 3: // Gênero
+            case "3": // Gênero
                 for (Genero i : Genero.values()){
 
                     if (filtro.equalsIgnoreCase(i.getNomeFormatado())){
@@ -59,7 +60,7 @@ public class SerieController {
                 }
                 break;
 
-            case 4: // Ano
+            case "4": // Ano
                 filtroNum = Integer.parseInt(filtro);
                 seriesEncontradas = seriesR.buscarAno(filtroNum);
 
@@ -69,7 +70,7 @@ public class SerieController {
                 }
                 break;
 
-            case 5: // Onde assistir
+            case "5": // Onde assistir
                 seriesEncontradas = seriesR.buscarOndeAssistir(filtro);
 
                 if (!seriesEncontradas.isEmpty()){
@@ -78,7 +79,7 @@ public class SerieController {
                 }
                 break;
 
-            case 6: // ID
+            case "6": // ID
                 filtroNum = Integer.parseInt(filtro);
                 serieEncontrada = seriesR.buscarId(filtroNum);
 
@@ -101,7 +102,7 @@ public class SerieController {
         }
     }
 
-    public boolean avaliarSerie(int id, String reviewSerie, int numero, String reviewTemporada, int pontuacao){
+    public boolean avaliarSerie(int id, String reviewSerie, Calendar dataVisto){
         Serie serieAvaliada = seriesR.buscarId(id);
         HashSet<Temporada> temporadas = serieAvaliada.getTemporadas();
         int pontuacaoTotal = 0;
@@ -109,13 +110,13 @@ public class SerieController {
 
         if (serieAvaliada != null) {
             serieAvaliada.setVisto(true); // Marca a série como vista
+            serieAvaliada.setDataVisto(dataVisto); // Atualiza a data que a série foi vista
             serieAvaliada.setReview(reviewSerie);// Atualiza a review da série
             return true;
         }
 
         else
-            System.out.println("Série não encontrada. Não foi possível realizar a avaliação.");
-        return false;
+            return false;
     }
 
     public boolean avaliarTemporada(int id, int numero, String reviewTemporada, int pontuacao){
@@ -137,14 +138,15 @@ public class SerieController {
                     pontuacaoTotal += i.getPontuacao();
             }
 
-            if (quantTemporadas != 0)
-                // Atualiza a pontuação da Série pela média das pontuações das temporadas
-                serieAvaliada.setPontuacao(pontuacaoTotal / quantTemporadas);
+            if (quantTemporadas != 0) {
+                seriesR.removeSerie(serieAvaliada);
+                serieAvaliada.setPontuacao(pontuacaoTotal / quantTemporadas); // Atualiza a pontuação da Série pela média das pontuações das temporadas
+                seriesR.addSerie(serieAvaliada);
+            }
             return true;
         }
 
         else
-            System.out.println("Temporada não encontrada. Não foi possível realizar a avaliação.");
-        return false;
+            return false;
     }
 }

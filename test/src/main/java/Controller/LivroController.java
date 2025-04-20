@@ -6,9 +6,7 @@ import Model.Livro;
 
 import java.util.Calendar;
 import java.util.HashSet;
-import java.util.List;
 import java.util.TreeSet;
-import java.util.stream.Stream;
 
 
 public class LivroController extends RegistroController {
@@ -23,12 +21,12 @@ public class LivroController extends RegistroController {
         livrosR.addLivro(new Livro(titulo, generos, anoLancamento, visto, autor, editora, isbn, exemplar));
     }
 
-    public boolean buscarLivros(int categoria, String filtro) {
+    public boolean buscarLivros(String categoria, String filtro) {
         TreeSet<Livro> livrosEncontrados;
         Livro livroEncontrado;
 
         switch (categoria) {
-            case 1: // Titulo
+            case "1": // Titulo
                 livrosEncontrados = livrosR.buscarTitulo(filtro);
 
                 if (!livrosEncontrados.isEmpty()) {
@@ -37,7 +35,7 @@ public class LivroController extends RegistroController {
                 }
                 break;
 
-            case 2: // Autor
+            case "2": // Autor
                 livrosEncontrados = livrosR.buscarAutor(filtro);
 
                 if (!livrosEncontrados.isEmpty()) {
@@ -46,7 +44,7 @@ public class LivroController extends RegistroController {
                 }
                 break;
 
-            case 3: // Gênero
+            case "3": // Gênero
 
                 for (Genero i : Genero.values()){
 
@@ -58,7 +56,7 @@ public class LivroController extends RegistroController {
                 }
                 break;
 
-            case 4: // Ano
+            case "4": // Ano
                 int filtroNum = Integer.parseInt(filtro);
                 livrosEncontrados = livrosR.buscarAno(filtroNum);
 
@@ -68,7 +66,7 @@ public class LivroController extends RegistroController {
                 }
                 break;
 
-            case 5: // Isbn
+            case "5": // Isbn
                 livroEncontrado = livrosR.buscarIsbn(filtro);
 
                 if (livroEncontrado != null){
@@ -107,7 +105,6 @@ public class LivroController extends RegistroController {
         }
 
         else
-            System.out.println("Livro não encontrado. Não foi possível realizar a avaliação.");
-        return false;
+            return false;
     }
 }

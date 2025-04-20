@@ -1,7 +1,6 @@
 package Model;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.HashSet;
 
 public class Livro extends Registro{
@@ -20,15 +19,29 @@ public class Livro extends Registro{
     }
 
     @Override
-    public int compareTo(Registro inserido){ // Adiciona a ordenação por autor e/ou isbn, respectivamente
-        int comparacao = super.compareTo(inserido);
+    public boolean equals(Object obj) {
+        Livro livro = (Livro) obj;
+        return this.getIsbn().equalsIgnoreCase(livro.getIsbn());
+    }
 
-        if (comparacao == 0){
+    @Override
+    public int compareTo(Registro inserido){ // Adiciona a ordenação por isbn e/ou autor, respectivamente
+        int comparacao, comparacaoIsbn;
+
+        comparacao = this.getIsbn().compareToIgnoreCase(((Livro)inserido).getIsbn());
+        comparacaoIsbn = comparacao;
+
+        // Garante que Livros com mesmo Isbn sejam considerados iguais, independente dos outros atributos
+        if (comparacao == 0)
+            return comparacao;
+        comparacao = super.compareTo(inserido);
+
+        if (comparacao == 0)
             comparacao = this.getAutor().compareToIgnoreCase(((Livro) inserido).getAutor());
-            if (comparacao != 0) return comparacao;
 
-            return this.getIsbn().compareToIgnoreCase(((Livro) inserido).getIsbn());
-        }
+        // Se os Livros forem iguais em todos os atributos, então eles serão diferenciados pelo ISBN
+        if (comparacao == 0)
+            return comparacaoIsbn;
 
         return comparacao;
     }

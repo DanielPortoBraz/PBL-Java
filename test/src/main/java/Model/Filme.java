@@ -30,6 +30,12 @@ public class Filme extends Registro {
     }
 
     @Override
+    public boolean equals(Object obj){
+        Filme filme = (Filme) obj;
+        return this.getId() == filme.getId();
+    }
+
+    @Override
     public int compareTo(Registro inserido) { // Adiciona a ordenação por título original e/ou direção
         int comparacao = super.compareTo(inserido);
 
@@ -122,5 +128,10 @@ public class Filme extends Registro {
 
     public int getId() {
         return id;
+    }
+
+    // Usado somente para testes
+    public void setId(int id){
+        this.id = id;
     }
 }
