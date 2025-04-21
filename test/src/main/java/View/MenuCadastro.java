@@ -28,6 +28,7 @@ class MenuCadastro implements Menu{
     @Override
     public void exibir() {
         String opcao;
+        boolean cadastrado;
 
         do {
             System.out.println("\n-- MENU DE CADASTRO --");
@@ -74,8 +75,12 @@ class MenuCadastro implements Menu{
                         boolean exemplarLivro = scanner.nextBoolean();
                         scanner.nextLine();
 
-                        livroController.cadastrarLivro(tituloLivro, generosLivro, anoLancamentoLivro,
+                        cadastrado = livroController.cadastrarLivro(tituloLivro, generosLivro, anoLancamentoLivro,
                                 vistoLivro, autorLivro, editoraLivro, isbnLivro, exemplarLivro);
+                        if (cadastrado)
+                            System.out.println("Livro cadastrado com sucesso!");
+                        else
+                            System.out.println("Não foi possível cadastrar o livro.");
                     } catch (AnoInvalidoException | DadoVazioException e) {
                         System.out.println("Erro no cadastro: " + e.getMessage());
                     } catch (Exception e) {
@@ -118,9 +123,13 @@ class MenuCadastro implements Menu{
 
                         HashSet<String> ondeAssistirFilme = cadastrarListaDeNomes(scanner, "Onde assistir");
 
-                        filmeController.cadastrarFilme(tituloFilme, generosFilme, anoLancamentoFilme,
+                        cadastrado = filmeController.cadastrarFilme(tituloFilme, generosFilme, anoLancamentoFilme,
                                 vistoFilme, tempoDuracaoFilme, direcaoFilme, roteiroFilme,
                                 elencoFilme, tituloOriginalFilme, ondeAssistirFilme);
+                        if (cadastrado)
+                            System.out.println("Filme cadastrado com sucesso!");
+                        else
+                            System.out.println("Não foi possível cadastrado o filme.");
 
                     } catch (AnoInvalidoException | DadoVazioException e) {
                         System.out.println("Erro no cadastro: " + e.getMessage());
@@ -177,9 +186,13 @@ class MenuCadastro implements Menu{
                                 HashSet<String> ondeAssistirSerie = cadastrarListaDeNomes(scanner, "Onde assistir");
                                 HashSet<Temporada> temporadasSerie = cadastrarTemporadas(scanner);
 
-                                serieController.cadastrarSerie(tituloSerie, generosSerie, anoLancamentoSerie,
+                                cadastrado = serieController.cadastrarSerie(tituloSerie, generosSerie, anoLancamentoSerie,
                                         vistoSerie, anoEncerramentoSerie, elencoSerie, tituloOriginalSerie,
                                         ondeAssistirSerie, temporadasSerie);
+                                if (cadastrado)
+                                    System.out.println("Série cadastrada com sucesso!");
+                                else
+                                    System.out.println("Não foi possível cadastrar a série.");
 
                             } catch (AnoInvalidoException | DadoVazioException e) {
                                 System.out.println("Erro no cadastro: " + e.getMessage());
@@ -207,7 +220,12 @@ class MenuCadastro implements Menu{
                                     System.out.println("Nenhuma temporada foi cadastrada.");
                                 } else {
                                     for (Temporada t : temporadas) {
-                                        serieController.cadastrarTemporada(serieId, t);
+                                        cadastrado = serieController.cadastrarTemporada(serieId, t);
+
+                                        if (cadastrado)
+                                            System.out.printf("Temporada %d cadastrada com sucesso!\n", t.getNumero());
+                                        else
+                                            System.out.printf("Não foi possível cadastrar a temporada %d.\n", t.getNumero());
                                     }
                                     System.out.println("Temporada(s) cadastrada(s) com sucesso!");
                                 }
@@ -331,8 +349,17 @@ class MenuCadastro implements Menu{
         while (true) {
             System.out.printf("%s: ", tipo.substring(0, 1).toUpperCase() + tipo.substring(1));
             entrada = scanner.nextLine().trim();
-            if (entrada.isEmpty()) break; // ENTER encerra
-            lista.add(entrada);
+
+            if (entrada.isEmpty()) break;
+
+            try {
+                if (entrada.isBlank()) {
+                    throw new DadoVazioException("O campo \"" + tipo + "\" não pode estar vazio.");
+                }
+                lista.add(entrada);
+            } catch (DadoVazioException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
         }
 
         return lista;
@@ -341,23 +368,37 @@ class MenuCadastro implements Menu{
     public static HashSet<Temporada> cadastrarTemporadas(Scanner scanner) {
         HashSet<Temporada> temporadas = new HashSet<>();
         int numeroTemporada = 1;
+        int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
 
         System.out.println("\nDigite os dados das temporadas (pressione ENTER vazio no ano para encerrar):");
 
         while (true) {
-            System.out.printf("Temporada %d - Ano de lançamento: ", numeroTemporada);
-            String entrada = scanner.nextLine().trim();
-            if (entrada.isEmpty()) break;
+            try {
+                System.out.printf("Temporada %d - Ano de lançamento: ", numeroTemporada);
+                String entrada = scanner.nextLine().trim();
+                if (entrada.isEmpty()) break;
 
-            int ano = Integer.parseInt(entrada);
+                int ano = Integer.parseInt(entrada);
+                if (ano < 1900 || ano > anoAtual) {
+                    throw new AnoInvalidoException("Ano inválido. O ano deve estar entre 1900 e " + anoAtual + ".");
+                }
 
-            System.out.print("Quantidade de episódios: ");
-            int quantEpisodios = scanner.nextInt();
-            scanner.nextLine();
+                System.out.print("Quantidade de episódios: ");
+                int quantEpisodios = scanner.nextInt();
+                scanner.nextLine();
 
-            Temporada temporada = new Temporada(ano, quantEpisodios, numeroTemporada);
-            temporadas.add(temporada);
-            numeroTemporada++;
+                Temporada temporada = new Temporada(ano, quantEpisodios, numeroTemporada);
+                temporadas.add(temporada);
+                numeroTemporada++;
+
+            } catch (AnoInvalidoException e) {
+                System.out.println("Erro: " + e.getMessage());
+            } catch (NumberFormatException e) {
+                System.out.println("Erro: Valor inválido para ano. Digite apenas números.");
+            } catch (Exception e) {
+                System.out.println("Erro inesperado: " + e.getMessage());
+                scanner.nextLine();
+            }
         }
 
         return temporadas;

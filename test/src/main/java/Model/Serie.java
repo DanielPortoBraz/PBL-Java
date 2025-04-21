@@ -100,12 +100,12 @@ public class Serie extends Registro{
         return temporadas;
     }
 
-    public void addTemporada(Temporada temporada) {
-        this.temporadas.add(temporada);
+    public boolean addTemporada(Temporada temporada) {
+        return this.temporadas.add(temporada);
     }
 
-    public void removeTemporada(Temporada temporada) {
-        this.temporadas.remove(temporada);
+    public boolean removeTemporada(Temporada temporada) {
+        return this.temporadas.remove(temporada);
     }
 
     public int getId() {

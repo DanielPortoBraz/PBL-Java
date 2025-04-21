@@ -13,16 +13,16 @@ public class SerieController {
         this.seriesR = new SerieRepositorio();
     }
 
-    public void cadastrarSerie(String titulo, HashSet<Genero> generos, int anoLancamento,
+    public boolean cadastrarSerie(String titulo, HashSet<Genero> generos, int anoLancamento,
                                boolean visto, int anoEncerramento,
                                HashSet<String> elenco, String tituloOriginal,
                                HashSet<String> ondeAssistir, HashSet<Temporada> temporadas){
-        seriesR.addSerie(new Serie(titulo, generos, anoLancamento, visto, anoEncerramento,
+        return seriesR.addSerie(new Serie(titulo, generos, anoLancamento, visto, anoEncerramento,
                 elenco, tituloOriginal, ondeAssistir, temporadas));
     }
 
-    public void cadastrarTemporada(int id, Temporada temporada){
-        seriesR.buscarId(id).addTemporada(temporada);
+    public boolean cadastrarTemporada(int id, Temporada temporada){
+        return seriesR.buscarId(id).addTemporada(temporada);
     }
 
     public boolean buscarSeries(String categoria, String filtro){

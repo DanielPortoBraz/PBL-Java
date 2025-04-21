@@ -15,12 +15,12 @@ public class FilmeController {
         this.filmesR = new FilmeRepositorio();
     }
 
-    public void cadastrarFilme(String titulo, HashSet<Genero> generos, int anoLancamento,
+    public boolean cadastrarFilme(String titulo, HashSet<Genero> generos, int anoLancamento,
                               boolean visto,int tempoDuracao, HashSet<String> direcao,
                               HashSet<String> roteiro, HashSet<String> elenco, String tituloOriginal,
                               HashSet<String> ondeAssistir){
-            filmesR.addFilme(new Filme(titulo, generos, anoLancamento, visto, tempoDuracao,
-                    direcao, roteiro, elenco, tituloOriginal, ondeAssistir));
+        return filmesR.addFilme(new Filme(titulo, generos, anoLancamento, visto, tempoDuracao,
+                direcao, roteiro, elenco, tituloOriginal, ondeAssistir));
     }
 
     public boolean buscarFilmes(String categoria, String filtro){
