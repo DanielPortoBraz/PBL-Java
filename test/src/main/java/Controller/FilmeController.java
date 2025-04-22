@@ -117,4 +117,9 @@ public class FilmeController {
         else
             return false;
     }
+
+    // Usado somente para testes
+    public FilmeRepositorio getFilmesR(){
+        return filmesR;
+    }
 }

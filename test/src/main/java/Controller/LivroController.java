@@ -10,6 +10,7 @@ import java.util.TreeSet;
 
 
 public class LivroController extends RegistroController {
+
     private LivroRepositorio livrosR;
 
     public LivroController() {
@@ -107,5 +108,10 @@ public class LivroController extends RegistroController {
 
         else
             return false;
+    }
+
+    // Usado apenas para testes
+    public LivroRepositorio getLivrosR() {
+        return livrosR;
     }
 }
