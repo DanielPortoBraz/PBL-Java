@@ -104,9 +104,6 @@ public class SerieController {
 
     public boolean avaliarSerie(int id, String reviewSerie, Calendar dataVisto){
         Serie serieAvaliada = seriesR.buscarId(id);
-        HashSet<Temporada> temporadas = serieAvaliada.getTemporadas();
-        int pontuacaoTotal = 0;
-        int quantTemporadas = temporadas.size();
 
         if (serieAvaliada != null) {
             serieAvaliada.setVisto(true); // Marca a série como vista
@@ -125,28 +122,29 @@ public class SerieController {
         int pontuacaoTotal = 0;
         int quantTemporadas = temporadas.size();
 
-        if (temporadas != null) {
+        if (serieAvaliada != null) {
 
-            for (Temporada i : temporadas) {
+            if (temporadas != null) {
 
-                if (i.getNumero() == numero) {
-                    i.setReview(reviewTemporada); // Atualiza a review da temporada
-                    i.setPontuacao(pontuacao); // Atualiza a pontuação da temporada
+                for (Temporada i : temporadas) {
+
+                    if (i.getNumero() == numero) {
+                        i.setReview(reviewTemporada); // Atualiza a review da temporada
+                        i.setPontuacao(pontuacao); // Atualiza a pontuação da temporada
+                    }
+
+                    if (i.getPontuacao() != 0) // Se a temporada foi avaliada
+                        pontuacaoTotal += i.getPontuacao();
                 }
 
-                if (i.getPontuacao() != 0) // Se a temporada foi avaliada
-                    pontuacaoTotal += i.getPontuacao();
+                if (quantTemporadas != 0) {
+                    seriesR.removeSerie(serieAvaliada);
+                    serieAvaliada.setPontuacao(pontuacaoTotal / quantTemporadas); // Atualiza a pontuação da Série pela média das pontuações das temporadas
+                    seriesR.addSerie(serieAvaliada);
+                    return true;
+                }
             }
-
-            if (quantTemporadas != 0) {
-                seriesR.removeSerie(serieAvaliada);
-                serieAvaliada.setPontuacao(pontuacaoTotal / quantTemporadas); // Atualiza a pontuação da Série pela média das pontuações das temporadas
-                seriesR.addSerie(serieAvaliada);
-            }
-            return true;
         }
-
-        else
-            return false;
+        return false;
     }
 }
