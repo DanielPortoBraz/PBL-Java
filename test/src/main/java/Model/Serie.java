@@ -2,6 +2,7 @@ package Model;
 
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
+import java.util.List;
 
 public class Serie extends Registro{
     private int anoEncerramento;
@@ -37,8 +38,22 @@ public class Serie extends Registro{
     public int compareTo(Registro inserido){ // Adiciona a ordenação por título original
         int comparacao = super.compareTo(inserido);
 
-        if (comparacao == 0)
-            return this.getTituloOriginal().compareToIgnoreCase(((Serie) inserido).getTituloOriginal());
+        if (comparacao == 0) {
+             comparacao = this.getTituloOriginal().compareToIgnoreCase(((Serie) inserido).getTituloOriginal());
+             if (comparacao != 0) return comparacao;
+
+            List<String> direcaoInserido = ((Serie) inserido).getElenco() != null ?
+                    ((Serie) inserido).getElenco().stream().sorted().toList() : List.of();
+            List<String> direcaoIncluso = this.getElenco() != null ?
+                    this.getElenco().stream().sorted().toList() : List.of();
+
+            for (int i = 0; i < Math.min(direcaoInserido.size(), direcaoIncluso.size()); i++) {
+                comparacao = direcaoInserido.get(i).compareToIgnoreCase(direcaoIncluso.get(i));
+                if (comparacao != 0) return comparacao;
+            }
+
+            return Integer.compare(direcaoInserido.size(), direcaoIncluso.size());
+        }
 
         return comparacao;
     }

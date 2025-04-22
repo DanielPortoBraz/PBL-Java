@@ -1,7 +1,10 @@
 package Model;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 
 public class Filme extends Registro {
@@ -36,26 +39,29 @@ public class Filme extends Registro {
     }
 
     @Override
-    public int compareTo(Registro inserido) { // Adiciona a ordenação por título original e/ou direção
+    public int compareTo(Registro inserido) {
         int comparacao = super.compareTo(inserido);
 
         if (comparacao == 0) {
             comparacao = this.getTituloOriginal().compareToIgnoreCase(((Filme) inserido).getTituloOriginal());
             if (comparacao != 0) return comparacao;
 
-            HashSet<String> inseridoDirecao = ((Filme) inserido).getDirecao();
-            HashSet<String> inclusoDirecao = this.getDirecao();
+            List<String> direcaoInserido = ((Filme) inserido).getDirecao() != null ?
+                    ((Filme) inserido).getDirecao().stream().sorted().toList() : List.of();
+            List<String> direcaoIncluso = this.getDirecao() != null ?
+                    this.getDirecao().stream().sorted().toList() : List.of();
 
-            for (String diretor1 : inseridoDirecao) {
-                for (String diretor2 : inclusoDirecao) {
-                    comparacao = diretor1.compareToIgnoreCase(diretor2);
-                    if (comparacao != 0) return comparacao;
-                }
+            for (int i = 0; i < Math.min(direcaoInserido.size(), direcaoIncluso.size()); i++) {
+                comparacao = direcaoInserido.get(i).compareToIgnoreCase(direcaoIncluso.get(i));
+                if (comparacao != 0) return comparacao;
             }
+
+            return Integer.compare(direcaoInserido.size(), direcaoIncluso.size());
         }
 
         return comparacao;
     }
+
 
     @Override
     public String toString() {
