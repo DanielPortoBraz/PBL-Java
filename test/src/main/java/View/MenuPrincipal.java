@@ -5,9 +5,11 @@ import java.util.Scanner;
 
 public class MenuPrincipal implements Menu{
     private Scanner scanner;
+
     protected LivroController livroController;
     protected FilmeController filmeController;
     protected SerieController serieController;
+
 
     public MenuPrincipal(Scanner scanner, LivroController livroController,
                          FilmeController filmeController,

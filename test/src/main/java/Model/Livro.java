@@ -3,6 +3,7 @@ package Model;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 
+// Herda de Registro
 public class Livro extends Registro{
     private String autor;
     private String editora;
@@ -18,6 +19,7 @@ public class Livro extends Registro{
         this.exemplar = exemplar;
     }
 
+    // Sobrescreve equals para afirmar que Livros com o mesmo ISBN são iguais. Usado em testes
     @Override
     public boolean equals(Object obj) {
         Livro livro = (Livro) obj;
@@ -25,7 +27,7 @@ public class Livro extends Registro{
     }
 
     @Override
-    public int compareTo(Registro inserido){ // Adiciona a ordenação por isbn e/ou autor, respectivamente
+    public int compareTo(Registro inserido){ // Compara pela ordenação por isbn e/ou autor, respectivamente
         int comparacao, comparacaoIsbn;
 
         comparacao = this.getIsbn().compareToIgnoreCase(((Livro)inserido).getIsbn());
@@ -34,7 +36,7 @@ public class Livro extends Registro{
         // Garante que Livros com mesmo Isbn sejam considerados iguais, independente dos outros atributos
         if (comparacao == 0)
             return comparacao;
-        comparacao = super.compareTo(inserido);
+        comparacao = super.compareTo(inserido); // Faz a comparação por pontuação e título
 
         if (comparacao == 0)
             comparacao = this.getAutor().compareToIgnoreCase(((Livro) inserido).getAutor());
@@ -48,6 +50,7 @@ public class Livro extends Registro{
 
     @Override
     public String toString() {
+        // Formata a data no formato dd/MM/YY. Caso data seja null, atualiza a data para a atual do sistema
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String dataFormatada = (this.getDataVisto() != null) ? formato.format(getDataVisto().getTime()) : "--/--/----";
 

@@ -10,6 +10,7 @@ public class FilmeRepositorio {
         this.filmes = new TreeSet<Filme>();
     }
 
+    // Adiciona de forma ordenada
     public boolean addFilme(Filme filme){
         return this.filmes.add(filme);
     }

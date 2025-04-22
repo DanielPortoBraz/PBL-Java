@@ -3,19 +3,21 @@ package View;
 import Controller.*;
 import Model.Genero;
 import Model.Temporada;
-import CustomExceptions.*;
+import CustomExceptions.*; // Excçeões personalizadas
 
-import java.time.Year;
-import java.util.Calendar;
+import java.util.Calendar; // Para ler e formatar Datas
 import java.util.HashSet;
 import java.util.Scanner; // Entrada de dados
 
+
 class MenuCadastro implements Menu{
     private Scanner scanner;
+
     protected LivroController livroController;
     protected FilmeController filmeController;
     protected SerieController serieController;
 
+    // Recebe o scanner e os controllers inicializados na Main
     public MenuCadastro(Scanner scanner, LivroController livroController,
                         FilmeController filmeController,
                         SerieController serieController){

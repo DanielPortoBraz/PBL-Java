@@ -10,6 +10,7 @@ public class SerieRepositorio {
         this.series = new TreeSet<Serie>();
     }
 
+    // Adiciona de forma ordenada
     public boolean addSerie(Serie serie){
         return this.series.add(serie);
     }

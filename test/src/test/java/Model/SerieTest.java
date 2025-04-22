@@ -7,10 +7,11 @@ import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class SerieTest {
 
     @Test
-    public void criarSerieCompleta() {
+    public void deveCriarSerieCompleta() {
         Serie serie = new Serie(
                 "Breaking Bad", new HashSet<>(Arrays.asList(Genero.DRAMA)),
                 2008, true, 2013,
@@ -33,7 +34,7 @@ public class SerieTest {
     }
 
     @Test
-    public void criarSerieIncompleta() {
+    public void deveCriarSerieIncompleta() {
         Serie serie = new Serie(
                 "", new HashSet<>(), 0,
                 false, 0, new HashSet<>(),
@@ -51,7 +52,7 @@ public class SerieTest {
     }
 
     @Test
-    public void verificarIdValido() {
+    public void deveRetornarSerieAoPegarIdValido() {
         Serie serie = new Serie(
                 "Friends", new HashSet<>(Arrays.asList(Genero.COMEDIA)),
                 1994, true, 2004,
@@ -64,7 +65,7 @@ public class SerieTest {
     }
 
     @Test
-    public void verificarSeriesIguaisPorId() {
+    public void deveRetornarQueSeriesIguaisPorIdSaoIguais() {
         Serie serie1 = new Serie(
                 "Série A", new HashSet<>(),
                 2010, true, 2015,
@@ -85,7 +86,7 @@ public class SerieTest {
     }
 
     @Test
-    public void verificarSeriesDiferentesPorId() {
+    public void naoDeveRetornarQueSeriesIguaisPorIdSaoIguais() {
         Serie serie1 = new Serie(
                 "Série X", new HashSet<>(), 2000,
                 false, 2005, new HashSet<>(),

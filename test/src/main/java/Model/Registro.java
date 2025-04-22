@@ -3,6 +3,7 @@ package Model;
 import java.util.Calendar;
 import java.util.HashSet;
 
+// Implementa Comparable para fazer o compareTo da estrutura TreeSet
 public class Registro implements Comparable<Registro> {
     private String titulo;
     private HashSet<Genero> generos;
@@ -11,7 +12,7 @@ public class Registro implements Comparable<Registro> {
 
     private Calendar dataVisto;
     public String review = " ";
-    public int pontuacao;
+    public int pontuacao; // Incia a pontuação com valor 0
 
     public Registro(String titulo, HashSet<Genero> generos, int anoLancamento, boolean visto) {
         this.titulo = titulo;
@@ -20,6 +21,8 @@ public class Registro implements Comparable<Registro> {
         this.visto = visto;
     }
 
+    // Sobrescreve para fazer comparaçães personalizadas ao adicionar/remover objetos na TreeSet
+    // Garante ordenação personalizada
     @Override
     public int compareTo(Registro inserido){ // Ordena por pontuação e/ou título, respectivamente
         int comparacao;

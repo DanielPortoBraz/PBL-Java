@@ -3,6 +3,7 @@ package Model;
 import java.util.HashSet;
 import java.util.Random;
 
+// Gera IDs com base na lista de IDs já inseridos. Garante que sempre haja um ID único
 public class GeradorID {
     private static final Random random = new Random();
 

@@ -1,8 +1,6 @@
 package View;
 
-import Controller.FilmeController;
-import Controller.LivroController;
-import Controller.SerieController;
+import Controller.*;
 import CustomExceptions.*;
 import java.text.DateFormat;
 import java.text.ParseException;

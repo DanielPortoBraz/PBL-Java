@@ -16,7 +16,7 @@ public class LivroRepositorioTest {
     }
 
     @Test
-    public void adicionarLivro() {
+    public void deveAdicionarLivro() {
         Livro livro = new Livro("Livro A", new HashSet<>(), 2000,
                 false, "Autor A", "Editora A", "ISBN001", true);
         livros.addLivro(livro);
@@ -24,7 +24,7 @@ public class LivroRepositorioTest {
     }
 
     @Test
-    public void adicionarLivrosIguaisPorIsbn() {
+    public void deveAdicionarSomenteUmLivroEntreDoisIguaisPorIsbn() {
         Livro livro1 = new Livro("Livro A", new HashSet<>(), 2000,
                 false, "Autor A", "Editora A", "ISBN001", true);
         Livro livro2 = new Livro("Livro B", new HashSet<>(), 2005,
@@ -35,7 +35,7 @@ public class LivroRepositorioTest {
     }
 
     @Test
-    public void adicionarLivrosDiferentesPorIsbn() {
+    public void deveAdicionarDoisLivrosDiferentesPorIsbn() {
         Livro livro1 = new Livro("Livro A", new HashSet<>(), 2000,
                 false, "Autor A", "Editora A", "1111111", true);
         Livro livro2 = new Livro("Livro A", new HashSet<>(), 2000,
@@ -47,14 +47,14 @@ public class LivroRepositorioTest {
     }
 
     @Test
-    public void removerLivroInexistente() {
+    public void deveRetornarFalsoAoRemoverLivroInexistente() {
         Livro livro = new Livro("Inexistente", new HashSet<>(), 1990,
                 false, "Desconhecido", "Nenhuma", "ISBN999", false);
         assertFalse(livros.removeLivro(livro));
     }
 
     @Test
-    public void buscarPorTitulo() {
+    public void deveBuscarPorTitulo() {
         Livro livro = new Livro("A Cabana", new HashSet<>(), 2007,
                 true, "Autor X", "Editora X", "12345", true);
         livros.addLivro(livro);
@@ -62,7 +62,7 @@ public class LivroRepositorioTest {
     }
 
     @Test
-    public void buscarPorAutor() {
+    public void deveBuscarPorAutor() {
         Livro livro = new Livro("Outro Livro", new HashSet<>(), 2001,
                 false, "Machado de Assis", "Editora Clássica", "12345", true);
         livros.addLivro(livro);
@@ -70,7 +70,7 @@ public class LivroRepositorioTest {
     }
 
     @Test
-    public void buscarPorAno() {
+    public void deveBuscarPorAno() {
         Livro livro = new Livro("Ano Teste", new HashSet<>(), 2010,
                 false, "Autor", "Editora", "12345", true);
         livros.addLivro(livro);
@@ -78,7 +78,7 @@ public class LivroRepositorioTest {
     }
 
     @Test
-    public void buscarPorGenero() {
+    public void deveRetornarSomente3AobuscarPorGenero() {
         HashSet<Genero> romance = new HashSet<>(Arrays.asList(Genero.ROMANCE));
         HashSet<Genero> drama = new HashSet<>(Arrays.asList(Genero.DRAMA));
 
@@ -95,7 +95,7 @@ public class LivroRepositorioTest {
     }
 
     @Test
-    public void buscarLivrosDiferentesPorIsbn() {
+    public void deveBuscarLivrosDiferentesPorIsbn() {
         Livro livro1 = new Livro("Livro 1", new HashSet<>(), 2011,
                 true, "Autor 1", "Editora 1", "ISBN-A", true);
         Livro livro2 = new Livro("Livro 1", new HashSet<>(), 2011,

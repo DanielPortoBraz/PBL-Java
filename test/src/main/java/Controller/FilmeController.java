@@ -15,6 +15,7 @@ public class FilmeController {
         this.filmesR = new FilmeRepositorio();
     }
 
+    // Retorna true caso consiga cadastrar o Filme, e false para o contrário
     public boolean cadastrarFilme(String titulo, HashSet<Genero> generos, int anoLancamento,
                               boolean visto,int tempoDuracao, HashSet<String> direcao,
                               HashSet<String> roteiro, HashSet<String> elenco, String tituloOriginal,
@@ -23,6 +24,8 @@ public class FilmeController {
                 direcao, roteiro, elenco, tituloOriginal, ondeAssistir));
     }
 
+    // Busca filmes a partir da categoria e o filtro. Categoria indica o atributo e filtro indica o valor do atributo
+    // Retorna true caso consiga encontrar algum Filme, e false caso contrário
     public boolean buscarFilmes(String categoria, String filtro){
         TreeSet<Filme> filmesEncontrados;
         Filme filmeEncontrado;
@@ -94,19 +97,21 @@ public class FilmeController {
         return false;
     }
 
+    // Lista todos os filmes. A lista já vem ordenada devido ao TreeSet
     public void listarFilmes(){
         for (Filme i : filmesR.getFilmes()){
             System.out.println(i.toString());
         }
     }
 
+    // Retorna true caso consigo encontrar o Filme e avaliar pelo Id, retorna false caso contrário
     public boolean avaliarFilme(int id, String review, int pontuacao,  Calendar dataVisto){
         Filme filmeAvaliado = filmesR.buscarId(id);
 
         if (filmeAvaliado != null) {
             filmesR.removeFilme(filmeAvaliado);
             filmeAvaliado.setVisto(true); // Marca o filme como visto
-            filmeAvaliado.setDataVisto(dataVisto);
+            filmeAvaliado.setDataVisto(dataVisto); // Atualiza a data que foi visto
             filmeAvaliado.setReview(review); // Atualiza a review do filme
             filmeAvaliado.setPontuacao(pontuacao); // Atualiza a pontuação do filme
             filmesR.addFilme(filmeAvaliado);
@@ -118,7 +123,7 @@ public class FilmeController {
             return false;
     }
 
-    // Usado somente para testes
+    // Retorna o repositório atual. Usado somente para testes
     public FilmeRepositorio getFilmesR(){
         return filmesR;
     }

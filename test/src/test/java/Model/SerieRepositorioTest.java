@@ -18,7 +18,7 @@ public class SerieRepositorioTest {
     }
 
     @Test
-    public void adicionarSerie() {
+    public void deveAdicionarSerie() {
         Serie serie = new Serie("Série A", new HashSet<>(), 2000,
                 false, 2005, new HashSet<>(), "Original A",
                 new HashSet<>(), new HashSet<>());
@@ -27,7 +27,7 @@ public class SerieRepositorioTest {
     }
 
     @Test
-    public void adicionarSeriesIguais() {
+    public void naoDeveAdicionarSeriesIguais() {
         Serie serie1 = new Serie("Série A", new HashSet<>(), 2000,
                 false, 2005, new HashSet<>(), "Original", new HashSet<>(), new HashSet<>());
         serie1.setId(100);
@@ -43,7 +43,7 @@ public class SerieRepositorioTest {
     }
 
     @Test
-    public void adicionarSeriesDiferentesPorTituloOriginal() {
+    public void deveAdicionarSeriesDiferentesPorTituloOriginal() {
         Serie serie1 = new Serie("Série", new HashSet<>(), 2000,
                 false, 2005, new HashSet<>(), "Original A",
                 new HashSet<>(), new HashSet<>());
@@ -61,7 +61,7 @@ public class SerieRepositorioTest {
     }
 
     @Test
-    public void removerSerieInexistente() {
+    public void deveRetornarFalsoAoRemoverSerieInexistente() {
         Serie serie = new Serie("Inexistente", new HashSet<>(), 1990,
                 false, 1995, new HashSet<>(), "Nonexistent",
                 new HashSet<>(), new HashSet<>());
@@ -71,7 +71,7 @@ public class SerieRepositorioTest {
     }
 
     @Test
-    public void buscarPorTitulo() {
+    public void deveBuscarPorTitulo() {
         Serie serie = new Serie("Breaking Bad", new HashSet<>(), 2008,
                 true, 2013, new HashSet<>(), "Breaking Bad",
                 new HashSet<>(), new HashSet<>());
@@ -81,7 +81,7 @@ public class SerieRepositorioTest {
     }
 
     @Test
-    public void buscarPorAno() {
+    public void deveBuscarPorAno() {
         Serie serie = new Serie("Ano Teste", new HashSet<>(), 2011,
                 true, 2015, new HashSet<>(), "Original", new HashSet<>(), new HashSet<>());
         series.addSerie(serie);
@@ -90,7 +90,7 @@ public class SerieRepositorioTest {
     }
 
     @Test
-    public void buscarPorAtor() {
+    public void deveBuscarPorAtor() {
         HashSet<String> elenco = new HashSet<>(Arrays.asList("Bryan Cranston", "Aaron Paul"));
         Serie serie = new Serie("Breaking Bad", new HashSet<>(), 2008,
                 true, 2013, elenco, "Breaking Bad", new HashSet<>(), new HashSet<>());
@@ -100,7 +100,7 @@ public class SerieRepositorioTest {
     }
 
     @Test
-    public void buscarPorOndeAssistir() {
+    public void deveBuscarPorOndeAssistir() {
         HashSet<String> plataformas = new HashSet<>(Arrays.asList("Netflix", "Amazon Prime"));
         Serie serie = new Serie("Série Stream", new HashSet<>(), 2010,
                 true, 2012, new HashSet<>(), "Original Stream",
@@ -111,7 +111,7 @@ public class SerieRepositorioTest {
     }
 
     @Test
-    public void buscarPorGenero() {
+    public void deveBuscarPorGenero() {
         HashSet<Genero> romance = new HashSet<>(Arrays.asList(Genero.ROMANCE));
         HashSet<Genero> drama = new HashSet<>(Arrays.asList(Genero.DRAMA));
 
@@ -132,7 +132,7 @@ public class SerieRepositorioTest {
     }
 
     @Test
-    public void buscarPorID() {
+    public void deveBuscarPorID() {
         Serie serie1 = new Serie("Série X", new HashSet<>(), 2000,
                 false, 2005, new HashSet<>(), "Original X",
                 new HashSet<>(), new HashSet<>());

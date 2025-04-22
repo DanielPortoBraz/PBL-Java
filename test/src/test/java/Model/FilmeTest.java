@@ -4,14 +4,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 public class FilmeTest {
 
     @Test
-    public void criarFilmeCompleto() {
+    public void deveCriarFilmeCompleto() {
         Filme filme = new Filme(
                 "Interestelar",
                 new HashSet<>(Arrays.asList(Genero.FICCAO_CIENTIFICA)),
@@ -34,7 +34,7 @@ public class FilmeTest {
     }
 
     @Test
-    public void criarFilmeIncompleto() {
+    public void deveCriarFilmeIncompleto() {
         Filme filme = new Filme(
                 "", new HashSet<>(), 0, false,
                 0, new HashSet<>(), new HashSet<>(),
@@ -49,7 +49,7 @@ public class FilmeTest {
     }
 
     @Test
-    public void verificarIdValido() {
+    public void deveRetornarFilmeAoPegarIdValido() {
         Filme filme = new Filme(
                 "Filme Qualquer", new HashSet<>(), 2000,
                 false, 100, new HashSet<>(),
@@ -61,7 +61,7 @@ public class FilmeTest {
     }
 
     @Test
-    public void verificarFilmesIguaisPorId() {
+    public void deveRetornarQueFilmesIguaisPorIdSaoIguais() {
         Filme filme1 = new Filme(
                 "Filme A", new HashSet<>(), 2010, true,
                 90, new HashSet<>(), new HashSet<>(), new HashSet<>(),
@@ -78,7 +78,7 @@ public class FilmeTest {
     }
 
     @Test
-    public void verificarFilmesDiferentesPorId() {
+    public void naoDeveRetornarQueFilmesDiferentesPorIdSaoIguais() {
         Filme filme1 = new Filme(
                 "Filme X", new HashSet<>(), 2000,
                 false, 100, new HashSet<>(), new HashSet<>(),

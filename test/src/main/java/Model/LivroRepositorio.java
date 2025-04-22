@@ -10,6 +10,7 @@ public class LivroRepositorio {
         this.livros = new TreeSet<Livro>();
     }
 
+    // Adiciona de forma ordenada
     public boolean addLivro(Livro livro){
         return this.livros.add(livro);
     }

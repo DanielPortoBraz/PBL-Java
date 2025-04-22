@@ -18,7 +18,7 @@ public class FilmeRepositorioTest {
     }
 
     @Test
-    public void adicionarFilme() {
+    public void deveAdicionarFilme() {
         Filme filme = new Filme("Filme A", new HashSet<>(), 2000,
                 false, 120, new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 "Original A", new HashSet<>());
@@ -27,7 +27,7 @@ public class FilmeRepositorioTest {
     }
 
     @Test
-    public void adicionarFilmesIguais(){
+    public void deveAdicionarFilmesIguais(){
         Filme filme1 = new Filme("Filme A", new HashSet<>(), 2000,
                 false, 120, new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 "Original", new HashSet<>());
@@ -43,7 +43,7 @@ public class FilmeRepositorioTest {
     }
 
     @Test
-    public void adicionarFilmesDiferentesPorTituloOriginal(){
+    public void deveAdicionarDoisFilmesDiferentesPorTituloOriginal(){
         Filme filme1 = new Filme("Filme", new HashSet<>(), 2000,
                 false, 120, new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 "Original A", new HashSet<>());
@@ -59,7 +59,7 @@ public class FilmeRepositorioTest {
     }
 
     @Test
-    public void removerFilmeInexistente() {
+    public void deveRetornarFalsoAoRemoverFilmeInexistente() {
         Filme filme = new Filme("Inexistente", new HashSet<>(), 1990,
                 false, 100, new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 "Nonexistent", new HashSet<>());
@@ -68,7 +68,7 @@ public class FilmeRepositorioTest {
     }
 
     @Test
-    public void buscarPorTitulo() {
+    public void deveBuscarPorTitulo() {
         Filme filme = new Filme("A Origem", new HashSet<>(), 2010,
                 true, 148, new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 "Inception", new HashSet<>());
@@ -78,7 +78,7 @@ public class FilmeRepositorioTest {
     }
 
     @Test
-    public void buscarPorAno() {
+    public void deveBuscarPorAno() {
         Filme filme = new Filme("Ano Teste", new HashSet<>(), 2020,
                 true, 90, new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 "Teste", new HashSet<>());
@@ -88,7 +88,7 @@ public class FilmeRepositorioTest {
     }
 
     @Test
-    public void buscarPorDiretor() {
+    public void deveBuscarPorDiretor() {
         HashSet<String> direcao = new HashSet<>(Arrays.asList("Steven Spielberg"));
         Filme filme = new Filme("Jurassic Park", new HashSet<>(), 1993,
                 true, 127, direcao, new HashSet<>(), new HashSet<>(),
@@ -99,7 +99,7 @@ public class FilmeRepositorioTest {
     }
 
     @Test
-    public void buscarPorAtor() {
+    public void deveBuscarPorAtor() {
         HashSet<String> elenco = new HashSet<>(Arrays.asList("Will Smith"));
         Filme filme = new Filme("Eu, Robô", new HashSet<>(), 2004,
                 true, 115, new HashSet<>(), new HashSet<>(), elenco,
@@ -110,7 +110,7 @@ public class FilmeRepositorioTest {
     }
 
     @Test
-    public void buscarPorGenero() {
+    public void deveBuscarPorGenero() {
         HashSet<Genero> romance = new HashSet<>(Arrays.asList(Genero.ROMANCE));
         HashSet<Genero> drama = new HashSet<>(Arrays.asList(Genero.DRAMA));
 
@@ -131,7 +131,7 @@ public class FilmeRepositorioTest {
     }
 
     @Test
-    public void buscarPorID() {
+    public void deveBuscarPorID() {
         Filme filme1 = new Filme("Filme A", new HashSet<>(), 2000,
                 false, 120, new HashSet<>(), new HashSet<>(), new HashSet<>(),
                 "Original A", new HashSet<>());

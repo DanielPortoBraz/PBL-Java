@@ -1,12 +1,10 @@
 package Model;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-
+// Herda de Registro
 public class Filme extends Registro {
     private int tempoDuracao; // Em minutos
     private HashSet<String> direcao;
@@ -15,7 +13,7 @@ public class Filme extends Registro {
     private String tituloOriginal;
     private HashSet<String> ondeAssistir;
     private static HashSet<Integer> listaId = new HashSet<Integer>();
-    private int id;
+    private int id; // Atributo usado para diferenciar e buscar um filme específico
 
 
     public Filme(String titulo, HashSet<Genero> generos, int anoLancamento,
@@ -32,6 +30,7 @@ public class Filme extends Registro {
         this.id = GeradorID.gerarID(listaId);
     }
 
+    // Sobrescreve equals para afirmar que filmes com o mesmo ID são iguais. Usado em testes
     @Override
     public boolean equals(Object obj){
         Filme filme = (Filme) obj;
@@ -39,8 +38,8 @@ public class Filme extends Registro {
     }
 
     @Override
-    public int compareTo(Registro inserido) {
-        int comparacao = super.compareTo(inserido);
+    public int compareTo(Registro inserido) { // Compara pelo título original e/ou direção, respectivamente
+        int comparacao = super.compareTo(inserido); // Faz a comparação pela pontuação e título
 
         if (comparacao == 0) {
             comparacao = this.getTituloOriginal().compareToIgnoreCase(((Filme) inserido).getTituloOriginal());
@@ -65,6 +64,7 @@ public class Filme extends Registro {
 
     @Override
     public String toString() {
+        // Formata a data no formato dd/MM/YY. Caso a data seja null, atualiza a data para a atual do sistema
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String dataFormatada = (this.getDataVisto() != null) ? formato.format(getDataVisto().getTime()) : "--/--/----";
 

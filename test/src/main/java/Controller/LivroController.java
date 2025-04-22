@@ -17,12 +17,15 @@ public class LivroController extends RegistroController {
         this.livrosR = new LivroRepositorio();
     }
 
+    // Retorna true caso consiga cadastrar o Livro, e false para o contrário
     public boolean cadastrarLivro(String titulo, HashSet<Genero> generos, int anoLancamento,
                                boolean visto, String autor, String editora, String isbn, boolean exemplar) {
         return livrosR.addLivro(new Livro(titulo, generos, anoLancamento, visto, autor,
                 editora, isbn, exemplar));
     }
 
+    // Busca livros a partir da categoria e o filtro. Categoria indica o atributo e filtro indica o valor do atributo
+    // Retorna true caso consiga encontrar algum Livro, e false caso contrário
     public boolean buscarLivros(String categoria, String filtro) {
         TreeSet<Livro> livrosEncontrados;
         Livro livroEncontrado;
@@ -86,19 +89,21 @@ public class LivroController extends RegistroController {
 
     }
 
+    // Lista todos os Livros. A lista já vem ordenada devido ao TreeSet
     public void listarLivros(){
         for (Livro i : livrosR.getLivros()){
             System.out.println(i.toString());
         }
     }
 
+    // Retorna true caso consigo encontrar o Livro e avaliar pelo ISBN, retorna false caso contrário
     public boolean avaliarLivro(String isbn, String review, int pontuacao, Calendar dataVisto){
         Livro livroAvaliado = livrosR.buscarIsbn(isbn);
 
         if (livroAvaliado != null) {
             livrosR.removeLivro(livroAvaliado);
             livroAvaliado.setVisto(true); // Marca o livro como visto
-            livroAvaliado.setDataVisto(dataVisto);
+            livroAvaliado.setDataVisto(dataVisto); // Atualiza a data que foi lido
             livroAvaliado.setReview(review); // Atualiza a review do livro
             livroAvaliado.setPontuacao(pontuacao); // Atualiza a pontuação do livro
             livrosR.addLivro(livroAvaliado);
@@ -110,7 +115,7 @@ public class LivroController extends RegistroController {
             return false;
     }
 
-    // Usado apenas para testes
+    // Retorna o repositório atual. Usado somente para testes
     public LivroRepositorio getLivrosR() {
         return livrosR;
     }

@@ -1,6 +1,9 @@
 package Controller;
 
-import Model.*;
+import Model.Serie;
+import Model.SerieRepositorio;
+import Model.Genero;
+import Model.Temporada;
 
 import java.util.Calendar;
 import java.util.HashSet;
@@ -13,6 +16,7 @@ public class SerieController {
         this.seriesR = new SerieRepositorio();
     }
 
+    // Retorna true caso consiga cadastrar a Série, e false para o contrário
     public boolean cadastrarSerie(String titulo, HashSet<Genero> generos, int anoLancamento,
                                boolean visto, int anoEncerramento,
                                HashSet<String> elenco, String tituloOriginal,
@@ -21,10 +25,13 @@ public class SerieController {
                 elenco, tituloOriginal, ondeAssistir, temporadas));
     }
 
+    // Retorna true caso consiga cadastrar a Temporada da Série pelo i, e false para o contrário
     public boolean cadastrarTemporada(int id, Temporada temporada){
         return seriesR.buscarId(id).addTemporada(temporada);
     }
 
+    // Busca séries a partir da categoria e o filtro. Categoria indica o atributo e filtro indica o valor do atributo
+    // Retorna true caso consiga encontrar alguma Série, e false caso contrário
     public boolean buscarSeries(String categoria, String filtro){
         TreeSet<Serie> seriesEncontradas;
         Serie serieEncontrada;
@@ -96,12 +103,14 @@ public class SerieController {
         return false;
     }
 
+    // Lista todas as séries. A lista já vem ordenada devido ao TreeSet
     public void listarSeries(){
         for (Serie i : seriesR.getSeries()){
             System.out.println(i.toString());
         }
     }
 
+    // Retorna true caso consigo encontrar a Série e avaliar pelo Id, retorna false caso contrário
     public boolean avaliarSerie(int id, String reviewSerie, Calendar dataVisto){
         Serie serieAvaliada = seriesR.buscarId(id);
 
@@ -116,6 +125,8 @@ public class SerieController {
             return false;
     }
 
+
+    // Retorna true caso consigo encontrar a Temporada da Série e avaliar pelo ID, retorna false caso contrário
     public boolean avaliarTemporada(int id, int numero, String reviewTemporada, int pontuacao){
         Serie serieAvaliada = seriesR.buscarId(id);
         int pontuacaoTotal = 0;
@@ -148,7 +159,7 @@ public class SerieController {
         return false;
     }
 
-    // Usado para testes
+    // Retorna o repositorio atual. Usado para testes
     public SerieRepositorio getSeriesR(){
         return seriesR;
     }

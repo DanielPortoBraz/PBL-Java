@@ -1,14 +1,13 @@
 package View;
 
-import Controller.FilmeController;
-import Controller.LivroController;
-import Controller.SerieController;
+import Controller.*;
 
-import java.text.ParseException;
 import java.util.Scanner;
+
 
 public class MenuBusca implements Menu{
     private Scanner scanner;
+
     protected LivroController livroController;
     protected FilmeController filmeController;
     protected SerieController serieController;

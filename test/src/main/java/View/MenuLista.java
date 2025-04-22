@@ -6,8 +6,10 @@ import Controller.SerieController;
 
 import java.util.Scanner;
 
+
 public class MenuLista implements Menu {
     private Scanner scanner;
+
     protected LivroController livroController;
     protected FilmeController filmeController;
     protected SerieController serieController;

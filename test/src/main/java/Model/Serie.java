@@ -11,7 +11,7 @@ public class Serie extends Registro{
     private HashSet<String> ondeAssistir;
     private HashSet<Temporada> temporadas;
     private static HashSet<Integer> listaId = new HashSet<Integer>();
-    private int id;
+    private int id; // Atributo usado para diferenciar e buscar uma série específica
 
 
     public Serie(String titulo, HashSet<Genero> generos, int anoLancamento,
@@ -28,6 +28,7 @@ public class Serie extends Registro{
         this.id = GeradorID.gerarID(listaId);
     }
 
+    // Sobrescreve equals para afirmar que séries com o mesmo ID são iguais. Usado em testes
     @Override
     public boolean equals(Object obj){
         Serie serie = (Serie) obj;
@@ -35,8 +36,8 @@ public class Serie extends Registro{
     }
 
     @Override
-    public int compareTo(Registro inserido){ // Adiciona a ordenação por título original
-        int comparacao = super.compareTo(inserido);
+    public int compareTo(Registro inserido){ // Compara por título original e/ou elenco, respectivamente
+        int comparacao = super.compareTo(inserido); // Faz a comparação pela pontuação e título
 
         if (comparacao == 0) {
              comparacao = this.getTituloOriginal().compareToIgnoreCase(((Serie) inserido).getTituloOriginal());
@@ -60,6 +61,7 @@ public class Serie extends Registro{
 
     @Override
     public String toString() {
+        // Formata a data no formato dd/MM/YY. Caso a data seja null, atualiza a data para a atual do sistema
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String dataFormatada = (this.getDataVisto() != null) ? formato.format(getDataVisto().getTime()) : "--/--/----";
 
