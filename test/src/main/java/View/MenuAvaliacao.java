@@ -205,19 +205,21 @@ public class MenuAvaliacao implements Menu {
     }
 
     public Calendar lerData(Scanner scanner) {
-        System.out.print("Digite a data (dd/MM/yyyy): ");
-        String dataStr = scanner.nextLine();
 
-        Calendar data = Calendar.getInstance();
-        try {
-            DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            Date dataConvertida = formato.parse(dataStr);
-            data.setTime(dataConvertida);
-        } catch (ParseException e) {
-            System.out.println("Data inválida. A data atual será utilizada.");
+        while(true) {
+            System.out.print("Digite a data (dd/MM/yyyy): ");
+            String dataStr = scanner.nextLine();
+
+            Calendar data = Calendar.getInstance();
+            try {
+                DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                Date dataConvertida = formato.parse(dataStr);
+                data.setTime(dataConvertida);
+            } catch (ParseException e) {
+                System.out.println("Data inválida.");
+            }
+            return data;
         }
-
-        return data;
     }
 
     public void validarPontuacao(int pontuacao) throws PontuacaoInvalidaException{

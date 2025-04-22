@@ -45,100 +45,206 @@ class MenuCadastro implements Menu{
                     System.out.println("\n<<< CADASTRO DE LIVRO >>>");
 
                     try {
-                        System.out.print("Digite o título do livro: ");
-                        String tituloLivro = scanner.nextLine();
-                        lerDadoVazio(tituloLivro, "Título");
+                        String tituloLivro;
+                        while (true) {
+                            System.out.print("Digite o título do livro: ");
+                            tituloLivro = scanner.nextLine();
+                            try {
+                                lerDadoVazio(tituloLivro, "Título");
+                                break;
+                            } catch (DadoVazioException e) {
+                                System.out.println("Erro: " + e.getMessage());
+                            }
+                        }
 
                         HashSet<Genero> generosLivro = cadastrarGeneros(scanner);
 
-                        System.out.print("Digite o ano de lançamento: ");
-                        int anoLancamentoLivro = scanner.nextInt();
-                        validarAno(anoLancamentoLivro);
+                        int anoLancamentoLivro;
+                        while (true) {
+                            try {
+                                System.out.print("Digite o ano de lançamento: ");
+                                anoLancamentoLivro = scanner.nextInt();
+                                scanner.nextLine();
+                                validarAno(anoLancamentoLivro);
+                                break;
+                            } catch (AnoInvalidoException e) {
+                                System.out.println("Erro: " + e.getMessage());
+                            } catch (Exception e) {
+                                System.out.println("Erro inesperado. Digite novamente.");
+                                scanner.nextLine(); // limpa buffer
+                            }
+                        }
 
-                        System.out.print("Já foi visto? (true/false): ");
-                        boolean vistoLivro = scanner.nextBoolean();
-                        scanner.nextLine();
+                        boolean vistoLivro;
+                        while (true) {
+                            System.out.print("Já foi visto? (true/false): ");
+                            String vistoStr = scanner.nextLine().trim();
+                            if (vistoStr.equalsIgnoreCase("true") || vistoStr.equalsIgnoreCase("false")) {
+                                vistoLivro = Boolean.parseBoolean(vistoStr);
+                                break;
+                            } else {
+                                System.out.println("Erro: Digite apenas true ou false.");
+                            }
+                        }
 
-                        System.out.print("Digite o autor: ");
-                        String autorLivro = scanner.nextLine();
-                        lerDadoVazio(autorLivro, "Autor");
+                        String autorLivro;
+                        while (true) {
+                            System.out.print("Digite o autor: ");
+                            autorLivro = scanner.nextLine();
+                            try {
+                                lerDadoVazio(autorLivro, "Autor");
+                                break;
+                            } catch (DadoVazioException e) {
+                                System.out.println("Erro: " + e.getMessage());
+                            }
+                        }
 
-                        System.out.print("Digite a editora: ");
-                        String editoraLivro = scanner.nextLine();
-                        lerDadoVazio(editoraLivro, "Editora");
+                        String editoraLivro;
+                        while (true) {
+                            System.out.print("Digite a editora: ");
+                            editoraLivro = scanner.nextLine();
+                            try {
+                                lerDadoVazio(editoraLivro, "Editora");
+                                break;
+                            } catch (DadoVazioException e) {
+                                System.out.println("Erro: " + e.getMessage());
+                            }
+                        }
 
-                        System.out.print("Digite o ISBN: ");
-                        String isbnLivro = scanner.nextLine();
-                        lerDadoVazio(isbnLivro, "ISBN");
+                        String isbnLivro;
+                        while (true) {
+                            System.out.print("Digite o ISBN: ");
+                            isbnLivro = scanner.nextLine();
+                            try {
+                                lerDadoVazio(isbnLivro, "ISBN");
+                                break;
+                            } catch (DadoVazioException e) {
+                                System.out.println("Erro: " + e.getMessage());
+                            }
+                        }
 
-                        System.out.print("Possui um exemplar físico? (true/false): ");
-                        boolean exemplarLivro = scanner.nextBoolean();
-                        scanner.nextLine();
+                        boolean exemplarLivro;
+                        while (true) {
+                            System.out.print("Possui um exemplar físico? (true/false): ");
+                            String exemplarStr = scanner.nextLine().trim();
+                            if (exemplarStr.equalsIgnoreCase("true") || exemplarStr.equalsIgnoreCase("false")) {
+                                exemplarLivro = Boolean.parseBoolean(exemplarStr);
+                                break;
+                            } else {
+                                System.out.println("Erro: Digite apenas true ou false.");
+                            }
+                        }
 
-                        cadastrado = livroController.cadastrarLivro(tituloLivro, generosLivro, anoLancamentoLivro,
-                                vistoLivro, autorLivro, editoraLivro, isbnLivro, exemplarLivro);
+                        cadastrado = livroController.cadastrarLivro(
+                                tituloLivro, generosLivro, anoLancamentoLivro, vistoLivro,
+                                autorLivro, editoraLivro, isbnLivro, exemplarLivro
+                        );
+
                         if (cadastrado)
                             System.out.println("Livro cadastrado com sucesso!");
                         else
-                            System.out.println("Não foi possível cadastrar o livro.");
-                    } catch (AnoInvalidoException | DadoVazioException e) {
-                        System.out.println("Erro no cadastro: " + e.getMessage());
+                            System.out.println("Não foi possível cadastrar o livro. Certifique-se de que não há outro livro idêntico ou com o mesmo ISBN.");
+
                     } catch (Exception e) {
                         System.out.println("Erro inesperado: " + e.getMessage());
                         scanner.nextLine();
                     }
-
                     break;
+
 
                 case "2":
                     System.out.println("\n<<< CADASTRO DE FILME >>>");
 
                     try {
-                        System.out.print("Digite o título do filme: ");
-                        String tituloFilme = scanner.nextLine();
-                        lerDadoVazio(tituloFilme, "Título");
+                        String tituloFilme;
+                        while (true) {
+                            System.out.print("Digite o título do filme: ");
+                            tituloFilme = scanner.nextLine();
+                            try {
+                                lerDadoVazio(tituloFilme, "Título");
+                                break;
+                            } catch (DadoVazioException e) {
+                                System.out.println("Erro: " + e.getMessage());
+                            }
+                        }
 
                         HashSet<Genero> generosFilme = cadastrarGeneros(scanner);
 
-                        System.out.print("Digite o ano de lançamento: ");
-                        int anoLancamentoFilme = scanner.nextInt();
-                        scanner.nextLine();
-                        validarAno(anoLancamentoFilme);
+                        int anoLancamentoFilme;
+                        while (true) {
+                            try {
+                                System.out.print("Digite o ano de lançamento: ");
+                                anoLancamentoFilme = scanner.nextInt();
+                                scanner.nextLine();
+                                validarAno(anoLancamentoFilme);
+                                break;
+                            } catch (AnoInvalidoException e) {
+                                System.out.println("Erro: " + e.getMessage());
+                            } catch (Exception e) {
+                                System.out.println("Erro inesperado. Digite novamente.");
+                                scanner.nextLine();
+                            }
+                        }
 
-                        System.out.print("Já foi visto? (true/false): ");
-                        boolean vistoFilme = scanner.nextBoolean();
-                        scanner.nextLine();
+                        boolean vistoFilme;
+                        while (true) {
+                            System.out.print("Já foi visto? (true/false): ");
+                            String vistoStr = scanner.nextLine();
+                            if (vistoStr.equalsIgnoreCase("true") || vistoStr.equalsIgnoreCase("false")) {
+                                vistoFilme = Boolean.parseBoolean(vistoStr);
+                                break;
+                            }
+                            System.out.println("Erro: Digite apenas true ou false.");
+                        }
 
-                        System.out.print("Digite o tempo de duração (minutos): ");
-                        int tempoDuracaoFilme = scanner.nextInt();
-                        scanner.nextLine();
+                        int tempoDuracaoFilme;
+                        while (true) {
+                            try {
+                                System.out.print("Digite o tempo de duração (minutos): ");
+                                tempoDuracaoFilme = scanner.nextInt();
+                                scanner.nextLine();
+                                if (tempoDuracaoFilme <= 0)
+                                    throw new IllegalArgumentException("Duração deve ser positiva.");
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Erro: Duração inválida. Tente novamente.");
+                                scanner.nextLine();
+                            }
+                        }
 
                         HashSet<String> direcaoFilme = cadastrarListaDeNomes(scanner, "Direção");
                         HashSet<String> roteiroFilme = cadastrarListaDeNomes(scanner, "Roteiro");
                         HashSet<String> elencoFilme = cadastrarListaDeNomes(scanner, "Elenco");
 
-                        System.out.print("Digite o título original: ");
-                        String tituloOriginalFilme = scanner.nextLine();
-                        lerDadoVazio(tituloOriginalFilme, "Título Original");
+                        String tituloOriginalFilme;
+                        while (true) {
+                            System.out.print("Digite o título original: ");
+                            tituloOriginalFilme = scanner.nextLine();
+                            try {
+                                lerDadoVazio(tituloOriginalFilme, "Título Original");
+                                break;
+                            } catch (DadoVazioException e) {
+                                System.out.println("Erro: " + e.getMessage());
+                            }
+                        }
 
                         HashSet<String> ondeAssistirFilme = cadastrarListaDeNomes(scanner, "Onde assistir");
 
                         cadastrado = filmeController.cadastrarFilme(tituloFilme, generosFilme, anoLancamentoFilme,
                                 vistoFilme, tempoDuracaoFilme, direcaoFilme, roteiroFilme,
                                 elencoFilme, tituloOriginalFilme, ondeAssistirFilme);
+
                         if (cadastrado)
                             System.out.println("Filme cadastrado com sucesso!");
                         else
-                            System.out.println("Não foi possível cadastrado o filme.");
-
-                    } catch (AnoInvalidoException | DadoVazioException e) {
-                        System.out.println("Erro no cadastro: " + e.getMessage());
+                            System.out.println("Não foi possível cadastrar o filme. Verifique duplicidade.");
                     } catch (Exception e) {
                         System.out.println("Erro inesperado: " + e.getMessage());
                         scanner.nextLine();
                     }
 
                     break;
+
 
                 case "3":
                     System.out.println("\n<<< CADASTRO DE SÉRIE >>>\n" +
@@ -152,36 +258,81 @@ class MenuCadastro implements Menu{
                             System.out.println("\n<<< CADASTRO DE SÉRIE >>>");
 
                             try {
-                                System.out.print("Digite o título da série: ");
-                                String tituloSerie = scanner.nextLine();
-                                lerDadoVazio(tituloSerie, "Título");
+                                String tituloSerie;
+                                while (true) {
+                                    System.out.print("Digite o título da série: ");
+                                    tituloSerie = scanner.nextLine();
+                                    try {
+                                        lerDadoVazio(tituloSerie, "Título");
+                                        break;
+                                    } catch (DadoVazioException e) {
+                                        System.out.println("Erro: " + e.getMessage());
+                                    }
+                                }
 
                                 HashSet<Genero> generosSerie = cadastrarGeneros(scanner);
 
-                                System.out.print("Digite o ano de lançamento: ");
-                                int anoLancamentoSerie = scanner.nextInt();
-                                scanner.nextLine();
-                                validarAno(anoLancamentoSerie);
+                                int anoLancamentoSerie;
+                                while (true) {
+                                    try {
+                                        System.out.print("Digite o ano de lançamento: ");
+                                        anoLancamentoSerie = scanner.nextInt();
+                                        scanner.nextLine();
+                                        validarAno(anoLancamentoSerie);
+                                        break;
+                                    } catch (AnoInvalidoException e) {
+                                        System.out.println("Erro: " + e.getMessage());
+                                    } catch (Exception e) {
+                                        System.out.println("Erro inesperado. Digite novamente.");
+                                        scanner.nextLine();
+                                    }
+                                }
 
-                                System.out.print("Já foi vista? (true/false): ");
-                                boolean vistoSerie = scanner.nextBoolean();
-                                scanner.nextLine();
+                                boolean vistoSerie;
+                                while (true) {
+                                    System.out.print("Já foi vista? (true/false): ");
+                                    String vistoStr = scanner.nextLine();
+                                    if (vistoStr.equalsIgnoreCase("true") || vistoStr.equalsIgnoreCase("false")) {
+                                        vistoSerie = Boolean.parseBoolean(vistoStr);
+                                        break;
+                                    }
+                                    System.out.println("Erro: Digite apenas true ou false.");
+                                }
 
-                                System.out.print("Digite o ano de encerramento (ou 0 se ainda estiver em exibição): ");
-                                int anoEncerramentoSerie = scanner.nextInt();
-                                scanner.nextLine();
-                                if (anoEncerramentoSerie != 0) {
-                                    validarAno(anoEncerramentoSerie);
-                                    if (anoEncerramentoSerie < anoLancamentoSerie) {
-                                        throw new AnoInvalidoException("Ano de encerramento não pode ser anterior ao de lançamento.");
+                                int anoEncerramentoSerie;
+                                while (true) {
+                                    try {
+                                        System.out.print("Digite o ano de encerramento (ou 0 se ainda está em exibição): ");
+                                        anoEncerramentoSerie = scanner.nextInt();
+                                        scanner.nextLine();
+                                        if (anoEncerramentoSerie != 0) {
+                                            validarAno(anoEncerramentoSerie);
+                                            if (anoEncerramentoSerie < anoLancamentoSerie) {
+                                                throw new AnoInvalidoException("Ano de encerramento não pode ser anterior ao de lançamento.");
+                                            }
+                                        }
+                                        break;
+                                    } catch (AnoInvalidoException e) {
+                                        System.out.println("Erro: " + e.getMessage());
+                                    } catch (Exception e) {
+                                        System.out.println("Erro inesperado. Digite novamente.");
+                                        scanner.nextLine();
                                     }
                                 }
 
                                 HashSet<String> elencoSerie = cadastrarListaDeNomes(scanner, "Elenco");
 
-                                System.out.print("Digite o título original: ");
-                                String tituloOriginalSerie = scanner.nextLine();
-                                lerDadoVazio(tituloOriginalSerie, "Título Original");
+                                String tituloOriginalSerie;
+                                while (true) {
+                                    System.out.print("Digite o título original: ");
+                                    tituloOriginalSerie = scanner.nextLine();
+                                    try {
+                                        lerDadoVazio(tituloOriginalSerie, "Título Original");
+                                        break;
+                                    } catch (DadoVazioException e) {
+                                        System.out.println("Erro: " + e.getMessage());
+                                    }
+                                }
 
                                 HashSet<String> ondeAssistirSerie = cadastrarListaDeNomes(scanner, "Onde assistir");
                                 HashSet<Temporada> temporadasSerie = cadastrarTemporadas(scanner);
@@ -189,18 +340,20 @@ class MenuCadastro implements Menu{
                                 cadastrado = serieController.cadastrarSerie(tituloSerie, generosSerie, anoLancamentoSerie,
                                         vistoSerie, anoEncerramentoSerie, elencoSerie, tituloOriginalSerie,
                                         ondeAssistirSerie, temporadasSerie);
+
                                 if (cadastrado)
                                     System.out.println("Série cadastrada com sucesso!");
                                 else
-                                    System.out.println("Não foi possível cadastrar a série.");
+                                    System.out.println("Não foi possível cadastrar a série. Verifique duplicidade.");
 
-                            } catch (AnoInvalidoException | DadoVazioException e) {
+                            } catch (DadoVazioException e) {
                                 System.out.println("Erro no cadastro: " + e.getMessage());
                             } catch (Exception e) {
                                 System.out.println("Erro inesperado: " + e.getMessage());
                                 scanner.nextLine();
                             }
-                        break;
+                            break;
+
 
                         case "2":
                             System.out.println("\n<<< CADASTRO DE TEMPORADA >>>");
@@ -209,10 +362,6 @@ class MenuCadastro implements Menu{
                                 System.out.print("Digite o ID da Série: ");
                                 int serieId = scanner.nextInt();
                                 scanner.nextLine();
-
-                                if (serieId < 0) {
-                                    throw new IllegalArgumentException("O ID da série não pode ser negativo.");
-                                }
 
                                 HashSet<Temporada> temporadas = cadastrarTemporadas(scanner);
 
@@ -379,8 +528,8 @@ class MenuCadastro implements Menu{
                 if (entrada.isEmpty()) break;
 
                 int ano = Integer.parseInt(entrada);
-                if (ano < 1900 || ano > anoAtual) {
-                    throw new AnoInvalidoException("Ano inválido. O ano deve estar entre 1900 e " + anoAtual + ".");
+                if (ano < 0 || ano > anoAtual) {
+                    throw new AnoInvalidoException("Ano inválido. O ano deve estar entre 0 e " + anoAtual + ".");
                 }
 
                 System.out.print("Quantidade de episódios: ");

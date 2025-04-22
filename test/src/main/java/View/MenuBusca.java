@@ -53,7 +53,7 @@ public class MenuBusca implements Menu{
                     categoria = scanner.nextLine();
 
                     try {
-                        System.out.println("Digite o filtro: ");
+                        System.out.println("Digite a sua busca: ");
                         filtro = scanner.nextLine();
 
                         if (categoria.equalsIgnoreCase("4"))
@@ -82,7 +82,7 @@ public class MenuBusca implements Menu{
                     categoria = scanner.nextLine();
 
                     try {
-                        System.out.println("Digite o filtro: ");
+                        System.out.println("Digite a sua busca: ");
                         filtro = scanner.nextLine();
 
                         if (categoria.equalsIgnoreCase("4") || categoria.equalsIgnoreCase("6"))
@@ -110,7 +110,7 @@ public class MenuBusca implements Menu{
                     categoria = scanner.nextLine();
 
                     try {
-                        System.out.println("Digite o filtro: ");
+                        System.out.println("Digite a sua busca: ");
                         filtro = scanner.nextLine();
 
                         if (categoria.equalsIgnoreCase("4") || categoria.equalsIgnoreCase("6"))
