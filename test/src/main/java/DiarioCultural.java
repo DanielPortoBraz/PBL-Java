@@ -1,10 +1,5 @@
-import Model.Genero;
-import Model.Temporada;
 import Controller.*;
 import View.*;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class DiarioCultural {
