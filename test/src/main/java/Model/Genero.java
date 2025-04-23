@@ -1,5 +1,9 @@
 package Model;
 
+/**
+ * Enumeração que representa os diferentes gêneros de livro, séries ou filmes.
+ * Cada gênero possui um nome formatado para exibição e um número associado.
+ */
 public enum Genero {
     ACAO("Ação", 1),
     AVENTURA("Aventura", 2),
@@ -24,19 +28,41 @@ public enum Genero {
     private final String nomeFormatado;
     private final int numero;
 
+    /**
+     * Construtor da enumeração que inicializa os valores do nome formatado
+     * e número do gênero.
+     *
+     * @param nomeFormatado Nome formatado do gênero
+     * @param numero Número associado ao gênero
+     */
     Genero(String nomeFormatado, int numero) {
         this.nomeFormatado = nomeFormatado;
         this.numero = numero;
     }
 
+    /**
+     * Retorna o nome formatado do gênero.
+     *
+     * @return Nome formatado do gênero
+     */
     public String getNomeFormatado() {
         return nomeFormatado;
     }
 
+    /**
+     * Retorna o número associado ao gênero.
+     *
+     * @return Número associado ao gênero
+     */
     public int getNumero() {
         return numero;
     }
 
+    /**
+     * Retorna uma representação em String do gênero, que é o seu nome formatado.
+     *
+     * @return Nome formatado do gênero
+     */
     @Override
     public String toString() {
         return nomeFormatado;

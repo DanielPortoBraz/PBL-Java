@@ -3,25 +3,60 @@ package View;
 import Controller.*;
 import java.util.Scanner;
 
-public class MenuPrincipal implements Menu{
+/**
+ * Classe MenuPrincipal que implementa a interface {@code Menu}.
+ * <p>
+ * Esta classe representa o menu principal do sistema, permitindo o acesso às
+ * funcionalidades de Cadastro, Avaliação, Busca e Listagem de mídias.
+ * O menu principal orienta o usuário a selecionar uma opção e, conforme a escolha,
+ * redireciona para o menu correspondente.
+ * </p>
+ *
+ * @see MenuCadastro
+ * @see MenuAvaliacao
+ * @see MenuBusca
+ * @see MenuLista
+ */
+public class MenuPrincipal implements Menu {
     private Scanner scanner;
 
     protected LivroController livroController;
     protected FilmeController filmeController;
     protected SerieController serieController;
 
-
+    /**
+     * Constrói uma instância de {@code MenuPrincipal} com os controllers necessários para as operações do sistema.
+     *
+     * @param scanner          Instância de {@code Scanner} para leitura da entrada do usuário.
+     * @param livroController  Controller responsável pelas operações com livros.
+     * @param filmeController  Controller responsável pelas operações com filmes.
+     * @param serieController  Controller responsável pelas operações com séries.
+     */
     public MenuPrincipal(Scanner scanner, LivroController livroController,
                          FilmeController filmeController,
-                         SerieController serieController){
+                         SerieController serieController) {
         this.scanner = scanner;
         this.livroController = livroController;
         this.filmeController = filmeController;
         this.serieController = serieController;
     }
 
+    /**
+     * Exibe o menu principal no terminal e processa as opções selecionadas pelo usuário.
+     * <p>
+     * As opções disponíveis são:
+     * <ul>
+     *   <li>"1" - Acessar o menu de Cadastro.</li>
+     *   <li>"2" - Acessar o menu de Avaliação.</li>
+     *   <li>"3" - Acessar o menu de Busca.</li>
+     *   <li>"4" - Acessar o menu de Listagem.</li>
+     *   <li>"5" - Sair do sistema.</li>
+     * </ul>
+     * Dependendo da opção escolhida, o método instancia e exibe o menu correspondente.
+     * </p>
+     */
     @Override
-    public void exibir(){
+    public void exibir() {
         String opcao;
         do {
             System.out.println("\n-- MENU PRINCIPAL --");
@@ -56,4 +91,3 @@ public class MenuPrincipal implements Menu{
         } while (!opcao.equals("5"));
     }
 }
-

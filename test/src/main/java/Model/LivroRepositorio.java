@@ -3,50 +3,106 @@ package Model;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+/**
+ * Classe responsável por gerenciar um repositório de livros. Os livros são armazenados de maneira ordenada
+ * usando um {@link TreeSet}, que garante que os livros sejam mantidos em ordem natural.
+ * Oferece métodos para adicionar, remover e buscar livros com base em diferentes critérios.
+ */
 public class LivroRepositorio {
     private TreeSet<Livro> livros;
 
+    /**
+     * Construtor da classe, inicializa o repositório de livros.
+     */
     public LivroRepositorio() {
         this.livros = new TreeSet<Livro>();
     }
 
-    // Adiciona de forma ordenada
+    /**
+     * Adiciona um livro ao repositório de forma ordenada.
+     *
+     * @param livro O livro a ser adicionado.
+     * @return {@code true} se o livro foi adicionado com sucesso,
+     *         {@code false} se o livro já estiver presente no repositório.
+     */
     public boolean addLivro(Livro livro){
         return this.livros.add(livro);
     }
 
+    /**
+     * Remove um livro do repositório.
+     *
+     * @param livro O livro a ser removido.
+     * @return {@code true} se o livro foi removido com sucesso,
+     *         {@code false} se o livro não estava presente no repositório.
+     */
     public boolean removeLivro(Livro livro){
         return this.livros.remove(livro);
     }
 
+    /**
+     * Retorna todos os livros armazenados no repositório.
+     *
+     * @return Um {@link TreeSet} contendo todos os livros no repositório.
+     */
     public TreeSet<Livro> getLivros() {
         return livros;
     }
 
+    /**
+     * Busca livros pelo título. A busca é feita de maneira insensível a maiúsculas e minúsculas.
+     *
+     * @param titulo O título a ser buscado.
+     * @return Um {@link TreeSet} contendo os livros cujo título contém a string fornecida.
+     */
     public TreeSet<Livro> buscarTitulo(String titulo){
         return this.livros.stream()
                 .filter(livro -> livro.getTitulo().toLowerCase().contains(titulo.toLowerCase()))
                 .collect(Collectors.toCollection(TreeSet::new));
     }
 
+    /**
+     * Busca livros pelo autor. A busca é feita de maneira insensível a maiúsculas e minúsculas.
+     *
+     * @param autor O autor a ser buscado.
+     * @return Um {@link TreeSet} contendo os livros cujo autor contém a string fornecida.
+     */
     public TreeSet<Livro> buscarAutor(String autor){
         return this.livros.stream()
                 .filter(livro -> livro.getAutor().toLowerCase().contains(autor.toLowerCase()))
                 .collect(Collectors.toCollection(TreeSet::new));
     }
 
+    /**
+     * Busca livros por gênero.
+     *
+     * @param genero O gênero a ser buscado.
+     * @return Um {@link TreeSet} contendo os livros que possuem o gênero fornecido.
+     */
     public TreeSet<Livro> buscarGenero(Genero genero){
         return this.livros.stream()
                 .filter(livro -> livro.getGenero().contains(genero))
                 .collect(Collectors.toCollection(TreeSet::new));
     }
 
+    /**
+     * Busca livros pelo ano de lançamento.
+     *
+     * @param ano O ano de lançamento a ser buscado.
+     * @return Um {@link TreeSet} contendo os livros lançados no ano fornecido.
+     */
     public TreeSet<Livro> buscarAno(int ano){
         return this.livros.stream()
                 .filter(livro -> livro.getAnoLancamento() == ano)
                 .collect(Collectors.toCollection(TreeSet::new));
     }
 
+    /**
+     * Busca um livro pelo ISBN.
+     *
+     * @param isbn O ISBN do livro a ser buscado.
+     * @return O livro correspondente ao ISBN fornecido, ou {@code null} se não encontrado.
+     */
     public Livro buscarIsbn(String isbn){
         for (Livro i : livros){
             if (i.getIsbn().equalsIgnoreCase(isbn)) return i;

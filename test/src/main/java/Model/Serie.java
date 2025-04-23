@@ -4,6 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * Representa uma série de TV, incluindo informações como título, elenco, gêneros,
+ * onde assistir, temporadas e ano de encerramento.
+ * Além disso, a classe implementa métodos para comparar e exibir informações sobre a série.
+ */
 public class Serie extends Registro{
     private int anoEncerramento;
     private HashSet<String> elenco;
@@ -14,6 +19,19 @@ public class Serie extends Registro{
     private int id; // Atributo usado para diferenciar e buscar uma série específica
 
 
+    /**
+     * Construtor que cria uma instância da série com todas as informações necessárias.
+     *
+     * @param titulo Título da série.
+     * @param generos Gêneros da série.
+     * @param anoLancamento Ano de lançamento da série.
+     * @param visto Se a série foi vista ou não.
+     * @param anoEncerramento Ano de encerramento da série (caso já tenha terminado).
+     * @param elenco Elenco principal da série.
+     * @param tituloOriginal Título original da série.
+     * @param ondeAssistir Locais onde a série pode ser assistida.
+     * @param temporadas Temporadas da série.
+     */
     public Serie(String titulo, HashSet<Genero> generos, int anoLancamento,
                  boolean visto, int anoEncerramento,
                  HashSet<String> elenco, String tituloOriginal,
@@ -28,20 +46,31 @@ public class Serie extends Registro{
         this.id = GeradorID.gerarID(listaId);
     }
 
-    // Sobrescreve equals para afirmar que séries com o mesmo ID são iguais. Usado em testes
+    /**
+     * Sobrescreve o método `equals` para garantir que séries com o mesmo ID sejam consideradas iguais.
+     *
+     * @param obj Objeto a ser comparado.
+     * @return `true` se as séries forem iguais (mesmo ID), `false` caso contrário.
+     */
     @Override
     public boolean equals(Object obj){
         Serie serie = (Serie) obj;
         return this.getId() == serie.getId();
     }
 
+    /**
+     * Compara duas séries, primeiro pelo título original, e em caso de empate, pelo elenco.
+     *
+     * @param inserido Objeto a ser comparado.
+     * @return Valor negativo, zero ou positivo conforme a comparação.
+     */
     @Override
-    public int compareTo(Registro inserido){ // Compara por título original e/ou elenco, respectivamente
-        int comparacao = super.compareTo(inserido); // Faz a comparação pela pontuação e título
+    public int compareTo(Registro inserido){
+        int comparacao = super.compareTo(inserido); // Compara pela pontuação e título
 
         if (comparacao == 0) {
-             comparacao = this.getTituloOriginal().compareToIgnoreCase(((Serie) inserido).getTituloOriginal());
-             if (comparacao != 0) return comparacao;
+            comparacao = this.getTituloOriginal().compareToIgnoreCase(((Serie) inserido).getTituloOriginal());
+            if (comparacao != 0) return comparacao;
 
             List<String> direcaoInserido = ((Serie) inserido).getElenco() != null ?
                     ((Serie) inserido).getElenco().stream().sorted().toList() : List.of();
@@ -59,9 +88,13 @@ public class Serie extends Registro{
         return comparacao;
     }
 
+    /**
+     * Retorna uma representação em formato de string de todos os detalhes da série.
+     *
+     * @return A string formatada com as informações da série.
+     */
     @Override
     public String toString() {
-        // Formata a data no formato dd/MM/YY. Caso a data seja null, atualiza a data para a atual do sistema
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String dataFormatada = (this.getDataVisto() != null) ? formato.format(getDataVisto().getTime()) : "--/--/----";
 
@@ -80,6 +113,7 @@ public class Serie extends Registro{
                 "ID: " + getId() + '\n';
     }
 
+    // Métodos Getter e Setter
 
     public int getAnoEncerramento() {
         return anoEncerramento;

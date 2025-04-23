@@ -9,29 +9,60 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.TreeSet;
 
+/**
+ * Classe responsável por controlar as operações relacionadas a Séries,
+ * como cadastro, busca, avaliação e listagem.
+ */
 public class SerieController {
     private SerieRepositorio seriesR;
 
+    /**
+     * Construtor padrão que inicializa o repositório de séries.
+     */
     public SerieController(){
         this.seriesR = new SerieRepositorio();
     }
 
-    // Retorna true caso consiga cadastrar a Série, e false para o contrário
+    /**
+     * Cadastra uma nova série no repositório.
+     *
+     * @param titulo Título da série
+     * @param generos Conjunto de gêneros da série
+     * @param anoLancamento Ano de lançamento
+     * @param visto Indica se a série já foi vista
+     * @param anoEncerramento Ano de encerramento da série
+     * @param elenco Elenco da série
+     * @param tituloOriginal Título original da série
+     * @param ondeAssistir Plataformas onde a série está disponível
+     * @param temporadas Conjunto de temporadas da série
+     * @return true se a série foi cadastrada com sucesso, false caso contrário
+     */
     public boolean cadastrarSerie(String titulo, HashSet<Genero> generos, int anoLancamento,
-                               boolean visto, int anoEncerramento,
-                               HashSet<String> elenco, String tituloOriginal,
-                               HashSet<String> ondeAssistir, HashSet<Temporada> temporadas){
+                                  boolean visto, int anoEncerramento,
+                                  HashSet<String> elenco, String tituloOriginal,
+                                  HashSet<String> ondeAssistir, HashSet<Temporada> temporadas){
         return seriesR.addSerie(new Serie(titulo, generos, anoLancamento, visto, anoEncerramento,
                 elenco, tituloOriginal, ondeAssistir, temporadas));
     }
 
-    // Retorna true caso consiga cadastrar a Temporada da Série pelo i, e false para o contrário
+    /**
+     * Cadastra uma nova temporada a uma série existente, localizada pelo ID.
+     *
+     * @param id ID da série
+     * @param temporada Objeto Temporada a ser adicionada
+     * @return true se a temporada foi adicionada com sucesso, false caso contrário
+     */
     public boolean cadastrarTemporada(int id, Temporada temporada){
         return seriesR.buscarId(id).addTemporada(temporada);
     }
 
-    // Busca séries a partir da categoria e o filtro. Categoria indica o atributo e filtro indica o valor do atributo
-    // Retorna true caso consiga encontrar alguma Série, e false caso contrário
+    /**
+     * Realiza uma busca por séries com base na categoria e no filtro fornecido.
+     *
+     * @param categoria Categoria da busca (ex: "1" para título)
+     * @param filtro Valor a ser utilizado como filtro
+     * @return true se séries forem encontradas, false caso contrário
+     */
     public boolean buscarSeries(String categoria, String filtro){
         TreeSet<Serie> seriesEncontradas;
         Serie serieEncontrada;
@@ -103,14 +134,24 @@ public class SerieController {
         return false;
     }
 
-    // Lista todas as séries. A lista já vem ordenada devido ao TreeSet
+    /**
+     * Lista todas as séries cadastradas.
+     * A ordenação é feita automaticamente via TreeSet.
+     */
     public void listarSeries(){
         for (Serie i : seriesR.getSeries()){
             System.out.println(i.toString());
         }
     }
 
-    // Retorna true caso consigo encontrar a Série e avaliar pelo Id, retorna false caso contrário
+    /**
+     * Avalia uma série a partir do ID fornecido.
+     *
+     * @param id ID da série
+     * @param reviewSerie Texto da avaliação
+     * @param dataVisto Data em que a série foi assistida
+     * @return true se a avaliação foi registrada com sucesso, false caso contrário
+     */
     public boolean avaliarSerie(int id, String reviewSerie, Calendar dataVisto){
         Serie serieAvaliada = seriesR.buscarId(id);
 
@@ -125,8 +166,15 @@ public class SerieController {
             return false;
     }
 
-
-    // Retorna true caso consigo encontrar a Temporada da Série e avaliar pelo ID, retorna false caso contrário
+    /**
+     * Avalia uma temporada de uma série e atualiza a pontuação média da série.
+     *
+     * @param id ID da série
+     * @param numero Número da temporada
+     * @param reviewTemporada Texto da avaliação da temporada
+     * @param pontuacao Pontuação atribuída à temporada
+     * @return true se a avaliação foi registrada com sucesso, false caso contrário
+     */
     public boolean avaliarTemporada(int id, int numero, String reviewTemporada, int pontuacao){
         Serie serieAvaliada = seriesR.buscarId(id);
         int pontuacaoTotal = 0;
@@ -159,8 +207,13 @@ public class SerieController {
         return false;
     }
 
-    // Retorna o repositorio atual. Usado para testes
+    /**
+     * Retorna o repositório de séries atual.
+     *
+     * @return Objeto SerieRepositorio associado ao controller
+     */
     public SerieRepositorio getSeriesR(){
         return seriesR;
     }
 }
+

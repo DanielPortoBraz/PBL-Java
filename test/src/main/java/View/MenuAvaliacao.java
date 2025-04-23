@@ -9,23 +9,50 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * Classe MenuAvaliacao que implementa a interface Menu para
+ * exibição e gerenciamento de avaliações de diferentes mídias no terminal.
+ * <p>
+ * Esta classe permite aos usuários avaliar livros, filmes e séries,
+ * lendo as informações necessárias, validando os dados e invocando os respectivos
+ * controllers para processar as avaliações.
+ * </p>
+ */
 public class MenuAvaliacao implements Menu {
     private Scanner scanner;
     protected LivroController livroController;
     protected FilmeController filmeController;
     protected SerieController serieController;
 
+    /**
+     * Constrói um novo MenuAvaliacao com os parâmetros necessários para a interação com o usuário
+     * e os controllers responsáveis pelas operações de avaliação.
+     *
+     * @param scanner          Scanner para leitura de dados do terminal.
+     * @param livroController  Controlador responsável pelas operações de avaliação de livros.
+     * @param filmeController  Controlador responsável pelas operações de avaliação de filmes.
+     * @param serieController  Controlador responsável pelas operações de avaliação de séries.
+     */
     public MenuAvaliacao(Scanner scanner, LivroController livroController,
-                        FilmeController filmeController,
-                        SerieController serieController){
+                         FilmeController filmeController,
+                         SerieController serieController) {
         this.scanner = scanner;
         this.livroController = livroController;
         this.filmeController = filmeController;
         this.serieController = serieController;
     }
 
+    /**
+     * Exibe o menu de avaliação no terminal e processa a opção selecionada pelo usuário.
+     * <p>
+     * O menu oferece opções para avaliar livro, filme ou série (sendo que a avaliação de série
+     * pode abranger a própria série ou uma temporada). Para cada opção, os dados são lidos, validados
+     * e enviados aos controllers correspondentes. Caso ocorra alguma exceção específica (como
+     * pontuação inválida ou dado vazio), uma mensagem de erro é exibida.
+     * </p>
+     */
     @Override
-    public void exibir(){
+    public void exibir() {
         String opcao;
         boolean avaliado;
 
@@ -41,7 +68,6 @@ public class MenuAvaliacao implements Menu {
 
             switch (opcao) {
                 case "1": // Livro
-
                     try {
                         System.out.println("\n<<< AVALIAÇÃO DE LIVRO >>>");
 
@@ -72,10 +98,9 @@ public class MenuAvaliacao implements Menu {
                         System.out.println("Erro inesperado: " + e.getMessage());
                         scanner.nextLine();
                     }
-
                     break;
 
-                case "2": // Série
+                case "2": // Filme
                     System.out.println("\n<<< AVALIAÇÃO DE FILME >>>");
 
                     try {
@@ -107,10 +132,9 @@ public class MenuAvaliacao implements Menu {
                         System.out.println("Erro inesperado: " + e.getMessage());
                         scanner.nextLine();
                     }
-
                     break;
 
-                case "3": // Série - Temporada
+                case "3": // Série ou Temporada
                     System.out.println("\n<<< AVALIAÇÃO DE SÉRIE >>>\n" +
                             "1- Série\n" +
                             "2- Temporada\n" +
@@ -145,7 +169,6 @@ public class MenuAvaliacao implements Menu {
                                 System.out.println("Erro inesperado: " + e.getMessage());
                                 scanner.nextLine();
                             }
-
                             break;
 
                         case "2":
@@ -183,7 +206,6 @@ public class MenuAvaliacao implements Menu {
                                 System.out.println("Erro inesperado: " + e.getMessage());
                                 scanner.nextLine();
                             }
-
                             break;
 
                         case "3":
@@ -202,9 +224,18 @@ public class MenuAvaliacao implements Menu {
         } while (!opcao.equals("4"));
     }
 
+    /**
+     * Lê uma data a partir do input do usuário no formato "dd/MM/yyyy" e a converte para um objeto Calendar.
+     * <p>
+     * Caso a data informada esteja em um formato inválido, uma mensagem de erro é exibida e a data atual é retornada.
+     * </p>
+     *
+     * @param scanner Scanner utilizado para ler a entrada do usuário.
+     * @return um objeto {@code Calendar} contendo a data informada ou a data atual caso a conversão falhe.
+     */
     public Calendar lerData(Scanner scanner) {
 
-        while(true) {
+        while (true) {
             System.out.print("Digite a data (dd/MM/yyyy): ");
             String dataStr = scanner.nextLine();
 
@@ -220,12 +251,24 @@ public class MenuAvaliacao implements Menu {
         }
     }
 
-    public void validarPontuacao(int pontuacao) throws PontuacaoInvalidaException{
-
+    /**
+     * Valida se a pontuação informada está dentro do intervalo válido (1 a 5).
+     *
+     * @param pontuacao A pontuação a ser validada.
+     * @throws PontuacaoInvalidaException se a pontuação estiver fora do intervalo permitido.
+     */
+    public void validarPontuacao(int pontuacao) throws PontuacaoInvalidaException {
         if (pontuacao < 1 || pontuacao > 5)
             throw new PontuacaoInvalidaException("Pontuação inválida. A pontuação dever ser de 1 a 5.");
     }
 
+    /**
+     * Verifica se um dado informado está vazio ou consiste apenas em espaços em branco.
+     *
+     * @param dado  O dado a ser verificado.
+     * @param campo O nome do campo que está sendo verificado (para a mensagem de erro).
+     * @throws DadoVazioException se o dado estiver vazio ou for composto apenas por espaços em branco.
+     */
     public void lerDadoVazio(String dado, String campo) throws DadoVazioException {
         if (dado == null || dado.trim().isEmpty()) {
             throw new DadoVazioException("O campo \"" + campo + "\" não pode estar vazio.");
