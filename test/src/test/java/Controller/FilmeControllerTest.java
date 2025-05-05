@@ -3,6 +3,7 @@ package Controller;
 import Model.Filme;
 import Model.FilmeRepositorio;
 import Model.Genero;
+import Model.Filme;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -34,6 +35,32 @@ public class FilmeControllerTest {
                 new HashSet<>(Collections.singletonList("Plataforma X")));
 
         filme.setId(1);
+    }
+
+    @Test
+    public void deveRemoverFilme(){
+        when(repositorio.buscarId(filme.getId())).thenReturn(filme);
+        when(repositorio.removeFilme(filme)).thenReturn(true);
+
+        boolean removido = controller.removerFilme(filme.getId());
+
+        assertTrue(removido);
+        verify(repositorio).removeFilme(filme);
+    }
+
+    @Test
+    public void naoDeveRemoverFilmeInexistente(){
+        Filme filmeInexistente = new Filme("Filme I", new HashSet<>(Arrays.asList(Genero.AVENTURA, Genero.DRAMA)),
+                2010, false, 120, new HashSet<>(Collections.singletonList("Diretor A")),
+                new HashSet<>(Collections.singletonList("Roteirista I")),
+                new HashSet<>(Collections.singletonList("Ator I")), "Original I",
+                new HashSet<>(Collections.singletonList("Plataforma I")));
+        when(repositorio.removeFilme(filmeInexistente)).thenReturn(false);
+
+        boolean removido = controller.removerFilme(filmeInexistente.getId());
+
+        assertFalse(removido);
+        verify(repositorio, never()).removeFilme(filme);
     }
 
     @Test

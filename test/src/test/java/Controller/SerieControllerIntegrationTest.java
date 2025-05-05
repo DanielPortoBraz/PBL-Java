@@ -71,6 +71,18 @@ public class SerieControllerIntegrationTest {
     }
 
     @Test
+    public void deveRemoverSerie(){
+        assertTrue(controller.removerSerie(id1)); // Deve remover a série "Breaking Bad"
+        assertFalse(controller.buscarSeries("5", Integer.toString(id1))); // Busca a série após ela ser removida
+    }
+
+    @Test
+    public void naoDeveRemoverSerie(){
+        assertFalse(controller.removerSerie(-1)); // Fornece um ID que não pertence a qualquer filme cadastrado
+        assertFalse(controller.buscarSeries("6", "-1")); // Busca um filme inexistente
+    }
+
+    @Test
     public void deveCadastrarSerieComSomenteTituloOriginalIgual() {
         boolean resultado = controller.cadastrarSerie("Serie Teste", generos3, 1994, true, 2004,
                 elenco3, "Friends", ondeAssistir2, temporadas3);

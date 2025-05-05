@@ -24,6 +24,35 @@ public class LivroRepositorioTest {
     }
 
     @Test
+    public void deveRemoverLivro(){
+        Livro livro1 = new Livro("Livro A", new HashSet<>(), 2000,
+                false, "Autor A", "Editora A", "ISBN001", true);
+        Livro livro2 = new Livro("Livro B", new HashSet<>(), 2000,
+                false, "Autor B", "Editora A", "ISBN002", true);
+
+        livros.addLivro(livro1);
+        livros.addLivro(livro2);
+
+        assertEquals(2, livros.getLivros().size());
+        assertTrue(livros.removeLivro(livro1));
+        assertEquals(1, livros.getLivros().size());
+    }
+
+    @Test
+    public void naoDeveRemoverLivroInexistente(){
+        Livro livro1 = new Livro("Livro A", new HashSet<>(), 2000,
+                false, "Autor A", "Editora A", "ISBN001", true);
+        Livro livro2 = new Livro("Livro B", new HashSet<>(), 2000,
+                false, "Autor B", "Editora A", "ISBN002", true);
+
+        livros.addLivro(livro1);
+
+        assertEquals(1, livros.getLivros().size());
+        assertFalse(livros.removeLivro(livro2));
+        assertEquals(1, livros.getLivros().size());
+    }
+
+    @Test
     public void deveAdicionarSomenteUmLivroEntreDoisIguaisPorIsbn() {
         Livro livro1 = new Livro("Livro A", new HashSet<>(), 2000,
                 false, "Autor A", "Editora A", "ISBN001", true);

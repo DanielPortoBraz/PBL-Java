@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Filme;
 import Model.Genero;
-import Model.Livro;
+import Model.Filme;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -68,6 +68,18 @@ public class FilmeControllerIntegrationTest {
     }
 
     @Test
+    public void deveRemoverFilme(){
+        assertTrue(controller.removerFilme(id1)); // Deve remover o filme "Interestelar"
+        assertFalse(controller.buscarFilmes("5", Integer.toString(id1))); // Busca o filme após ele ser removido
+    }
+
+    @Test
+    public void naoDeveRemoverFilme(){
+        assertFalse(controller.removerFilme(-1)); // Fornece um ID que não pertence a qualquer filme cadastrado
+        assertFalse(controller.buscarFilmes("6", "-1")); // Busca um filme inexistente
+    }
+
+    @Test
     public void deveCadastrarFilmeComSomenteTituloOriginalIgual() {
         boolean adicionado = controller.cadastrarFilme("Filme Teste", generos1,
                 2014, true, 169, direcao1, roteiro1,
@@ -79,8 +91,8 @@ public class FilmeControllerIntegrationTest {
     @Test
     public void deveOrdenarFilmesPorPontuacao() {
         ArrayList<Integer> ids = new ArrayList<>();
-        ids.add(id1); // Indice 0: Livro com maior pontuação
-        ids.add(id2); // Indice 1: Livro com segunda maior pontuação
+        ids.add(id1); // Indice 0: Filme com maior pontuação
+        ids.add(id2); // Indice 1: Filme com segunda maior pontuação
 
         controller.avaliarFilme(id2, "Bom filme", 4, Calendar.getInstance());
         controller.avaliarFilme(id1, "Obra-prima", 5, Calendar.getInstance());

@@ -1,9 +1,6 @@
 package Controller;
 
-import Model.Serie;
-import Model.SerieRepositorio;
-import Model.Genero;
-import Model.Temporada;
+import Model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -64,6 +61,30 @@ public class SerieControllerTest {
         assertFalse(resultado);
         verify(repositorio).buscarId(99);
         verifyNoMoreInteractions(repositorio);
+    }
+
+    @Test
+    public void deveRemoverSerie(){
+        when(repositorio.buscarId(serie.getId())).thenReturn(serie);
+        when(repositorio.removeSerie(serie)).thenReturn(true);
+
+        boolean removido = controller.removerSerie(serie.getId());
+
+        assertTrue(removido);
+        verify(repositorio).removeSerie(serie);
+    }
+
+    @Test
+    public void naoDeveRemoverSerieInexistente(){
+        Serie serieInexistente = new Serie("Serie I", new HashSet<>(Arrays.asList(Genero.AVENTURA, Genero.DRAMA)),
+                2015, false, 2020, new HashSet<>(Collections.singletonList("Ator A")),
+                "Original I", new HashSet<>(Collections.singletonList("Plataforma I")), new HashSet<Temporada>());
+        when(repositorio.removeSerie(serieInexistente)).thenReturn(false);
+
+        boolean removido = controller.removerSerie(serieInexistente.getId());
+
+        assertFalse(removido);
+        verify(repositorio, never()).removeSerie(serie);
     }
 
     @Test

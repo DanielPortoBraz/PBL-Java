@@ -27,6 +27,39 @@ public class FilmeRepositorioTest {
     }
 
     @Test
+    public void deveRemoverFilme(){
+        Filme filme1 = new Filme("Filme A", new HashSet<>(), 2000,
+                false, 120, new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                "Original A", new HashSet<>());
+        Filme filme2 = new Filme("Filme B", new HashSet<>(), 2000,
+                false, 120, new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                "Original B", new HashSet<>());
+
+        filmes.addFilme(filme1);
+        filmes.addFilme(filme2);
+
+        assertEquals(2, filmes.getFilmes().size());
+        assertTrue(filmes.removeFilme(filme1));
+        assertEquals(1, filmes.getFilmes().size());
+    }
+
+    @Test
+    public void naoDeveRemoverFilmeInexistente(){
+        Filme filme1 = new Filme("Filme A", new HashSet<>(), 2000,
+                false, 120, new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                "Original A", new HashSet<>());
+        Filme filme2 = new Filme("Filme B", new HashSet<>(), 2000,
+                false, 120, new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                "Original B", new HashSet<>());
+
+        filmes.addFilme(filme1);
+
+        assertEquals(1, filmes.getFilmes().size());
+        assertFalse(filmes.removeFilme(filme2));
+        assertEquals(1, filmes.getFilmes().size());
+    }
+
+    @Test
     public void deveAdicionarFilmesIguais(){
         Filme filme1 = new Filme("Filme A", new HashSet<>(), 2000,
                 false, 120, new HashSet<>(), new HashSet<>(), new HashSet<>(),

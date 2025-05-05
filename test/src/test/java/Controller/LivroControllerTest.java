@@ -33,6 +33,29 @@ public class LivroControllerTest {
     }
 
     @Test
+    public void deveRemoverLivro(){
+        when(repositorio.buscarIsbn(livro.getIsbn())).thenReturn(livro);
+        when(repositorio.removeLivro(livro)).thenReturn(true);
+
+        boolean removido = controller.removerLivro(livro.getIsbn());
+
+        assertTrue(removido);
+        verify(repositorio).removeLivro(livro);
+    }
+
+    @Test
+    public void naoDeveRemoverLivroInexistente(){
+        Livro livroInexistente = new Livro("Livro B", new HashSet<>(), 2000,
+                false, "Autor B", "Editora B", "54321", true);
+        when(repositorio.removeLivro(livroInexistente)).thenReturn(false);
+
+        boolean removido = controller.removerLivro(livroInexistente.getIsbn());
+
+        assertFalse(removido);
+        verify(repositorio, never()).removeLivro(livro);
+    }
+
+    @Test
     public void deveRetornarLivrosAoBuscarPorGeneroAventura() {
         when(repositorio.buscarGenero(any(Genero.class))).thenReturn(new TreeSet<Livro>());
 
@@ -42,6 +65,7 @@ public class LivroControllerTest {
         verify(repositorio).buscarGenero(Genero.AVENTURA);
         verifyNoMoreInteractions(repositorio);
     }
+
 
     @Test
     public void naoDeveRetornarLivroAoBuscarPorGeneroInvalido() {

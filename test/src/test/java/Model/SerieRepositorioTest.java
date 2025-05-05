@@ -27,6 +27,39 @@ public class SerieRepositorioTest {
     }
 
     @Test
+    public void deveRemoverSerie(){
+        Serie serie1 = new Serie("Série A", new HashSet<>(), 2000,
+                false, 2005, new HashSet<>(), "Original A",
+                new HashSet<>(), new HashSet<>());
+        Serie serie2 = new Serie("Série B", new HashSet<>(), 2000,
+                false, 2005, new HashSet<>(), "Original B",
+                new HashSet<>(), new HashSet<>());
+
+        series.addSerie(serie1);
+        series.addSerie(serie2);
+
+        assertEquals(2, series.getSeries().size());
+        assertTrue(series.removeSerie(serie1));
+        assertEquals(1, series.getSeries().size());
+    }
+
+    @Test
+    public void naoDeveRemoverSerieInexistente(){
+        Serie serie1 = new Serie("Série A", new HashSet<>(), 2000,
+                false, 2005, new HashSet<>(), "Original A",
+                new HashSet<>(), new HashSet<>());
+        Serie serie2 = new Serie("Série B", new HashSet<>(), 2000,
+                false, 2005, new HashSet<>(), "Original B",
+                new HashSet<>(), new HashSet<>());
+
+        series.addSerie(serie1);
+
+        assertEquals(1, series.getSeries().size());
+        assertFalse(series.removeSerie(serie2));
+        assertEquals(1, series.getSeries().size());
+    }
+
+    @Test
     public void naoDeveAdicionarSeriesIguais() {
         Serie serie1 = new Serie("Série A", new HashSet<>(), 2000,
                 false, 2005, new HashSet<>(), "Original", new HashSet<>(), new HashSet<>());
