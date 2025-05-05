@@ -51,12 +51,25 @@ public class LivroControllerIntegrationTest {
                 "J.K. Rowling", "Rocco", "9788532511010", true);
     }
 
+
     @Test
     public void naoDeveCadastrarLivrosIguais() {
         boolean resultado = controller.cadastrarLivro("O Código Da Vinci", generos1, 2003, true,
                 "Dan Brown", "Sextante", "9788575421139", true);
 
         assertFalse(resultado);
+    }
+
+    @Test
+    public void deveRemoverLivro(){
+        assertTrue(controller.removerLivro("9788575421139")); // Deve remover o livro "O Código da Vinci"
+        assertFalse(controller.buscarLivros("5", "9788575421139")); // Busca o livro após ele ser removido
+    }
+
+    @Test
+    public void naoDeveRemoverLivro(){
+        assertFalse(controller.removerLivro("ISBN_INEXISTENTE")); // Fornece um ISBN que não pertence a qualquer livro cadastrado
+        assertFalse(controller.buscarLivros("5", "ISBN_INEXISTENTE")); // Busca um livro inexistente
     }
 
     @Test
