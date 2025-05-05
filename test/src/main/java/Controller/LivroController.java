@@ -45,6 +45,21 @@ public class LivroController {
                 editora, isbn, exemplar));
     }
 
+
+    /**
+     * Remove um Livro cadastrado baseado pelo seu ISBN
+     * @param isbn ISBN do Livro que se deseja remover
+     * @return {@code true} se foi possível remover o Livro pelo ISBN; {@code false} caso o livro não tenha sido encontrado
+     */
+    public boolean removerLivro(String isbn){
+        Livro livroRemovido = livrosR.buscarIsbn(isbn);
+
+        if (livroRemovido != null)
+            return livrosR.removeLivro(livroRemovido);
+
+        return false;
+    }
+
     /**
      * Busca livros com base em uma categoria e um filtro específico.
      *

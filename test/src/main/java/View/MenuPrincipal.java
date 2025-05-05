@@ -50,7 +50,8 @@ public class MenuPrincipal implements Menu {
      *   <li>"2" - Acessar o menu de Avaliação.</li>
      *   <li>"3" - Acessar o menu de Busca.</li>
      *   <li>"4" - Acessar o menu de Listagem.</li>
-     *   <li>"5" - Sair do sistema.</li>
+     *   <li>"5" - Acessar o menu de Remoção.</li>
+     *   <li>"6" - Sair do sistema.</li>
      * </ul>
      * Dependendo da opção escolhida, o método instancia e exibe o menu correspondente.
      * </p>
@@ -64,7 +65,8 @@ public class MenuPrincipal implements Menu {
             System.out.println("2- Avaliar");
             System.out.println("3- Buscar");
             System.out.println("4- Listar");
-            System.out.println("5- Sair");
+            System.out.println("5- Remover");
+            System.out.println("6- Sair");
             System.out.print("Escolha uma opção: ");
 
             opcao = scanner.nextLine();
@@ -83,11 +85,14 @@ public class MenuPrincipal implements Menu {
                     new MenuLista(scanner, livroController, filmeController, serieController).exibir();
                     break;
                 case "5":
+                    new MenuRemocao(scanner, livroController, filmeController, serieController).exibir();
+                    break;
+                case "6":
                     System.out.println("Saindo...");
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
-        } while (!opcao.equals("5"));
+        } while (!opcao.equals("6"));
     }
 }

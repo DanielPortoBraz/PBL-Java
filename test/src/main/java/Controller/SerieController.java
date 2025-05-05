@@ -1,9 +1,6 @@
 package Controller;
 
-import Model.Serie;
-import Model.SerieRepositorio;
-import Model.Genero;
-import Model.Temporada;
+import Model.*;
 
 import java.util.Calendar;
 import java.util.HashSet;
@@ -42,7 +39,21 @@ public class SerieController {
                                   HashSet<String> elenco, String tituloOriginal,
                                   HashSet<String> ondeAssistir, HashSet<Temporada> temporadas){
         return seriesR.addSerie(new Serie(titulo, generos, anoLancamento, visto, anoEncerramento,
-                elenco, tituloOriginal, ondeAssistir, temporadas));
+                elenco, tituloOriginal, ondeAssistir, temporadas)) && !temporadas.isEmpty();
+    }
+
+    /**
+     * Remove uma Serie cadastrada baseada no seu ID
+     * @param id ID da Serie que se deseja remover
+     * @return {@code true} se foi possível remover a Serie pelo ID; {@code false} caso a série não tenha sido encontrada
+     */
+    public boolean removerSerie(int id){
+        Serie serieRemovido = seriesR.buscarId(id);
+
+        if (serieRemovido != null)
+            return seriesR.removeSerie(serieRemovido);
+
+        return false;
     }
 
     /**

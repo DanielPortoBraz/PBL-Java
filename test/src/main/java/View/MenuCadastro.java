@@ -377,6 +377,7 @@ class MenuCadastro implements Menu {
                                 }
 
                                 HashSet<String> ondeAssistirSerie = cadastrarListaDeNomes(scanner, "Onde assistir");
+                                System.out.println("AVISO: Cadastre ao menos uma temporada.");
                                 HashSet<Temporada> temporadasSerie = cadastrarTemporadas(scanner);
 
                                 cadastrado = serieController.cadastrarSerie(tituloSerie, generosSerie, anoLancamentoSerie,
@@ -386,7 +387,7 @@ class MenuCadastro implements Menu {
                                 if (cadastrado)
                                     System.out.println("Série cadastrada com sucesso!");
                                 else
-                                    System.out.println("Não foi possível cadastrar a série. Verifique duplicidade.");
+                                    System.out.println("Não foi possível cadastrar a série. Certifique-se que ao menos uma temporada foi cadastrada, e não há a mesma série cadastrada.");
 
                             } catch (DadoVazioException e) {
                                 System.out.println("Erro no cadastro: " + e.getMessage());

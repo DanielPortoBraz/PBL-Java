@@ -3,6 +3,7 @@ package Controller;
 import Model.Genero;
 import Model.FilmeRepositorio;
 import Model.Filme;
+import Model.Filme;
 
 import java.util.Calendar;
 import java.util.HashSet;
@@ -46,6 +47,20 @@ public class FilmeController {
                                   String tituloOriginal, HashSet<String> ondeAssistir) {
         return filmesR.addFilme(new Filme(titulo, generos, anoLancamento, visto, tempoDuracao,
                 direcao, roteiro, elenco, tituloOriginal, ondeAssistir));
+    }
+
+    /**
+     * Remove um Filme cadastrado baseado no seu ID
+     * @param id ID do Filme que se deseja remover
+     * @return {@code true} se foi possível remover o Filme pelo ID; {@code false} caso o filme não tenha sido encontrado
+     */
+    public boolean removerFilme(int id){
+        Filme filmeRemovido = filmesR.buscarId(id);
+
+        if (filmeRemovido != null)
+            return filmesR.removeFilme(filmeRemovido);
+
+        return false;
     }
 
     /**
