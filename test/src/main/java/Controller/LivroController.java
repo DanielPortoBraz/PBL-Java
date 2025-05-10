@@ -41,8 +41,14 @@ public class LivroController {
      */
     public boolean cadastrarLivro(String titulo, HashSet<Genero> generos, int anoLancamento,
                                   boolean visto, String autor, String editora, String isbn, boolean exemplar) {
-        return livrosR.addLivro(new Livro(titulo, generos, anoLancamento, visto, autor,
+        boolean cadastrado = livrosR.addLivro(new Livro(titulo, generos, anoLancamento, visto, autor,
                 editora, isbn, exemplar));
+
+        if (cadastrado){
+            livrosR.salvarLivros();
+            return true;
+        }
+        return false;
     }
 
 
@@ -59,6 +65,11 @@ public class LivroController {
 
         return false;
     }
+
+    public boolean importarLivros(){
+        return livrosR.carregarLivros();
+    }
+
 
     /**
      * Busca livros com base em uma categoria e um filtro específico.
