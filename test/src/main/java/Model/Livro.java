@@ -1,5 +1,7 @@
 package Model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 
@@ -32,6 +34,11 @@ public class Livro extends Registro {
         this.editora = editora;
         this.isbn = isbn;
         this.exemplar = exemplar;
+    }
+
+    // Construtor padrão para o Jackson
+    public Livro(){
+
     }
 
     /**

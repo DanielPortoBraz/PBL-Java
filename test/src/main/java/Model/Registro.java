@@ -32,6 +32,11 @@ public class Registro implements Comparable<Registro> {
         this.visto = visto;
     }
 
+    // Construtor padrão com nenhum argumento necessário para o Jackson
+    public Registro(){
+
+    }
+
     /**
      * Compara dois registros para ordenação.
      * A comparação é feita com base na pontuação (ordem decrescente) e, em caso de empate, pelo título (ordem alfabética).

@@ -46,6 +46,10 @@ public class Serie extends Registro{
         this.id = GeradorID.gerarID(listaId);
     }
 
+    public Serie(){
+
+    }
+
     /**
      * Sobrescreve o método `equals` para garantir que séries com o mesmo ID sejam consideradas iguais.
      *

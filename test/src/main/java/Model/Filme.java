@@ -47,6 +47,10 @@ public class Filme extends Registro {
         this.id = GeradorID.gerarID(listaId);
     }
 
+    public Filme(){
+
+    }
+
     /**
      * Verifica se dois filmes são iguais com base no ID.
      *

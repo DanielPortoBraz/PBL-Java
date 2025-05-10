@@ -31,6 +31,10 @@ public class Temporada {
         this.numero = numero;
     }
 
+    public Temporada(){
+
+    }
+
     /**
      * Retorna uma representação em string da temporada.
      * <p>
