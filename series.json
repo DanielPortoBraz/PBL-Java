@@ -1,0 +1,47 @@
+[ {
+  "titulo" : "Serie A",
+  "anoLancamento" : 2002,
+  "visto" : true,
+  "dataVisto" : null,
+  "review" : " ",
+  "pontuacao" : 0,
+  "anoEncerramento" : 0,
+  "elenco" : [ "Ator A" ],
+  "tituloOriginal" : "Series A",
+  "ondeAssistir" : [ "Plataforma A" ],
+  "temporadas" : [ {
+    "ano" : 2005,
+    "quantEpisodios" : 5,
+    "numero" : 2,
+    "pontuacao" : 0,
+    "review" : " "
+  }, {
+    "ano" : 204,
+    "quantEpisodios" : 3,
+    "numero" : 1,
+    "pontuacao" : 0,
+    "review" : " "
+  } ],
+  "id" : 3629,
+  "genero" : [ "ACAO", "ANIMACAO", "AVENTURA" ]
+}, {
+  "titulo" : "Serie B",
+  "anoLancamento" : 2008,
+  "visto" : false,
+  "dataVisto" : null,
+  "review" : " ",
+  "pontuacao" : 0,
+  "anoEncerramento" : 2010,
+  "elenco" : [ "Ator B" ],
+  "tituloOriginal" : "Series B",
+  "ondeAssistir" : [ ],
+  "temporadas" : [ {
+    "ano" : 2008,
+    "quantEpisodios" : 3,
+    "numero" : 1,
+    "pontuacao" : 0,
+    "review" : " "
+  } ],
+  "id" : 1547,
+  "genero" : [ "DOCUMENTARIO", "TERROR" ]
+} ]

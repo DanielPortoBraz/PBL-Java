@@ -58,6 +58,10 @@ public class MenuPrincipal implements Menu {
      */
     @Override
     public void exibir() {
+        livroController.importarLivros(); // Importando o arquivo de Livros
+        filmeController.importarFilmes(); // Importando o arquivo de Filmes
+        serieController.importarSeries(); // Importando o arquivo de Séries
+
         String opcao;
         do {
             System.out.println("\n-- MENU PRINCIPAL --");
