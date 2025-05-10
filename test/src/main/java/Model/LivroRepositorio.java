@@ -1,6 +1,10 @@
 package Model;
 
-import java.util.Collections;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import java.io.File;
+import java.io.IOException;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -39,6 +43,35 @@ public class LivroRepositorio {
      */
     public boolean removeLivro(Livro livro){
         return this.livros.remove(livro);
+    }
+
+    public boolean salvarLivros() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT); // Garante a formatação dos objetos em JSON com quebra de linha
+
+        try {
+            mapper.writeValue(new File("livros.json"), this.getLivros());
+            return true;
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar livros: " + e.getMessage());
+            return false;
+        } catch (Exception e){
+            System.out.println("Erro: " + e.getMessage());
+            return false;
+        }
+    };
+
+    public boolean carregarLivros(){
+        ObjectMapper mapper = new ObjectMapper();
+        File livrosSalvos = new File("livros.json");
+
+        try {
+            this.livros = mapper.readValue(livrosSalvos, new TypeReference<TreeSet<Livro>>(){});
+            return true;
+        } catch(IOException e){
+            System.out.println("Erro ao salvar livros: " + e.getMessage());
+            return false;
+        }
     }
 
     /**

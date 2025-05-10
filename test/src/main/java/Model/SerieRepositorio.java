@@ -1,5 +1,11 @@
 package Model;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -38,6 +44,35 @@ public class SerieRepositorio {
      */
     public boolean removeSerie(Serie serie){
         return this.series.remove(serie);
+    }
+
+    public boolean salvarSeries() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT); // Garante a formatação dos objetos em JSON com quebra de linha
+
+        try {
+            mapper.writeValue(new File("series.json"), this.getSeries());
+            return true;
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar series: " + e.getMessage());
+            return false;
+        } catch (Exception e){
+            System.out.println("Erro: " + e.getMessage());
+            return false;
+        }
+    };
+
+    public boolean carregarSeries(){
+        ObjectMapper mapper = new ObjectMapper();
+        File seriesSalvas = new File("series.json");
+
+        try {
+            this.series = mapper.readValue(seriesSalvas, new TypeReference<TreeSet<Serie>>(){});
+            return true;
+        } catch(IOException e){
+            System.out.println("Erro ao salvar series: " + e.getMessage());
+            return false;
+        }
     }
 
     /**

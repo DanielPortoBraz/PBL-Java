@@ -1,5 +1,11 @@
 package Model;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -38,6 +44,35 @@ public class FilmeRepositorio {
      */
     public boolean removeFilme(Filme filme){
         return this.filmes.remove(filme);
+    }
+
+    public boolean salvarFilmes() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT); // Garante a formatação dos objetos em JSON com quebra de linha
+
+        try {
+            mapper.writeValue(new File("filmes.json"), this.getFilmes());
+            return true;
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar filmes: " + e.getMessage());
+            return false;
+        } catch (Exception e){
+            System.out.println("Erro: " + e.getMessage());
+            return false;
+        }
+    };
+
+    public boolean carregarFilmes(){
+        ObjectMapper mapper = new ObjectMapper();
+        File filmesSalvos = new File("filmes.json");
+
+        try {
+            this.filmes = mapper.readValue(filmesSalvos, new TypeReference<TreeSet<Filme>>(){});
+            return true;
+        } catch(IOException e){
+            System.out.println("Erro ao salvar filmes: " + e.getMessage());
+            return false;
+        }
     }
 
     /**
