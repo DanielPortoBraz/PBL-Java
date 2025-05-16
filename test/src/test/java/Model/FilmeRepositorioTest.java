@@ -3,6 +3,7 @@ package Model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -207,5 +208,74 @@ public class FilmeRepositorioTest {
         assertEquals("Filme C", ordenados[0].getTitulo());
         assertEquals("Filme A", ordenados[1].getTitulo());
         assertEquals("Filme B", ordenados[2].getTitulo());
+    }
+
+    @Test
+    public void deveSalvarUmArquivoSemFilmes(){
+        assertTrue(filmes.getFilmes().isEmpty());
+        assertTrue(filmes.salvarFilmes());
+        assertTrue(new File("filmes.json").exists()); // Garante que o arquivo tenha sido criado ou salvo
+    }
+
+    @Test
+    public void deveSalvarUmArquivoComTrêsFilmes(){
+        Filme filmeA = new Filme("Filme A", new HashSet<>(), 2000,
+                false, 120, new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                "Original A", new HashSet<>());
+
+        Filme filmeB = new Filme("Filme B", new HashSet<>(), 2001,
+                false, 110, new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                "Original B", new HashSet<>());
+
+        Filme filmeC = new Filme("Filme C", new HashSet<>(), 2002,
+                false, 130, new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                "Original C", new HashSet<>());
+
+        filmes.addFilme(filmeA);
+        filmes.addFilme(filmeB);
+        filmes.addFilme(filmeC);
+
+        assertTrue(filmes.salvarFilmes());
+        assertTrue(new File("filmes.json").exists()); // Garante que o arquivo tenha sido criado ou salvo
+    }
+
+    @Test
+    public void deveCarregarUmArquivoExistente(){
+        filmes.salvarFilmes();
+        assertTrue(filmes.carregarFilmes());
+    }
+
+    @Test
+    public void naoDeveCarregarUmArquivoInexistente(){
+        File arquivoFilmes = new File("filmes.json");
+
+        if (arquivoFilmes.exists()) // Se houver algum arquivo filmes.json, ele deve ser deletado
+            arquivoFilmes.delete();
+
+        assertFalse(filmes.carregarFilmes());
+    }
+
+    @Test
+    public void deveRemoverUmFilmeDoArquivo(){
+        Filme filmeA = new Filme("Filme A", new HashSet<>(), 2000,
+                false, 120, new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                "Original A", new HashSet<>());
+
+        Filme filmeB = new Filme("Filme B", new HashSet<>(), 2001,
+                false, 110, new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                "Original B", new HashSet<>());
+
+        Filme filmeC = new Filme("Filme C", new HashSet<>(), 2002,
+                false, 130, new HashSet<>(), new HashSet<>(), new HashSet<>(),
+                "Original C", new HashSet<>());
+
+        filmes.addFilme(filmeA);
+        filmes.addFilme(filmeB);
+        filmes.addFilme(filmeC);
+        assertEquals(3, filmes.getFilmes().size()); // Verifica se todos os 3 filmes foram cadastrados
+        filmes.removeFilme(filmeA); // Remove o filme
+        filmes.salvarFilmes(); // Atualiza a remoção
+        filmes.carregarFilmes(); // Carrega a nova lista de Filmes
+        assertEquals(2, filmes.getFilmes().size()); // Verifica quantos filmes foram salvos após a remoção
     }
 }

@@ -2,6 +2,8 @@ package Model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashSet;
 import static org.junit.jupiter.api.Assertions.*;
@@ -160,4 +162,68 @@ public class LivroRepositorioTest {
         assertEquals("Livro A", ordenados[1].getTitulo()); // Média
         assertEquals("Livro B", ordenados[2].getTitulo()); // Menor
     }
+
+    @Test
+    public void deveSalvarUmArquivoSemLivros(){
+        assertTrue(livros.getLivros().isEmpty());
+        assertTrue(livros.salvarLivros());
+        assertTrue(new File("livros.json").exists()); // Garante que o arquivo tenha sido criado ou salvo
+    }
+
+    @Test
+    public void deveSalvarUmArquivoComTrêsLivros(){
+        Livro livroA = new Livro("Livro A", new HashSet<>(), 2010,
+                true, "Autor", "Editora", "X1", true);
+
+        Livro livroB = new Livro("Livro B", new HashSet<>(), 2011,
+                true, "Autor", "Editora", "X2", true);
+
+        Livro livroC = new Livro("Livro C", new HashSet<>(), 2012,
+                true, "Autor", "Editora", "X3", true);
+
+        livros.addLivro(livroA);
+        livros.addLivro(livroB);
+        livros.addLivro(livroC);
+
+        assertTrue(livros.salvarLivros());
+        assertTrue(new File("livros.json").exists()); // Garante que o arquivo tenha sido criado ou salvo
+    }
+
+    @Test
+    public void deveCarregarUmArquivoExistente(){
+        livros.salvarLivros();
+        assertTrue(livros.carregarLivros());
+    }
+
+    @Test
+    public void naoDeveCarregarUmArquivoInexistente(){
+        File arquivoLivros = new File("livros.json");
+
+        if (arquivoLivros.exists()) // Se houver algum arquivo livros.json, ele deve ser deletado
+            arquivoLivros.delete();
+
+        assertFalse(livros.carregarLivros());
+    }
+
+    @Test
+    public void deveRemoverUmLivroDoArquivo(){
+        Livro livroA = new Livro("Livro A", new HashSet<>(), 2010,
+                true, "Autor", "Editora", "X1", true);
+
+        Livro livroB = new Livro("Livro B", new HashSet<>(), 2011,
+                true, "Autor", "Editora", "X2", true);
+
+        Livro livroC = new Livro("Livro C", new HashSet<>(), 2012,
+                true, "Autor", "Editora", "X3", true);
+
+        livros.addLivro(livroA);
+        livros.addLivro(livroB);
+        livros.addLivro(livroC);
+        assertEquals(3, livros.getLivros().size()); // Verifica se todos os 3 livros foram cadastrados
+        livros.removeLivro(livroA); // Remove o livro
+        livros.salvarLivros(); // Atualiza a remoção
+        livros.carregarLivros(); // Carrega a nova lista de Livros
+        assertEquals(2, livros.getLivros().size()); // Verifica quantos livros foram salvos após a remoção
+    }
 }
+

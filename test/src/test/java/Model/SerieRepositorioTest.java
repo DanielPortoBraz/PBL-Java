@@ -3,6 +3,7 @@ package Model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -208,5 +209,68 @@ public class SerieRepositorioTest {
         assertEquals("Série C", ordenados[0].getTitulo());
         assertEquals("Série A", ordenados[1].getTitulo());
         assertEquals("Série B", ordenados[2].getTitulo());
+    }
+
+    @Test
+    public void deveSalvarUmArquivoSemSeries(){
+        assertTrue(series.getSeries().isEmpty());
+        assertTrue(series.salvarSeries());
+        assertTrue(new File("series.json").exists()); // Garante que o arquivo tenha sido criado ou salvo
+    }
+
+    @Test
+    public void deveSalvarUmArquivoComTrêsSeries(){
+        Serie serieA = new Serie("Série A", new HashSet<>(), 2000,
+                false, 2005, new HashSet<>(), "Original A", new HashSet<>(), new HashSet<>());
+
+        Serie serieB = new Serie("Série B", new HashSet<>(), 2001,
+                false, 2006, new HashSet<>(), "Original B", new HashSet<>(), new HashSet<>());
+
+        Serie serieC = new Serie("Série C", new HashSet<>(), 2002,
+                false, 2007, new HashSet<>(), "Original C", new HashSet<>(), new HashSet<>());
+
+        series.addSerie(serieA);
+        series.addSerie(serieB);
+        series.addSerie(serieC);
+
+        assertTrue(series.salvarSeries());
+        assertTrue(new File("series.json").exists()); // Garante que o arquivo tenha sido criado ou salvo
+    }
+
+    @Test
+    public void deveCarregarUmArquivoExistente(){
+        series.salvarSeries();
+        assertTrue(series.carregarSeries());
+    }
+
+    @Test
+    public void naoDeveCarregarUmArquivoInexistente(){
+        File arquivoSeries = new File("series.json");
+
+        if (arquivoSeries.exists()) // Se houver algum arquivo series.json, ele deve ser deletado
+            arquivoSeries.delete();
+
+        assertFalse(series.carregarSeries());
+    }
+
+    @Test
+    public void deveRemoverUmaSerieDoArquivo(){
+        Serie serieA = new Serie("Série A", new HashSet<>(), 2000,
+                false, 2005, new HashSet<>(), "Original A", new HashSet<>(), new HashSet<>());
+
+        Serie serieB = new Serie("Série B", new HashSet<>(), 2001,
+                false, 2006, new HashSet<>(), "Original B", new HashSet<>(), new HashSet<>());
+
+        Serie serieC = new Serie("Série C", new HashSet<>(), 2002,
+                false, 2007, new HashSet<>(), "Original C", new HashSet<>(), new HashSet<>());
+
+        series.addSerie(serieA);
+        series.addSerie(serieB);
+        series.addSerie(serieC);
+        assertEquals(3, series.getSeries().size()); // Verifica se todas as 3 séries foram cadastradas
+        series.removeSerie(serieA); // Remove a série
+        series.salvarSeries(); // Atualiza a remoção
+        series.carregarSeries(); // Carrega a nova lista de Séries
+        assertEquals(2, series.getSeries().size()); // Verifica quantas séries foram salvas após a remoção
     }
 }
