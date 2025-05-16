@@ -58,9 +58,13 @@ public class MenuPrincipal implements Menu {
      */
     @Override
     public void exibir() {
-        livroController.importarLivros(); // Importando o arquivo de Livros
-        filmeController.importarFilmes(); // Importando o arquivo de Filmes
-        serieController.importarSeries(); // Importando o arquivo de Séries
+        // Tenta importar os arquivos de cada registro
+        if (!livroController.importarLivros()) // Se não conseguir importar, cria um novo arquivo "livros.json"
+            livroController.salvarLivros();
+        if (!filmeController.importarFilmes()) // Se não conseguir importar, cria um novo arquivo "filmes.json"
+            filmeController.salvarFilmes();
+        if (!serieController.importarSeries()) // Se não conseguir importar, cria um novo arquivo "series.json
+            serieController.salvarSeries();
 
         String opcao;
         do {

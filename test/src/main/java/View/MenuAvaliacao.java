@@ -173,8 +173,15 @@ public class MenuAvaliacao implements Menu {
 
                                 avaliado = serieController.avaliarSerie(idSerie, reviewSerie, dataVistoSerie);
 
-                                if (avaliado)
+                                if (avaliado){
                                     System.out.println("Série avaliada com sucesso!");
+                                    salvo = serieController.salvarSeries();
+
+                                    if (salvo)
+                                        System.out.println("Alterações salvas com sucesso!");
+                                    else
+                                        System.out.println("Não foi possível salvar a avaliação!");
+                                }
                                 else
                                     System.out.println("Não foi possível avaliar a série.");
 
