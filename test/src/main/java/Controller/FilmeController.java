@@ -45,14 +45,8 @@ public class FilmeController {
                                   boolean visto, int tempoDuracao, HashSet<String> direcao,
                                   HashSet<String> roteiro, HashSet<String> elenco,
                                   String tituloOriginal, HashSet<String> ondeAssistir) {
-        boolean cadastrado = filmesR.addFilme(new Filme(titulo, generos, anoLancamento, visto, tempoDuracao,
+        return filmesR.addFilme(new Filme(titulo, generos, anoLancamento, visto, tempoDuracao,
                 direcao, roteiro, elenco, tituloOriginal, ondeAssistir));
-
-        if (cadastrado){
-            filmesR.salvarFilmes();
-            return true;
-        }
-        return false;
     }
 
     /**
@@ -67,6 +61,10 @@ public class FilmeController {
             return filmesR.removeFilme(filmeRemovido);
 
         return false;
+    }
+
+    public boolean salvarFilmes(){
+        return filmesR.salvarFilmes();
     }
 
     public boolean importarFilmes(){

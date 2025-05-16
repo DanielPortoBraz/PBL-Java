@@ -70,7 +70,7 @@ class MenuCadastro implements Menu {
     @Override
     public void exibir() {
         String opcao;
-        boolean cadastrado;
+        boolean cadastrado, salvo;
 
         do {
             System.out.println("\n-- MENU DE CADASTRO --");
@@ -184,8 +184,15 @@ class MenuCadastro implements Menu {
                                 autorLivro, editoraLivro, isbnLivro, exemplarLivro
                         );
 
-                        if (cadastrado)
+                        if (cadastrado) {
                             System.out.println("Livro cadastrado com sucesso!");
+                            salvo = livroController.salvarLivros();
+
+                            if (salvo)
+                                System.out.println("Livro salvo com sucesso!");
+                            else
+                                System.out.println("Não foi possível salvar o livro!");
+                        }
                         else
                             System.out.println("Não foi possível cadastrar o livro. Certifique-se de que não há outro livro idêntico ou com o mesmo ISBN.");
 
@@ -277,8 +284,15 @@ class MenuCadastro implements Menu {
                                 vistoFilme, tempoDuracaoFilme, direcaoFilme, roteiroFilme,
                                 elencoFilme, tituloOriginalFilme, ondeAssistirFilme);
 
-                        if (cadastrado)
+                        if (cadastrado) {
                             System.out.println("Filme cadastrado com sucesso!");
+                            salvo = filmeController.salvarFilmes();
+
+                            if (salvo)
+                                System.out.println("Filme salvo com sucesso!");
+                            else
+                                System.out.println("Não foi possível salvar o filme!");
+                        }
                         else
                             System.out.println("Não foi possível cadastrar o filme. Verifique duplicidade.");
                     } catch (Exception e) {
@@ -384,8 +398,15 @@ class MenuCadastro implements Menu {
                                         vistoSerie, anoEncerramentoSerie, elencoSerie, tituloOriginalSerie,
                                         ondeAssistirSerie, temporadasSerie);
 
-                                if (cadastrado)
+                                if (cadastrado) {
                                     System.out.println("Série cadastrada com sucesso!");
+                                    salvo = serieController.salvarSeries();
+
+                                    if (salvo)
+                                        System.out.println("Série salva com sucesso!");
+                                    else
+                                        System.out.println("Não foi possível salvar a série!");
+                                }
                                 else
                                     System.out.println("Não foi possível cadastrar a série. Certifique-se que ao menos uma temporada foi cadastrada, e não há a mesma série cadastrada.");
 
@@ -414,8 +435,15 @@ class MenuCadastro implements Menu {
                                     for (Temporada t : temporadas) {
                                         cadastrado = serieController.cadastrarTemporada(serieId, t);
 
-                                        if (cadastrado)
+                                        if (cadastrado) {
                                             System.out.printf("Temporada %d cadastrada com sucesso!\n", t.getNumero());
+                                            salvo = serieController.salvarSeries();
+
+                                            if (salvo)
+                                                System.out.printf("Temporada %d salva com sucesso!\n", t.getNumero());
+                                            else
+                                                System.out.printf("Não foi possível salvar a temporada %d.\n", t.getNumero());
+                                        }
                                         else
                                             System.out.printf("Não foi possível cadastrar a temporada %d.\n", t.getNumero());
                                     }

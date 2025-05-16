@@ -24,7 +24,7 @@ public class MenuRemocao implements Menu{
         String opcao;
         String isbn;
         int id;
-        boolean removeu;
+        boolean removeu, salvo;
 
         do {
             System.out.println("\n-- MENU DE REMOÇÃO --");
@@ -53,8 +53,16 @@ public class MenuRemocao implements Menu{
                         }
                         removeu = livroController.removerLivro(isbn);
 
-                        if(removeu)
+                        if(removeu){
                             System.out.println("Livro removido com sucesso!");
+                            salvo = livroController.salvarLivros();
+
+                            if (salvo)
+                                System.out.println("Alterações salvas com sucesso!");
+                            else
+                                System.out.println("Não foi possível salvar a alteração!");
+                        }
+
                         else
                             System.out.println("Não foi possível remover o livro. Verifique se o ISBN fornecido é válido.");
                     } catch (Exception e) {
@@ -79,8 +87,15 @@ public class MenuRemocao implements Menu{
                         }
                         removeu = filmeController.removerFilme(id);
 
-                        if(removeu)
+                        if(removeu){
                             System.out.println("Filme removido com sucesso!");
+                            salvo = filmeController.salvarFilmes();
+
+                            if (salvo)
+                                System.out.println("Alterações salvas com sucesso!");
+                            else
+                                System.out.println("Não foi possível salvar a alteração!");
+                        }
                         else
                             System.out.println("Não foi possível remover o filme. Verifique se o ID fornecido é válido.");
                     } catch (Exception e) {
@@ -105,8 +120,15 @@ public class MenuRemocao implements Menu{
                         }
                         removeu = serieController.removerSerie(id);
 
-                        if(removeu)
+                        if(removeu){
                             System.out.println("Série removida com sucesso!");
+                            salvo = serieController.salvarSeries();
+
+                            if (salvo)
+                                System.out.println("Alterações salvas com sucesso!");
+                            else
+                                System.out.println("Não foi possível salvar a alteração!");
+                        }
                         else
                             System.out.println("Não foi possível remover a série. Verifique se o ID fornecido é válido.");
                     } catch (Exception e) {

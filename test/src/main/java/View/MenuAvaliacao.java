@@ -54,7 +54,7 @@ public class MenuAvaliacao implements Menu {
     @Override
     public void exibir() {
         String opcao;
-        boolean avaliado;
+        boolean avaliado, salvo;
 
         do {
             System.out.println("\n-- MENU DE AVALIAÇÃO --");
@@ -88,8 +88,15 @@ public class MenuAvaliacao implements Menu {
                         avaliado = livroController.avaliarLivro(isbnLivro, reviewLivro,
                                 pontuacaoLivro, dataVistoLivro);
 
-                        if (avaliado)
+                        if (avaliado){
                             System.out.println("Livro avaliado com sucesso!");
+                            salvo = livroController.salvarLivros();
+
+                            if (salvo)
+                                System.out.println("Alterações salvas com sucesso!");
+                            else
+                                System.out.println("Não foi possível salvar a avaliação!");
+                        }
                         else
                             System.out.println("Não foi possível avaliar o livro.");
                     } catch (PontuacaoInvalidaException | DadoVazioException e) {
@@ -121,8 +128,16 @@ public class MenuAvaliacao implements Menu {
 
                         avaliado = filmeController.avaliarFilme(idFilme, reviewFilme, pontuacaoFilme, dataVistoFilme);
 
-                        if (avaliado)
+                        if (avaliado){
                             System.out.println("Filme avaliado com sucesso!");
+                            salvo = filmeController.salvarFilmes();
+
+                            if (salvo)
+                                System.out.println("Alterações salvas com sucesso!");
+                            else
+                                System.out.println("Não foi possível salvar a avaliação!");
+                        }
+
                         else
                             System.out.println("Não foi possível avaliar o filme.");
 
@@ -195,8 +210,15 @@ public class MenuAvaliacao implements Menu {
 
                                 avaliado = serieController.avaliarTemporada(serieId, numeroTemporada, reviewTemporada, pontuacaoTemporada);
 
-                                if (avaliado)
-                                    System.out.println("Temporada avaliada com sucesso!");
+                                if (avaliado){
+                                    System.out.println("Série avaliada com sucesso!");
+                                    salvo = serieController.salvarSeries();
+
+                                    if (salvo)
+                                        System.out.println("Alterações salvas com sucesso!");
+                                    else
+                                        System.out.println("Não foi possível salvar a avaliação!");
+                                }
                                 else
                                     System.out.println("Não foi possível avaliar a temporada.");
 

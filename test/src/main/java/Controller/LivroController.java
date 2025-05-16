@@ -41,14 +41,8 @@ public class LivroController {
      */
     public boolean cadastrarLivro(String titulo, HashSet<Genero> generos, int anoLancamento,
                                   boolean visto, String autor, String editora, String isbn, boolean exemplar) {
-        boolean cadastrado = livrosR.addLivro(new Livro(titulo, generos, anoLancamento, visto, autor,
+        return livrosR.addLivro(new Livro(titulo, generos, anoLancamento, visto, autor,
                 editora, isbn, exemplar));
-
-        if (cadastrado){
-            livrosR.salvarLivros();
-            return true;
-        }
-        return false;
     }
 
 
@@ -64,6 +58,10 @@ public class LivroController {
             return livrosR.removeLivro(livroRemovido);
 
         return false;
+    }
+
+    public boolean salvarLivros(){
+        return livrosR.salvarLivros();
     }
 
     public boolean importarLivros(){

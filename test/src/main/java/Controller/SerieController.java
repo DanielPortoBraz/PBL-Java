@@ -38,14 +38,8 @@ public class SerieController {
                                   boolean visto, int anoEncerramento,
                                   HashSet<String> elenco, String tituloOriginal,
                                   HashSet<String> ondeAssistir, HashSet<Temporada> temporadas){
-        boolean cadastrada = seriesR.addSerie(new Serie(titulo, generos, anoLancamento, visto, anoEncerramento,
+         return seriesR.addSerie(new Serie(titulo, generos, anoLancamento, visto, anoEncerramento,
                 elenco, tituloOriginal, ondeAssistir, temporadas)) && !temporadas.isEmpty();
-
-        if (cadastrada){
-            seriesR.salvarSeries();
-            return true;
-        }
-        return false;
     }
 
     /**
@@ -60,6 +54,10 @@ public class SerieController {
             return seriesR.removeSerie(serieRemovido);
 
         return false;
+    }
+
+    public boolean salvarSeries(){
+        return seriesR.salvarSeries();
     }
 
     public boolean importarSeries(){
