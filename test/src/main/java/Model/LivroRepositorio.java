@@ -45,9 +45,14 @@ public class LivroRepositorio {
         return this.livros.remove(livro);
     }
 
+    /**
+     * Salva a lista de livros em um arquivo JSON chamado "livros.json".
+     *
+     * @return {@code true} se os livros foram salvos com sucesso; {@code false} em caso de erro.
+     */
     public boolean salvarLivros() {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(SerializationFeature.INDENT_OUTPUT); // Garante a formatação dos objetos em JSON com quebra de linha
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         try {
             mapper.writeValue(new File("livros.json"), this.getLivros());
@@ -59,9 +64,14 @@ public class LivroRepositorio {
             System.out.println("Erro: " + e.getMessage());
             return false;
         }
-    };
+    }
 
-    public boolean carregarLivros(){
+    /**
+     * Carrega os livros do arquivo "livros.json".
+     *
+     * @return {@code true} se os livros foram carregados com sucesso; {@code false} caso contrário.
+     */
+    public boolean carregarLivros() {
         ObjectMapper mapper = new ObjectMapper();
         File livrosSalvos = new File("livros.json");
 
@@ -69,7 +79,7 @@ public class LivroRepositorio {
             this.livros = mapper.readValue(livrosSalvos, new TypeReference<TreeSet<Livro>>(){});
             return true;
         } catch(IOException e){
-            System.out.println("Erro ao salvar livros: " + e.getMessage());
+            System.out.println("Erro ao carregar livros: " + e.getMessage());
             return false;
         }
     }

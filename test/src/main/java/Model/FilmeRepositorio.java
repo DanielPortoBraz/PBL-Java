@@ -46,9 +46,18 @@ public class FilmeRepositorio {
         return this.filmes.remove(filme);
     }
 
+    /**
+     * Salva a lista de filmes em um arquivo JSON chamado "filmes.json".
+     *
+     * Este método utiliza a biblioteca Jackson para serializar a lista de filmes no formato JSON,
+     * com formatação legível (indentação). Caso ocorra algum erro durante a gravação, a exceção
+     * é capturada e uma mensagem de erro é exibida no console.
+     *
+     * @return {@code true} se os filmes foram salvos com sucesso; {@code false} em caso de erro.
+     */
     public boolean salvarFilmes() {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(SerializationFeature.INDENT_OUTPUT); // Garante a formatação dos objetos em JSON com quebra de linha
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         try {
             mapper.writeValue(new File("filmes.json"), this.getFilmes());
@@ -60,9 +69,18 @@ public class FilmeRepositorio {
             System.out.println("Erro: " + e.getMessage());
             return false;
         }
-    };
+    }
 
-    public boolean carregarFilmes(){
+    /**
+     * Carrega os filmes do arquivo "filmes.json" e os armazena na estrutura interna.
+     *
+     * Este método utiliza a biblioteca Jackson para desserializar os dados contidos no
+     * arquivo JSON e convertê-los em objetos do tipo {@code Filme}. Se o arquivo estiver
+     * ausente ou ocorrer um erro de leitura, o método trata a exceção e retorna {@code false}.
+     *
+     * @return {@code true} se os filmes foram carregados com sucesso; {@code false} caso contrário.
+     */
+    public boolean carregarFilmes() {
         ObjectMapper mapper = new ObjectMapper();
         File filmesSalvos = new File("filmes.json");
 

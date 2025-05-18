@@ -46,23 +46,33 @@ public class SerieRepositorio {
         return this.series.remove(serie);
     }
 
+    /**
+     * Salva a lista de séries em um arquivo JSON chamado "series.json".
+     *
+     * @return {@code true} se as séries foram salvas com sucesso; {@code false} em caso de erro.
+     */
     public boolean salvarSeries() {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(SerializationFeature.INDENT_OUTPUT); // Garante a formatação dos objetos em JSON com quebra de linha
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         try {
             mapper.writeValue(new File("series.json"), this.getSeries());
             return true;
         } catch (IOException e) {
-            System.out.println("Erro ao salvar series: " + e.getMessage());
+            System.out.println("Erro ao salvar séries: " + e.getMessage());
             return false;
         } catch (Exception e){
             System.out.println("Erro: " + e.getMessage());
             return false;
         }
-    };
+    }
 
-    public boolean carregarSeries(){
+    /**
+     * Carrega as séries do arquivo "series.json".
+     *
+     * @return {@code true} se as séries foram carregadas com sucesso; {@code false} caso contrário.
+     */
+    public boolean carregarSeries() {
         ObjectMapper mapper = new ObjectMapper();
         File seriesSalvas = new File("series.json");
 
@@ -70,7 +80,7 @@ public class SerieRepositorio {
             this.series = mapper.readValue(seriesSalvas, new TypeReference<TreeSet<Serie>>(){});
             return true;
         } catch(IOException e){
-            System.out.println("Erro ao salvar series: " + e.getMessage());
+            System.out.println("Erro ao carregar séries: " + e.getMessage());
             return false;
         }
     }
