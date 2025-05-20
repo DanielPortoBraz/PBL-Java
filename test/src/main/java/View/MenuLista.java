@@ -41,7 +41,7 @@ public class MenuLista implements Menu {
 
     /**
      * Exibe o menu de listagem no terminal e processa as opções selecionadas pelo usuário.
-     * <p>
+     *
      * O menu apresenta as seguintes opções:
      * <ul>
      *   <li>"1" - Listar Livros</li>
@@ -50,7 +50,6 @@ public class MenuLista implements Menu {
      *   <li>"4" - Voltar</li>
      * </ul>
      * Para cada opção, o método invoca o controller correspondente para realizar a listagem.
-     * </p>
      */
     @Override
     public void exibir() {

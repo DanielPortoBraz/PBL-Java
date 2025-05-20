@@ -43,7 +43,7 @@ public class MenuPrincipal implements Menu {
 
     /**
      * Exibe o menu principal no terminal e processa as opções selecionadas pelo usuário.
-     * <p>
+     *
      * As opções disponíveis são:
      * <ul>
      *   <li>"1" - Acessar o menu de Cadastro.</li>
@@ -54,7 +54,7 @@ public class MenuPrincipal implements Menu {
      *   <li>"6" - Sair do sistema.</li>
      * </ul>
      * Dependendo da opção escolhida, o método instancia e exibe o menu correspondente.
-     * </p>
+     *
      */
     @Override
     public void exibir() {

@@ -41,7 +41,7 @@ public class MenuBusca implements Menu {
 
     /**
      * Exibe o menu de busca no terminal e processa as ações do usuário.
-     * <p>
+     *
      * O menu apresenta as seguintes opções:
      * <ul>
      *   <li>"1" para busca de livros, permitindo filtrar por Título, Autor, Gênero, Ano ou ISBN.</li>
@@ -49,9 +49,9 @@ public class MenuBusca implements Menu {
      *   <li>"3" para busca de séries, permitindo filtrar por Título, Ator, Gênero, Ano, Onde assistir ou ID.</li>
      *   <li>"4" para voltar (encerrar o menu).</li>
      * </ul>
+     *
      * Para filtros que esperam valores numéricos (como Ano ou ID), se o usuário fornecer um valor não inteiro,
      * uma mensagem de erro será exibida.
-     * </p>
      */
     @Override
     public void exibir() {
