@@ -56,13 +56,24 @@ public class SerieController {
         return false;
     }
 
-    public boolean salvarSeries(){
+    /**
+     * Salva a lista de séries utilizando o repositório de séries.
+     *
+     * @return {@code true} se as séries foram salvas com sucesso, {@code false} caso contrário.
+     */
+    public boolean salvarSeries() {
         return seriesR.salvarSeries();
     }
 
-    public boolean importarSeries(){
+    /**
+     * Importa a lista de séries a partir do repositório.
+     *
+     * @return {@code true} se as séries foram carregadas com sucesso, {@code false} caso contrário.
+     */
+    public boolean importarSeries() {
         return seriesR.carregarSeries();
     }
+
 
     /**
      * Cadastra uma nova temporada a uma série existente, localizada pelo ID.

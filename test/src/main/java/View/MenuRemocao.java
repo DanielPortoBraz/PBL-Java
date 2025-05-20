@@ -3,6 +3,13 @@ import Controller.*;
 import java.util.Scanner;
 
 
+    /**
+     * A classe {@code MenuRemocao} representa o menu de remoção de itens do sistema,
+     * permitindo que o usuário remova livros, filmes ou séries.
+     * Após a remoção, o sistema tenta salvar as alterações.
+     * <p>
+     * Implementa a interface {@link Menu}.
+     */
 public class MenuRemocao implements Menu{
     private Scanner scanner;
 
@@ -10,6 +17,14 @@ public class MenuRemocao implements Menu{
     protected FilmeController filmeController;
     protected SerieController serieController;
 
+    /**
+     * Construtor da classe {@code MenuRemocao}.
+     *
+     * @param scanner           o objeto {@code Scanner} usado para entrada do usuário.
+     * @param livroController   o controlador responsável pelas operações com livros.
+     * @param filmeController   o controlador responsável pelas operações com filmes.
+     * @param serieController   o controlador responsável pelas operações com séries.
+     */
     public MenuRemocao(Scanner scanner, LivroController livroController,
                        FilmeController filmeController,
                        SerieController serieController){
@@ -19,6 +34,12 @@ public class MenuRemocao implements Menu{
         this.serieController = serieController;
     }
 
+    /**
+     * Exibe o menu de remoção para o usuário, permitindo a remoção de livros, filmes ou séries
+     * com base na entrada do usuário.
+     * <p>
+     * O método lida com entradas inválidas e exibe mensagens de erro apropriadas.
+     */
     @Override
     public void exibir() {
         String opcao;

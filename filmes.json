@@ -1,31 +1,16 @@
 [ {
   "titulo" : "Filme A",
-  "anoLancamento" : 2000,
+  "anoLancamento" : 2005,
   "visto" : true,
-  "dataVisto" : null,
-  "review" : " ",
-  "pontuacao" : 0,
+  "dataVisto" : 1545271200000,
+  "review" : "Muito bom!",
+  "pontuacao" : 4,
   "tempoDuracao" : 100,
   "direcao" : [ "Diretor A" ],
   "roteiro" : [ "Roteiro A" ],
-  "elenco" : [ "Ator  A" ],
+  "elenco" : [ "Ator A" ],
   "tituloOriginal" : "Film A",
   "ondeAssistir" : [ "Plataforma A" ],
-  "id" : 3589,
-  "genero" : [ "ACAO", "ANIMACAO", "AVENTURA" ]
-}, {
-  "titulo" : "Filme B",
-  "anoLancamento" : 2001,
-  "visto" : false,
-  "dataVisto" : null,
-  "review" : " ",
-  "pontuacao" : 0,
-  "tempoDuracao" : 80,
-  "direcao" : [ "Diretor B" ],
-  "roteiro" : [ "Roteiro B" ],
-  "elenco" : [ "Ator B" ],
-  "tituloOriginal" : "Film B",
-  "ondeAssistir" : [ ],
-  "id" : 932,
-  "genero" : [ "DOCUMENTARIO", "COMEDIA", "BIOGRAFIA" ]
+  "id" : 9801,
+  "genero" : [ "AVENTURA" ]
 } ]

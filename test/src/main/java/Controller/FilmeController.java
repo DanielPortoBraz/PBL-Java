@@ -63,10 +63,20 @@ public class FilmeController {
         return false;
     }
 
+    /**
+     * Salva a lista de filmes utilizando o repositório.
+     *
+     * @return {@code true} se os filmes foram salvos com sucesso, {@code false} caso contrário.
+     */
     public boolean salvarFilmes(){
         return filmesR.salvarFilmes();
     }
 
+    /**
+     * Importa a lista de filmes a partir do repositório.
+     *
+     * @return {@code true} se os filmes foram carregados com sucesso, {@code false} caso contrário.
+     */
     public boolean importarFilmes(){
         return filmesR.carregarFilmes();
     }

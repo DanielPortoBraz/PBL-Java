@@ -1,47 +1,21 @@
 [ {
-  "titulo" : "Serie A",
-  "anoLancamento" : 2002,
+  "titulo" : "Série A",
+  "anoLancamento" : 2010,
   "visto" : true,
-  "dataVisto" : null,
-  "review" : " ",
-  "pontuacao" : 0,
+  "dataVisto" : 1545271200000,
+  "review" : "Muito boa!",
+  "pontuacao" : 3,
   "anoEncerramento" : 0,
-  "elenco" : [ "Ator A" ],
+  "elenco" : [ "Ator A", "Ator B" ],
   "tituloOriginal" : "Series A",
   "ondeAssistir" : [ "Plataforma A" ],
   "temporadas" : [ {
-    "ano" : 2005,
+    "ano" : 2010,
     "quantEpisodios" : 5,
-    "numero" : 2,
-    "pontuacao" : 0,
-    "review" : " "
-  }, {
-    "ano" : 204,
-    "quantEpisodios" : 3,
     "numero" : 1,
-    "pontuacao" : 0,
-    "review" : " "
+    "pontuacao" : 3,
+    "review" : "Mediana"
   } ],
-  "id" : 3629,
-  "genero" : [ "ACAO", "ANIMACAO", "AVENTURA" ]
-}, {
-  "titulo" : "Serie B",
-  "anoLancamento" : 2008,
-  "visto" : false,
-  "dataVisto" : null,
-  "review" : " ",
-  "pontuacao" : 0,
-  "anoEncerramento" : 2010,
-  "elenco" : [ "Ator B" ],
-  "tituloOriginal" : "Series B",
-  "ondeAssistir" : [ ],
-  "temporadas" : [ {
-    "ano" : 2008,
-    "quantEpisodios" : 3,
-    "numero" : 1,
-    "pontuacao" : 0,
-    "review" : " "
-  } ],
-  "id" : 1547,
-  "genero" : [ "DOCUMENTARIO", "TERROR" ]
+  "id" : 860,
+  "genero" : [ "ACAO" ]
 } ]

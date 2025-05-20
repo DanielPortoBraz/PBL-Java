@@ -1,25 +1,13 @@
 [ {
-  "titulo" : "O Código Da Vinci",
-  "anoLancamento" : 2003,
+  "titulo" : "Livro A",
+  "anoLancamento" : 2000,
   "visto" : true,
   "dataVisto" : null,
   "review" : " ",
   "pontuacao" : 0,
-  "autor" : "Dan Brown",
-  "editora" : "Sextante",
-  "isbn" : "9788575421139",
-  "exemplar" : true,
-  "genero" : [ "FICCAO_CIENTIFICA" ]
-}, {
-  "titulo" : "O Iluminado",
-  "anoLancamento" : 1977,
-  "visto" : false,
-  "dataVisto" : null,
-  "review" : " ",
-  "pontuacao" : 0,
-  "autor" : "Stephen King",
-  "editora" : "Suma",
-  "isbn" : "9788556510509",
-  "exemplar" : true,
-  "genero" : [ "TERROR" ]
+  "autor" : "Autor A",
+  "editora" : "Editora A",
+  "isbn" : "12345",
+  "exemplar" : false,
+  "genero" : [ ]
 } ]

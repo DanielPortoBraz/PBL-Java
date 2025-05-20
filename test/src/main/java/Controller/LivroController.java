@@ -60,10 +60,20 @@ public class LivroController {
         return false;
     }
 
+    /**
+     * Salva a lista de livros utilizando o repositório.
+     *
+     * @return {@code true} se os livros foram salvos com sucesso, {@code false} caso contrário.
+     */
     public boolean salvarLivros(){
         return livrosR.salvarLivros();
     }
 
+    /**
+     * Importa a lista de livros a partir do repositório.
+     *
+     * @return {@code true} se os livros foram carregados com sucesso, {@code false} caso contrário.
+     */
     public boolean importarLivros(){
         return livrosR.carregarLivros();
     }
