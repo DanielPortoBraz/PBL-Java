@@ -2,7 +2,6 @@ package Controller;
 
 import Model.Filme;
 import Model.Genero;
-import Model.Filme;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

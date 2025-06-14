@@ -1,7 +1,5 @@
 package Model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 
