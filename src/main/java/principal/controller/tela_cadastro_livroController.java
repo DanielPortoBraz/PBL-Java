@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import principal.DiarioCultural;
 
-public class tela_cadastroController implements Initializable {
+public class tela_cadastro_livroController implements Initializable {
 
     @FXML
     private Button bt_retornar;
