@@ -95,7 +95,7 @@ public class tela_principalController implements Initializable {
 
     @FXML
     void selecionarLivro(ActionEvent event) {
-        DiarioCultural.changeScene("cadastro");
+        DiarioCultural.changeScene("cadastro_livro");
     }
 
     @FXML

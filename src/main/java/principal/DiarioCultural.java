@@ -10,8 +10,8 @@ import javafx.stage.Stage;
 
 public class DiarioCultural extends Application {
     private static Stage janela;
-    private static Scene TelaPrincipal;
-    private static Scene TelaCadastro;
+    private static Scene telaPrincipal;
+    private static Scene telaCadastroLivro;
     public static LivroController livroController = new LivroController();
     public static FilmeController filmeController = new FilmeController();
     public static SerieController serieController = new SerieController();
@@ -21,22 +21,22 @@ public class DiarioCultural extends Application {
         janela = stage;
 
         Parent tela1 = FXMLLoader.load(getClass().getResource("/telas/tela_principal.fxml"));
-        TelaPrincipal = new Scene(tela1);
+        telaPrincipal = new Scene(tela1);
 
         Parent tela2 = FXMLLoader.load(getClass().getResource("/telas/tela_cadastro_livro.fxml"));
-        TelaCadastro = new Scene(tela2);
+        telaCadastroLivro = new Scene(tela2);
 
-        janela.setScene(TelaPrincipal);
+        janela.setScene(telaPrincipal);
         janela.show();
     }
 
     public static void changeScene(String str){
         switch(str){
             case "principal":
-                janela.setScene(TelaPrincipal);
+                janela.setScene(telaPrincipal);
                 break;
-            case "cadastro":
-                janela.setScene(TelaCadastro);
+            case "cadastro_livro":
+                janela.setScene(telaCadastroLivro);
                 break;
         }
     }

@@ -2,6 +2,8 @@ package principal.controller;
 
 import Controller.LivroController;
 import Model.Genero;
+import principal.controller.Validador;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -69,6 +71,9 @@ public class tela_cadastro_livroController implements Initializable {
         ToggleGroup grupoExemplar = new ToggleGroup();
         rb_simExemplar.setToggleGroup(grupoExemplar);
         rb_naoExemplar.setToggleGroup(grupoExemplar);
+
+        // Restringe o campo de ano para somente caracteres numéricos
+        Validador.entradaSomenteNumerica(tf_anoPublicacao);
     }
 
     @FXML
@@ -78,9 +83,9 @@ public class tela_cadastro_livroController implements Initializable {
         String editora = tf_editora.getText().trim();
         String isbn = tf_isbn.getText().trim();
 
-        // Validações simples
+        // Validações de espaços vazios
         if (titulo.isEmpty() || autor.isEmpty() || editora.isEmpty() || isbn.isEmpty() || tf_anoPublicacao.getText().isEmpty()) {
-            exibirAlerta("Erro", "Preencha todos os campos obrigatórios.");
+            exibirAlerta("Erro", "Preencha todos os campos.");
             return;
         }
 
