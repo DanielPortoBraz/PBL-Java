@@ -1,5 +1,7 @@
 package principal.controller;
 
+import principal.DiarioCultural;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,11 +11,20 @@ import java.util.ResourceBundle;
 
 import javafx.scene.control.Button;
 
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import principal.DiarioCultural;
+
+import static principal.DiarioCultural.changeScene;
+import static principal.DiarioCultural.livroController;
 
 public class tela_principalController implements Initializable {
+
+    private enum AcaoAtual {
+        NENHUMA, CADASTRAR, AVALIAR
+    }
+
+    private AcaoAtual acaoAtual = AcaoAtual.NENHUMA;
 
     @FXML
     private Button bt_avaliar;
@@ -23,6 +34,9 @@ public class tela_principalController implements Initializable {
 
     @FXML
     private Button bt_cadastrar;
+
+    @FXML
+    private Button bt_confirmar;
 
     @FXML
     private Button bt_filme;
@@ -49,8 +63,15 @@ public class tela_principalController implements Initializable {
     private AnchorPane mn_SelecaoRegistro;
 
     @FXML
-    void clicarAvaliar(ActionEvent event) {
+    private AnchorPane ap_entradaIsbn;
 
+    @FXML
+    private TextField tf_isbnLivro;
+
+    @FXML
+    void clicarAvaliar(ActionEvent event) {
+        acaoAtual = AcaoAtual.AVALIAR;
+        ativarSelecaoRegistro();
     }
 
     @FXML
@@ -60,6 +81,7 @@ public class tela_principalController implements Initializable {
 
     @FXML
     void clicarCadastrar(ActionEvent event) {
+        acaoAtual = AcaoAtual.CADASTRAR;
         ativarSelecaoRegistro();
     }
 
@@ -89,13 +111,34 @@ public class tela_principalController implements Initializable {
     }
 
     @FXML
+    void ativarEntradaIsbn(){
+        ap_entradaIsbn.setVisible(true);
+    }
+
+    @FXML
+    void desativarEntradaIsbn(){
+        ap_entradaIsbn.setVisible(false);
+    }
+
+    @FXML
     void selecionarFilme(ActionEvent event) {
 
     }
 
     @FXML
     void selecionarLivro(ActionEvent event) {
-        DiarioCultural.changeScene("cadastro_livro");
+        switch (acaoAtual) {
+            case CADASTRAR:
+                DiarioCultural.changeScene("cadastro_livro");
+                break;
+
+            case AVALIAR:
+                ativarEntradaIsbn();
+                break;
+
+            default:
+                break;
+        }
     }
 
     @FXML
@@ -103,9 +146,16 @@ public class tela_principalController implements Initializable {
 
     }
 
+    @FXML
+    void clicarConfirmarIsbn(ActionEvent event){
+        desativarEntradaIsbn();
+
+        if (livroController.buscarLivros("5", tf_isbnLivro.getText()))
+            changeScene("avaliacao_livro");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-
 }

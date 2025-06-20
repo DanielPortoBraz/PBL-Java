@@ -12,6 +12,7 @@ public class DiarioCultural extends Application {
     private static Stage janela;
     private static Scene telaPrincipal;
     private static Scene telaCadastroLivro;
+    private static Scene telaAvaliacaoLivro;
     public static LivroController livroController = new LivroController();
     public static FilmeController filmeController = new FilmeController();
     public static SerieController serieController = new SerieController();
@@ -26,6 +27,9 @@ public class DiarioCultural extends Application {
         Parent tela2 = FXMLLoader.load(getClass().getResource("/telas/tela_cadastro_livro.fxml"));
         telaCadastroLivro = new Scene(tela2);
 
+        Parent tela3 = FXMLLoader.load(getClass().getResource("/telas/tela_avaliacao_livro.fxml"));
+        telaAvaliacaoLivro = new Scene(tela3);
+
         janela.setScene(telaPrincipal);
         janela.show();
     }
@@ -38,6 +42,8 @@ public class DiarioCultural extends Application {
             case "cadastro_livro":
                 janela.setScene(telaCadastroLivro);
                 break;
+            case "avaliacao_livro":
+                janela.setScene(telaAvaliacaoLivro);
         }
     }
 }

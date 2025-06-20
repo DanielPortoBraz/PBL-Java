@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -35,6 +34,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
+            <TextField fx:id="tf_anoPublicacao" prefWidth="102.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="ISBN:" GridPane.rowIndex="6">
                <font>
                   <Font size="20.0" />
@@ -71,22 +71,6 @@
                </font>
             </Label>
             <TextField fx:id="tf_titulo" GridPane.columnIndex="1" />
-            <Accordion GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <panes>
-                  <TitledPane animated="false" prefHeight="38.0" prefWidth="262.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                     <graphic>
-                        <ListView fx:id="lv_generos" prefHeight="22.0" prefWidth="200.0" />
-                     </graphic>
-                  </TitledPane>
-               </panes>
-            </Accordion>
-            <TextField fx:id="tf_anoPublicacao" prefWidth="102.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="tf_autor" layoutX="271.0" layoutY="93.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="tf_editora" layoutX="271.0" layoutY="131.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="tf_isbn" layoutX="271.0" layoutY="168.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
@@ -130,6 +114,17 @@
                   <Insets left="100.0" />
                </GridPane.margin>
             </RadioButton>
+            <TitledPane animated="false" prefHeight="127.0" prefWidth="260.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <ListView fx:id="lv_generos" prefHeight="22.0" prefWidth="200.0" />
+               </graphic>
+            </TitledPane>
          </children>
       </GridPane>
       <Label layoutX="201.0" layoutY="15.0" text="Cadastro: Livro" textAlignment="CENTER">
