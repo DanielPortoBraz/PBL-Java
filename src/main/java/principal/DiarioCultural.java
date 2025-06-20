@@ -24,10 +24,10 @@ public class DiarioCultural extends Application {
         Parent tela1 = FXMLLoader.load(getClass().getResource("/telas/tela_principal.fxml"));
         telaPrincipal = new Scene(tela1);
 
-        Parent tela2 = FXMLLoader.load(getClass().getResource("/telas/tela_cadastro_livro.fxml"));
+        Parent tela2 = FXMLLoader.load(getClass().getResource("/telas/livro/tela_cadastro_livro.fxml"));
         telaCadastroLivro = new Scene(tela2);
 
-        Parent tela3 = FXMLLoader.load(getClass().getResource("/telas/tela_avaliacao_livro.fxml"));
+        Parent tela3 = FXMLLoader.load(getClass().getResource("/telas/livro/tela_avaliacao_livro.fxml"));
         telaAvaliacaoLivro = new Scene(tela3);
 
         janela.setScene(telaPrincipal);
