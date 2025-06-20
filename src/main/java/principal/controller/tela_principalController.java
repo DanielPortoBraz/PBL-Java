@@ -27,6 +27,8 @@ public class tela_principalController implements Initializable {
 
     private AcaoAtual acaoAtual = AcaoAtual.NENHUMA;
 
+    public static String isbn;
+
     @FXML
     private Button bt_avaliar;
 
@@ -160,6 +162,7 @@ public class tela_principalController implements Initializable {
         desativarEntradaIsbn();
 
         if (livroController.buscarLivros("5", tf_isbnLivro.getText())){
+            isbn = tf_isbnLivro.getText();
             changeScene("avaliacao_livro");
         }
         else {
