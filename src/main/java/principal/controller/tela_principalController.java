@@ -1,5 +1,6 @@
 package principal.controller;
 
+import javafx.scene.control.Alert;
 import principal.DiarioCultural;
 
 import javafx.event.ActionEvent;
@@ -37,6 +38,9 @@ public class tela_principalController implements Initializable {
 
     @FXML
     private Button bt_confirmar;
+
+    @FXML
+    private Button bt_fechaSelecaoRegistro;
 
     @FXML
     private Button bt_filme;
@@ -92,7 +96,7 @@ public class tela_principalController implements Initializable {
 
     @FXML
     void clicarRemover(ActionEvent event) {
-        desativarSelecaoRegistro();
+
     }
 
     @FXML
@@ -108,6 +112,11 @@ public class tela_principalController implements Initializable {
     @FXML
     void desativarSelecaoRegistro(){
         mn_SelecaoRegistro.setVisible(false);
+    }
+
+    @FXML
+    void clicarFecharSelecaoRegistro(ActionEvent event) {
+        desativarSelecaoRegistro();
     }
 
     @FXML
@@ -150,8 +159,15 @@ public class tela_principalController implements Initializable {
     void clicarConfirmarIsbn(ActionEvent event){
         desativarEntradaIsbn();
 
-        if (livroController.buscarLivros("5", tf_isbnLivro.getText()))
+        if (livroController.buscarLivros("5", tf_isbnLivro.getText())){
             changeScene("avaliacao_livro");
+        }
+        else {
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("Livro não encontrado");
+            alerta.setContentText("Nenhum livro foi encontrado com o ISBN informado.");
+            alerta.showAndWait();
+        }
     }
 
     @Override
