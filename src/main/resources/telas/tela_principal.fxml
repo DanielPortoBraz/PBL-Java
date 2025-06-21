@@ -144,16 +144,16 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="ap_entradaIsbn" layoutX="218.0" layoutY="129.0" prefHeight="103.0" prefWidth="225.0" style="visibility: false;">
+      <AnchorPane fx:id="ap_entradaIdentificacao" layoutX="218.0" layoutY="129.0" prefHeight="103.0" prefWidth="225.0" style="visibility: true;">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="108.0" stroke="BLACK" strokeType="INSIDE" width="225.0" />
-            <Label layoutX="27.0" layoutY="1.0" text="Digite o ISBN do Livro:" textAlignment="CENTER">
+            <Label layoutX="43.0" layoutY="1.0" text="Digite o ID/ ISBN:" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_isbnLivro" layoutX="38.0" layoutY="29.0" />
-            <Button fx:id="bt_confirmar" layoutX="78.0" layoutY="69.0" mnemonicParsing="false" onAction="#clicarConfirmarIsbn" text="Confirmar">
+            <TextField fx:id="tf_idRegistro" layoutX="38.0" layoutY="29.0" />
+            <Button fx:id="bt_confirmar" layoutX="78.0" layoutY="69.0" mnemonicParsing="false" onAction="#clicarConfirmarId" text="Confirmar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

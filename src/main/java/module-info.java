@@ -7,6 +7,7 @@ module principal {
 
     opens principal to javafx.fxml;
     opens principal.controller to javafx.fxml;
-    opens Model to com.fasterxml.jackson.databind;
+    opens Model to javafx.base, com.fasterxml.jackson.databind;
+    exports Model;
     exports principal to javafx.graphics;
 }

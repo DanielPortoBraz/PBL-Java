@@ -93,7 +93,7 @@ public class tela_principalController implements Initializable {
 
     @FXML
     void clicarListar(ActionEvent event) {
-
+        changeScene("lista_livro");
     }
 
     @FXML

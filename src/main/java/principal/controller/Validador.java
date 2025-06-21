@@ -2,7 +2,7 @@ package principal.controller;
 
 import javafx.scene.control.TextField;
 
-public class Validador {
+public abstract class Validador {
 
     public static void entradaSomenteNumerica(TextField textField) {
         textField.textProperty().addListener((obs, oldText, newText) -> {
