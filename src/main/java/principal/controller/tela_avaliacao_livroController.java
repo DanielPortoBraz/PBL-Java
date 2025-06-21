@@ -72,6 +72,7 @@ public class tela_avaliacao_livroController implements Initializable {
             boolean sucesso = livroController.avaliarLivro(isbn, review, pontuacao, dataVisto);
 
             if (sucesso) {
+                livroController.salvarLivros();
                 mostrarAlerta(Alert.AlertType.INFORMATION, "Avaliação registrada", "Livro avaliado com sucesso!");
                 changeScene("principal");
             } else {

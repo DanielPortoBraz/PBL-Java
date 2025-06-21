@@ -110,6 +110,7 @@ public class tela_cadastro_livroController implements Initializable {
         boolean sucesso = livroController.cadastrarLivro(titulo, generosSelecionados, ano, visto, autor, editora, isbn, exemplar);
 
         if (sucesso) {
+            livroController.salvarLivros();
             exibirAlerta("Sucesso", "Livro cadastrado com sucesso!");
             limparCampos();
         } else {
