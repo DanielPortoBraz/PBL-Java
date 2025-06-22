@@ -2,7 +2,7 @@ package principal.controller;
 
 import static principal.DiarioCultural.changeScene;
 import static principal.DiarioCultural.livroController;
-import static principal.controller.tela_principalController.isbn;
+import static principal.controller.tela_principalController.idRegistro;
 
 import javafx.event.ActionEvent;
 
@@ -69,7 +69,7 @@ public class tela_avaliacao_livroController implements Initializable {
             Calendar dataVisto = GregorianCalendar.from(dataSelecionada.atStartOfDay(Calendar.getInstance().getTimeZone().toZoneId()));
 
 
-            boolean sucesso = livroController.avaliarLivro(isbn, review, pontuacao, dataVisto);
+            boolean sucesso = livroController.avaliarLivro(idRegistro, review, pontuacao, dataVisto);
 
             if (sucesso) {
                 livroController.salvarLivros();

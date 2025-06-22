@@ -144,7 +144,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="ap_entradaIdentificacao" layoutX="218.0" layoutY="129.0" prefHeight="103.0" prefWidth="225.0" style="visibility: true;">
+      <AnchorPane fx:id="ap_entradaIdentificacao" layoutX="218.0" layoutY="129.0" prefHeight="103.0" prefWidth="225.0" style="visibility: false;">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="108.0" stroke="BLACK" strokeType="INSIDE" width="225.0" />
             <Label layoutX="43.0" layoutY="1.0" text="Digite o ID/ ISBN:" textAlignment="CENTER">

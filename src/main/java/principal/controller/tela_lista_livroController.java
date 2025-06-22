@@ -55,6 +55,7 @@ public class tela_lista_livroController implements Initializable {
 
     @FXML
     void clicarRetornar(ActionEvent event) {
+        carregarLivros();
         changeScene("principal");
     }
 
@@ -79,7 +80,7 @@ public class tela_lista_livroController implements Initializable {
 
     }
 
-    private void carregarLivros() {
+    public void carregarLivros() {
         ObservableList<Livro> livros = FXCollections.observableArrayList(livroController.getLivrosR().getLivros());
         tb_livros.setItems(livros);
     }

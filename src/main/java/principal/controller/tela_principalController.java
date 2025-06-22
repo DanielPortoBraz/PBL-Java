@@ -22,12 +22,13 @@ import static principal.DiarioCultural.livroController;
 public class tela_principalController implements Initializable {
 
     private enum AcaoAtual {
-        NENHUMA, CADASTRAR, AVALIAR
+        NENHUMA, CADASTRAR, REMOVER, AVALIAR
     }
 
     private AcaoAtual acaoAtual = AcaoAtual.NENHUMA;
+    private int RegistroAtual = 0;
 
-    public static String isbn;
+    public static String idRegistro;
 
     @FXML
     private Button bt_avaliar;
@@ -69,10 +70,10 @@ public class tela_principalController implements Initializable {
     private AnchorPane mn_SelecaoRegistro;
 
     @FXML
-    private AnchorPane ap_entradaIsbn;
+    private AnchorPane ap_entradaIdentificacao;
 
     @FXML
-    private TextField tf_isbnLivro;
+    private TextField tf_idRegistro;
 
     @FXML
     void clicarAvaliar(ActionEvent event) {
@@ -98,7 +99,8 @@ public class tela_principalController implements Initializable {
 
     @FXML
     void clicarRemover(ActionEvent event) {
-
+        acaoAtual = AcaoAtual.REMOVER;
+        ativarSelecaoRegistro();
     }
 
     @FXML
@@ -122,29 +124,35 @@ public class tela_principalController implements Initializable {
     }
 
     @FXML
-    void ativarEntradaIsbn(){
-        ap_entradaIsbn.setVisible(true);
+    void ativarEntradaIdentificacao(){
+        ap_entradaIdentificacao.setVisible(true);
     }
 
     @FXML
-    void desativarEntradaIsbn(){
-        ap_entradaIsbn.setVisible(false);
+    void desativarEntradaIdentifcacao(){
+        ap_entradaIdentificacao.setVisible(false);
     }
 
     @FXML
     void selecionarFilme(ActionEvent event) {
-
+        RegistroAtual = 2;
     }
 
     @FXML
     void selecionarLivro(ActionEvent event) {
+        RegistroAtual = 1;
+
         switch (acaoAtual) {
             case CADASTRAR:
                 DiarioCultural.changeScene("cadastro_livro");
                 break;
 
             case AVALIAR:
-                ativarEntradaIsbn();
+                ativarEntradaIdentificacao();
+                break;
+
+            case REMOVER:
+                ativarEntradaIdentificacao();
                 break;
 
             default:
@@ -154,22 +162,49 @@ public class tela_principalController implements Initializable {
 
     @FXML
     void selecionarSerie(ActionEvent event) {
-
+        RegistroAtual = 3;
     }
 
     @FXML
-    void clicarConfirmarIsbn(ActionEvent event){
-        desativarEntradaIsbn();
+    void clicarConfirmarId(ActionEvent event){
+        desativarEntradaIdentifcacao();
 
-        if (livroController.buscarLivros("5", tf_isbnLivro.getText())){
-            isbn = tf_isbnLivro.getText();
-            changeScene("avaliacao_livro");
+        // Verificações para identificar se o espaço tf_idRegistro foi selecionado para livro, filme ou série
+        if (RegistroAtual == 1) { // 1 para livro
+            idRegistro = tf_idRegistro.getText();
+
+            if (acaoAtual == AcaoAtual.AVALIAR) {
+
+                if (livroController.buscarLivros("5", idRegistro)) {
+                    changeScene("avaliacao_livro");
+                } else {
+                    Alert alerta = new Alert(Alert.AlertType.WARNING);
+                    alerta.setTitle("Livro não encontrado");
+                    alerta.setContentText("Nenhum livro foi encontrado com o ISBN informado.");
+                    alerta.showAndWait();
+                }
+            }
+            else if (acaoAtual == AcaoAtual.REMOVER) {
+                if (livroController.removerLivro(idRegistro)){
+                    livroController.salvarLivros();
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setTitle("Sucesso");
+                    alerta.setContentText("Livro removido com sucesso!");
+                    alerta.showAndWait();
+                }
+                else {
+                    Alert alerta = new Alert(Alert.AlertType.WARNING);
+                    alerta.setTitle("Livro não encontrado");
+                    alerta.setContentText("Nenhum livro foi encontrado com o ISBN informado.");
+                    alerta.showAndWait();
+                }
+            }
         }
-        else {
-            Alert alerta = new Alert(Alert.AlertType.WARNING);
-            alerta.setTitle("Livro não encontrado");
-            alerta.setContentText("Nenhum livro foi encontrado com o ISBN informado.");
-            alerta.showAndWait();
+        else if (RegistroAtual == 2){ // 2 para filme
+
+        }
+        else if (RegistroAtual == 3){ // 3 para série
+
         }
     }
 
