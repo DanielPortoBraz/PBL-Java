@@ -22,7 +22,7 @@ import static principal.DiarioCultural.livroController;
 public class tela_principalController implements Initializable {
 
     private enum AcaoAtual {
-        NENHUMA, CADASTRAR, REMOVER, AVALIAR
+        NENHUMA, CADASTRAR, REMOVER, BUSCAR, AVALIAR
     }
 
     private AcaoAtual acaoAtual = AcaoAtual.NENHUMA;
@@ -83,7 +83,8 @@ public class tela_principalController implements Initializable {
 
     @FXML
     void clicarBuscar(ActionEvent event) {
-
+        acaoAtual = AcaoAtual.BUSCAR;
+        ativarSelecaoRegistro();
     }
 
     @FXML
@@ -149,6 +150,10 @@ public class tela_principalController implements Initializable {
 
             case AVALIAR:
                 ativarEntradaIdentificacao();
+                break;
+
+            case BUSCAR:
+                DiarioCultural.changeScene("busca_livro");
                 break;
 
             case REMOVER:
