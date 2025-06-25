@@ -150,6 +150,43 @@ public class LivroController {
         return false;
     }
 
+    public TreeSet<Livro> buscarLivros(int categoria, String filtro) {
+        TreeSet<Livro> livrosEncontrados = new TreeSet<Livro>();
+
+        switch (categoria) {
+            case 1: // Título
+                livrosEncontrados = livrosR.buscarTitulo(filtro);
+                break;
+
+            case 2: // Autor
+                livrosEncontrados = livrosR.buscarAutor(filtro);
+                break;
+
+            case 3: // Gênero
+                for (Genero i : Genero.values()) {
+                    if (filtro.equalsIgnoreCase(i.getNomeFormatado())) {
+                        livrosEncontrados = livrosR.buscarGenero(i);
+                    }
+                }
+                break;
+
+            case 4: // Ano
+                int filtroNum = Integer.parseInt(filtro);
+                livrosEncontrados = livrosR.buscarAno(filtroNum);
+                break;
+
+            case 5: // ISBN
+                livrosEncontrados.add(livrosR.buscarIsbn(filtro));
+
+                break;
+
+            default:
+                System.out.println("Categoria inexistente.");
+        }
+
+        return livrosEncontrados;
+    }
+
     /**
      * Lista todos os livros cadastrados no repositório.
      * Os livros são listados em ordem, conforme a ordenação natural definida na classe {@link Livro}.

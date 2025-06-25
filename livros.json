@@ -1,13 +1,80 @@
-[ {
-  "titulo" : "Livro A",
-  "anoLancamento" : 2000,
-  "visto" : true,
-  "dataVisto" : 1592967600000,
-  "review" : "Livro muito bom!",
-  "pontuacao" : 5,
-  "autor" : "Autor A",
-  "editora" : "Editora A",
-  "isbn" : "12345",
-  "exemplar" : false,
-  "genero" : [ ]
-} ]
+[
+  {
+    "titulo": "Livro A",
+    "anoLancamento": 2000,
+    "visto": true,
+    "dataVisto": 1592967600000,
+    "review": "Livro muito bom!",
+    "pontuacao": 5,
+    "autor": "Autor A",
+    "editora": "Editora A",
+    "isbn": "12345",
+    "exemplar": false,
+    "genero": []
+  },
+  {
+    "titulo": "O Mistério do Relógio",
+    "anoLancamento": 2015,
+    "visto": false,
+    "dataVisto": null,
+    "review": "",
+    "pontuacao": 0,
+    "autor": "Carla Dias",
+    "editora": "Nova Era",
+    "isbn": "9781234567890",
+    "exemplar": true,
+    "genero": ["SUSPENSE", "AVENTURA"]
+  },
+  {
+    "titulo": "Códigos do Futuro",
+    "anoLancamento": 2021,
+    "visto": true,
+    "dataVisto": 1654042800000,
+    "review": "Excelente leitura técnica.",
+    "pontuacao": 4,
+    "autor": "João Silva",
+    "editora": "TechPress",
+    "isbn": "9789876543210",
+    "exemplar": true,
+    "genero": ["FICCAO_CIENTIFICA", "DOCUMENTARIO"]
+  },
+  {
+    "titulo": "Histórias do Sertão",
+    "anoLancamento": 1998,
+    "visto": false,
+    "dataVisto": null,
+    "review": "",
+    "pontuacao": 0,
+    "autor": "Maria Alves",
+    "editora": "Raízes Editora",
+    "isbn": "0001122233",
+    "exemplar": false,
+    "genero": ["DRAMA"]
+  },
+  {
+    "titulo": "A Jornada Inesperada",
+    "anoLancamento": 2005,
+    "visto": true,
+    "dataVisto": 1617238800000,
+    "review": "Empolgante do início ao fim.",
+    "pontuacao": 5,
+    "autor": "Lucas Tavares",
+    "editora": "Aventura Books",
+    "isbn": "3332221110",
+    "exemplar": true,
+    "genero": ["FANTASIA", "AVENTURA"]
+  },
+  {
+    "titulo": "Manual do Engenheiro",
+    "anoLancamento": 2010,
+    "visto": false,
+    "dataVisto": null,
+    "review": "",
+    "pontuacao": 0,
+    "autor": "Eng. Roberto Lima",
+    "editora": "Construtiva",
+    "isbn": "4445556667",
+    "exemplar": true,
+    "genero": ["DOCUMENTARIO"]
+  }
+]

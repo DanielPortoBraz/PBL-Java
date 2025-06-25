@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.controller.tela_busca_livroController">
+   <children>
+      <Label alignment="CENTER" layoutX="247.0" layoutY="29.0" text="Busca: Livro" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Button fx:id="bt_retornar" layoutX="45.0" layoutY="29.0" mnemonicParsing="false" onAction="#clicarRetornar" prefHeight="43.0" prefWidth="73.0" text="Retornar">
+         <font>
+            <Font size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TableView fx:id="tb_livros" layoutY="278.0" prefHeight="149.0" prefWidth="682.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="278.0">
+         <columns>
+            <TableColumn fx:id="pontuacao" prefWidth="75.0" text="Pontuação" />
+            <TableColumn fx:id="isbn" prefWidth="75.0" text="ISBN" />
+            <TableColumn fx:id="titulo" prefWidth="75.0" text="Título" />
+            <TableColumn fx:id="autor" prefWidth="69.0" text="Autor" />
+            <TableColumn fx:id="editora" prefWidth="75.0" text="Editora" />
+            <TableColumn fx:id="ano" prefWidth="66.0" text="Ano" />
+            <TableColumn fx:id="dataVisto" prefWidth="84.0" text="Lido em" />
+            <TableColumn fx:id="genero" prefWidth="84.0" text="Genero" />
+            <TableColumn fx:id="exemplar" prefWidth="84.0" text="Exemplar" />
+            <TableColumn fx:id="visto" prefWidth="84.0" text="Visto" />
+            <TableColumn fx:id="review" prefWidth="84.0" text="Review" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <HBox alignment="TOP_CENTER" layoutX="166.0" layoutY="22.0" prefHeight="73.0" prefWidth="340.0" AnchorPane.leftAnchor="166.0" AnchorPane.rightAnchor="176.0">
+         <children>
+            <Line endX="85.0" startX="-100.0" strokeWidth="2.0">
+               <HBox.margin>
+                  <Insets left="77.0" right="67.0" top="49.0" />
+               </HBox.margin>
+            </Line>
+         </children>
+      </HBox>
+      <HBox layoutY="119.0" prefHeight="25.0" prefWidth="653.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label alignment="TOP_LEFT" text="Buscar por: " textAlignment="JUSTIFY">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="70.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="66.0" layoutY="146.0" prefHeight="43.0" prefWidth="583.0">
+         <children>
+            <RadioButton fx:id="rb_titulo" mnemonicParsing="false" onAction="#selecionarTitulo" prefHeight="41.0" prefWidth="105.0" selected="true" text="Título">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="categoria" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rb_autor" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#selecionarAutor" prefHeight="41.0" prefWidth="109.0" text="Autor" toggleGroup="$categoria">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="rb_genero" layoutX="119.0" layoutY="10.0" mnemonicParsing="false" onAction="#selecionarGenero" prefHeight="41.0" prefWidth="109.0" text="Genero" toggleGroup="$categoria">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="rb_anoPublicacao" layoutX="228.0" layoutY="10.0" mnemonicParsing="false" onAction="#selecionarAnoPublicacao" prefHeight="41.0" prefWidth="177.0" text="Ano de Publicação" toggleGroup="$categoria">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="rb_isbn" layoutX="446.0" layoutY="10.0" mnemonicParsing="false" onAction="#selecionarIsbn" prefHeight="41.0" prefWidth="69.0" text="ISBN" toggleGroup="$categoria">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </HBox>
+      <HBox layoutX="-5.0" layoutY="211.0" prefHeight="53.0" prefWidth="690.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="155.0" text="Buscar:" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="70.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="tf_filtro" prefHeight="25.0" prefWidth="209.0" promptText="Digite o que você procura">
+               <HBox.margin>
+                  <Insets left="17.0" top="2.0" />
+               </HBox.margin>
+            </TextField>
+            <Button fx:id="bt_buscar" mnemonicParsing="false" onAction="#clicarBuscar" prefHeight="35.0" prefWidth="40.0" text="🔍">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
