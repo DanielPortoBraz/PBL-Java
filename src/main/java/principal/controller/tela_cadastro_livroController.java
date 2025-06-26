@@ -143,7 +143,7 @@ public class tela_cadastro_livroController implements Initializable {
 
 @FXML
     void clicarRetornar(ActionEvent event) {
-        DiarioCultural.changeScene("principal");
+        DiarioCultural.changeScene("/telas/tela_principal.fxml");
     }
 
 }

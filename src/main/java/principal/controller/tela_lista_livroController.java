@@ -56,7 +56,7 @@ public class tela_lista_livroController implements Initializable {
     @FXML
     void clicarRetornar(ActionEvent event) {
         carregarLivros();
-        changeScene("principal");
+        changeScene("/telas/tela_principal.fxml");
     }
 
     @Override

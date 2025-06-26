@@ -121,7 +121,7 @@ public class tela_busca_livroController implements Initializable {
 
     @FXML
     void clicarRetornar(ActionEvent event) {
-        changeScene("principal");
+        changeScene("/telas/tela_principal.fxml");
     }
 
     @FXML

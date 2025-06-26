@@ -1,6 +1,7 @@
 package principal.controller;
 
 import javafx.scene.control.Alert;
+import javafx.scene.layout.HBox;
 import principal.DiarioCultural;
 
 import javafx.event.ActionEvent;
@@ -67,10 +68,10 @@ public class tela_principalController implements Initializable {
     private Text id_titulo;
 
     @FXML
-    private AnchorPane mn_SelecaoRegistro;
+    private HBox mn_SelecaoRegistro;
 
     @FXML
-    private AnchorPane ap_entradaIdentificacao;
+    private HBox ap_entradaIdentificacao;
 
     @FXML
     private TextField tf_idRegistro;
@@ -95,7 +96,7 @@ public class tela_principalController implements Initializable {
 
     @FXML
     void clicarListar(ActionEvent event) {
-        changeScene("lista_livro");
+        changeScene("/telas/livro/tela_lista_livro.fxml");
     }
 
     @FXML
@@ -145,7 +146,7 @@ public class tela_principalController implements Initializable {
 
         switch (acaoAtual) {
             case CADASTRAR:
-                DiarioCultural.changeScene("cadastro_livro");
+                DiarioCultural.changeScene("/telas/livro/tela_cadastro_livro.fxml");
                 break;
 
             case AVALIAR:
@@ -153,7 +154,7 @@ public class tela_principalController implements Initializable {
                 break;
 
             case BUSCAR:
-                DiarioCultural.changeScene("busca_livro");
+                DiarioCultural.changeScene("/telas/livro/tela_busca_livro.fxml");
                 break;
 
             case REMOVER:
@@ -181,7 +182,7 @@ public class tela_principalController implements Initializable {
             if (acaoAtual == AcaoAtual.AVALIAR) {
 
                 if (livroController.buscarLivros("5", idRegistro)) {
-                    changeScene("avaliacao_livro");
+                    changeScene("/telas/livro/tela_avaliacao_livro.fxml");
                 } else {
                     Alert alerta = new Alert(Alert.AlertType.WARNING);
                     alerta.setTitle("Livro não encontrado");
