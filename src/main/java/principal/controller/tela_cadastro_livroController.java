@@ -2,6 +2,8 @@ package principal.controller;
 
 import Controller.LivroController;
 import Model.Genero;
+import javafx.scene.layout.HBox;
+import org.controlsfx.control.CheckComboBox;
 import principal.controller.Validador;
 
 import javafx.collections.FXCollections;
@@ -20,6 +22,8 @@ import static principal.DiarioCultural.livroController;
 
 public class tela_cadastro_livroController implements Initializable {
 
+    private CheckComboBox<Genero> checkComboBox;
+
     @FXML
     private Button bt_confirmar;
 
@@ -27,7 +31,7 @@ public class tela_cadastro_livroController implements Initializable {
     private Button bt_retornar;
 
     @FXML
-    private ListView<Genero> lv_generos;
+    private HBox cb_generos;
 
     @FXML
     private RadioButton rb_naoExemplar;
@@ -60,8 +64,8 @@ public class tela_cadastro_livroController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Popula o ListView com os gêneros e ativa seleção múltipla
         ObservableList<Genero> generos = FXCollections.observableArrayList(Genero.values());
-        lv_generos.setItems(generos);
-        lv_generos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        checkComboBox = new CheckComboBox<>(generos);
+        cb_generos.getChildren().add(checkComboBox);
 
         // Agrupa os RadioButtons
         ToggleGroup grupoVisto = new ToggleGroup();
@@ -100,14 +104,15 @@ public class tela_cadastro_livroController implements Initializable {
         boolean visto = rb_simVisto.isSelected();
         boolean exemplar = rb_simExemplar.isSelected();
 
-        HashSet<Genero> generosSelecionados = new HashSet<Genero>(lv_generos.getSelectionModel().getSelectedItems());
+        ObservableList<Genero> generosSelecionados = checkComboBox.getCheckModel().getCheckedItems();
+        HashSet<Genero> generoHashSet = new HashSet<>(generosSelecionados);
 
-        if (generosSelecionados.isEmpty()) {
+        if (generoHashSet.isEmpty()) {
             exibirAlerta("Erro", "Selecione pelo menos um gênero.");
             return;
         }
 
-        boolean sucesso = livroController.cadastrarLivro(titulo, generosSelecionados, ano, visto, autor, editora, isbn, exemplar);
+        boolean sucesso = livroController.cadastrarLivro(titulo, generoHashSet, ano, visto, autor, editora, isbn, exemplar);
 
         if (sucesso) {
             livroController.salvarLivros();
@@ -138,7 +143,7 @@ public class tela_cadastro_livroController implements Initializable {
         rb_naoVisto.setSelected(false);
         rb_simExemplar.setSelected(false);
         rb_naoExemplar.setSelected(false);
-        lv_generos.getSelectionModel().clearSelection();
+        checkComboBox.getCheckModel().clearChecks();
     }
 
 @FXML

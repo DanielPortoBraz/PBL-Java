@@ -1,9 +1,8 @@
 module principal {
-    requires javafx.controls;
     requires javafx.fxml;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
-    requires java.desktop;
+    requires org.controlsfx.controls;
 
     opens principal to javafx.fxml;
     opens principal.controller to javafx.fxml;

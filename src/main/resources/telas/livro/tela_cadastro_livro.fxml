@@ -4,10 +4,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -139,17 +137,7 @@
                         <Insets left="100.0" />
                      </GridPane.margin>
                   </RadioButton>
-                  <TitledPane animated="false" prefHeight="127.0" prefWidth="260.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                     <graphic>
-                        <ListView fx:id="lv_generos" prefHeight="22.0" prefWidth="200.0" />
-                     </graphic>
-                  </TitledPane>
+                  <HBox fx:id="cb_generos" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>

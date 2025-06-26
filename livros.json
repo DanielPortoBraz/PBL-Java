@@ -9,7 +9,7 @@
   "editora" : "Aventura Books",
   "isbn" : "3332221110",
   "exemplar" : true,
-  "genero" : [ "AVENTURA", "FANTASIA" ]
+  "genero" : [ "FANTASIA", "AVENTURA" ]
 }, {
   "titulo" : "Códigos do Futuro",
   "anoLancamento" : 2021,
@@ -47,6 +47,18 @@
   "exemplar" : false,
   "genero" : [ "DRAMA" ]
 }, {
+  "titulo" : "Livro B",
+  "anoLancamento" : 2001,
+  "visto" : false,
+  "dataVisto" : null,
+  "review" : " ",
+  "pontuacao" : 0,
+  "autor" : "Autor B",
+  "editora" : "Editora B",
+  "isbn" : "1412",
+  "exemplar" : false,
+  "genero" : [ "ROMANCE", "FICCAO_CIENTIFICA", "DOCUMENTARIO", "ANIMACAO" ]
+}, {
   "titulo" : "Manual do Engenheiro",
   "anoLancamento" : 2010,
   "visto" : false,
@@ -69,5 +81,5 @@
   "editora" : "Nova Era",
   "isbn" : "9781234567890",
   "exemplar" : true,
-  "genero" : [ "AVENTURA", "SUSPENSE" ]
+  "genero" : [ "SUSPENSE", "AVENTURA" ]
 } ]
