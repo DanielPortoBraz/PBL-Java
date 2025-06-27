@@ -1,7 +1,5 @@
-package principal.controller;
+package principal.controller.livroC;
 
-import Model.LivroRepositorio;
-import com.fasterxml.jackson.databind.ser.impl.PropertyBasedObjectIdGenerator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,9 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.TreeSet;
 
 import static principal.DiarioCultural.changeScene;
 import static principal.DiarioCultural.livroController;

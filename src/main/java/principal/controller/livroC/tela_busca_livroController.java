@@ -1,4 +1,4 @@
-package principal.controller;
+package principal.controller.livroC;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

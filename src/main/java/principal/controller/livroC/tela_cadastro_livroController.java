@@ -1,6 +1,5 @@
-package principal.controller;
+package principal.controller.livroC;
 
-import Controller.LivroController;
 import Model.Genero;
 import javafx.scene.layout.HBox;
 import org.controlsfx.control.CheckComboBox;

@@ -9,4 +9,5 @@ module principal {
     opens Model to javafx.base, com.fasterxml.jackson.databind;
     exports Model;
     exports principal to javafx.graphics;
+    opens principal.controller.livroC to javafx.fxml;
 }

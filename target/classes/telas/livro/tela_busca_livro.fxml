@@ -14,14 +14,14 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.controller.tela_busca_livroController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="682.0" styleClass="main-pane" stylesheets="@../../css/diario.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.controller.livroC.tela_busca_livroController">
    <children>
       <Label alignment="CENTER" layoutX="247.0" layoutY="29.0" text="Busca: Livro" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-      <Button fx:id="bt_retornar" layoutX="45.0" layoutY="29.0" mnemonicParsing="false" onAction="#clicarRetornar" prefHeight="43.0" prefWidth="73.0" text="Retornar">
+      <Button fx:id="bt_retornar" layoutX="26.0" layoutY="29.0" mnemonicParsing="false" onAction="#clicarRetornar" prefHeight="43.0" prefWidth="115.0" text="Retornar">
          <font>
             <Font size="13.0" />
          </font>
@@ -68,7 +68,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox layoutX="66.0" layoutY="146.0" prefHeight="43.0" prefWidth="583.0">
+      <HBox layoutX="26.0" layoutY="146.0" prefHeight="43.0" prefWidth="642.0">
          <children>
             <RadioButton fx:id="rb_titulo" mnemonicParsing="false" onAction="#selecionarTitulo" prefHeight="41.0" prefWidth="105.0" selected="true" text="Título">
                <font>
@@ -93,7 +93,7 @@
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="rb_isbn" layoutX="446.0" layoutY="10.0" mnemonicParsing="false" onAction="#selecionarIsbn" prefHeight="41.0" prefWidth="69.0" text="ISBN" toggleGroup="$categoria">
+            <RadioButton fx:id="rb_isbn" layoutX="446.0" layoutY="10.0" mnemonicParsing="false" onAction="#selecionarIsbn" prefHeight="41.0" prefWidth="89.0" text="ISBN" toggleGroup="$categoria">
                <font>
                   <Font size="14.0" />
                </font>
@@ -115,7 +115,7 @@
                   <Insets left="17.0" top="2.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="bt_buscar" mnemonicParsing="false" onAction="#clicarBuscar" prefHeight="35.0" prefWidth="40.0" text="🔍">
+            <Button fx:id="bt_buscar" mnemonicParsing="false" onAction="#clicarBuscar" prefHeight="42.0" prefWidth="62.0" text="🔍">
                <font>
                   <Font size="16.0" />
                </font>

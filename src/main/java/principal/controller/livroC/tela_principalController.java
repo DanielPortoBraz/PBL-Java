@@ -1,4 +1,4 @@
-package principal.controller;
+package principal.controller.livroC;
 
 import javafx.scene.control.Alert;
 import javafx.scene.layout.HBox;
@@ -14,7 +14,6 @@ import java.util.ResourceBundle;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import static principal.DiarioCultural.changeScene;
@@ -23,7 +22,7 @@ import static principal.DiarioCultural.livroController;
 public class tela_principalController implements Initializable {
 
     private enum AcaoAtual {
-        NENHUMA, CADASTRAR, REMOVER, BUSCAR, AVALIAR
+        NENHUMA, CADASTRAR, REMOVER, BUSCAR, LISTAR, AVALIAR
     }
 
     private AcaoAtual acaoAtual = AcaoAtual.NENHUMA;
@@ -96,7 +95,8 @@ public class tela_principalController implements Initializable {
 
     @FXML
     void clicarListar(ActionEvent event) {
-        changeScene("/telas/livro/tela_lista_livro.fxml");
+        acaoAtual = AcaoAtual.LISTAR;
+        ativarSelecaoRegistro();
     }
 
     @FXML
@@ -155,6 +155,10 @@ public class tela_principalController implements Initializable {
 
             case BUSCAR:
                 DiarioCultural.changeScene("/telas/livro/tela_busca_livro.fxml");
+                break;
+
+            case LISTAR:
+                changeScene("/telas/livro/tela_lista_livro.fxml");
                 break;
 
             case REMOVER:
