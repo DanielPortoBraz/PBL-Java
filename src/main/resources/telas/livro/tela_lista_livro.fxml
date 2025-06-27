@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="611.0" styleClass="main-pane" stylesheets="@../../css/diario.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.controller.livroC.tela_lista_livroController">
    <children>
-      <TableView fx:id="tb_livros" layoutX="20.0" layoutY="269.0" prefHeight="181.0" prefWidth="634.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="249.0">
+      <TableView fx:id="tb_livros" layoutX="18.0" layoutY="116.0" prefHeight="271.0" prefWidth="576.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="116.0">
         <columns>
           <TableColumn fx:id="pontuacao" prefWidth="75.0" styleClass="table-row-cell" text="Pontuação" />
           <TableColumn fx:id="isbn" prefWidth="75.0" styleClass="table-row-cell" text="ISBN" />

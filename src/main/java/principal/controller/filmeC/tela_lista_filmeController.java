@@ -1,12 +1,15 @@
-package principal.controller.livroC;
+package principal.controller.filmeC;
 
+import Model.Filme;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
@@ -14,40 +17,41 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
-import static principal.DiarioCultural.changeScene;
-import static principal.DiarioCultural.livroController;
-import Model.Livro;
+import static principal.DiarioCultural.*;
 
-public class tela_lista_livroController implements Initializable {
+public class tela_lista_filmeController implements Initializable {
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+    @FXML
+    private TableColumn<Filme, Integer> ano;
 
     @FXML
     private Button bt_retornar;
 
     @FXML
-    private TableColumn<Livro, String> ano;
+    private TableColumn<Filme, String> dataVisto;
 
     @FXML
-    private TableColumn<Livro, String> autor;
+    private TableColumn<Filme, String> direcao;
 
     @FXML
-    private TableColumn<Livro, String> dataVisto;
+    private TableColumn<Filme, Integer> duracao;
 
     @FXML
-    private TableColumn<Livro, String> editora;
+    private TableColumn<Filme, String> elenco;
 
     @FXML
-    private TableColumn<Livro, String> isbn;
+    private TableColumn<Filme, Integer> id;
 
     @FXML
-    private TableColumn<Livro, Integer> pontuacao;
+    private TableColumn<Filme, Integer> pontuacao;
 
     @FXML
-    private TableColumn<Livro, String> titulo;
+    private TableView<Filme> tb_filmes;
 
     @FXML
-    private TableView<Livro> tb_livros;
+    private TableColumn<Filme, String> titulo;
 
     @FXML
     void clicarRetornar(ActionEvent event) {
@@ -57,26 +61,26 @@ public class tela_lista_livroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configurarColunas();
-        carregarLivros();
+        carregarFilmes();
     }
 
     private void configurarColunas() {
-        titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        autor.setCellValueFactory(new PropertyValueFactory<>("autor"));
-        editora.setCellValueFactory(new PropertyValueFactory<>("editora"));
-        isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-        ano.setCellValueFactory(new PropertyValueFactory<>("anoLancamento"));
         pontuacao.setCellValueFactory(new PropertyValueFactory<>("pontuacao"));
+        titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+        direcao.setCellValueFactory(new PropertyValueFactory<>("direcao"));
+        elenco.setCellValueFactory(new PropertyValueFactory<>("elenco"));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        ano.setCellValueFactory(new PropertyValueFactory<>("anoLancamento"));
+        duracao.setCellValueFactory(new PropertyValueFactory<>("tempoDuracao"));
         dataVisto.setCellValueFactory(cellData -> {
             Calendar data = cellData.getValue().getDataVisto();
             String formatado = (data != null) ? sdf.format(data.getTime()) : "N/A";
             return new SimpleStringProperty(formatado);
         });
-
     }
 
-    public void carregarLivros() {
-        ObservableList<Livro> livros = FXCollections.observableArrayList(livroController.getLivrosR().getLivros());
-        tb_livros.setItems(livros);
+    public void carregarFilmes() {
+        ObservableList<Filme> filmes = FXCollections.observableArrayList(filmeController.getFilmesR().getFilmes());
+        tb_filmes.setItems(filmes);
     }
 }

@@ -153,7 +153,7 @@ public class tela_principalController implements Initializable {
                 break;
 
             case LISTAR:
-
+                DiarioCultural.changeScene("/telas/filme/tela_lista_filme.fxml");
                 break;
 
             case REMOVER:
