@@ -3,6 +3,7 @@ package Controller;
 import Model.Genero;
 import Model.FilmeRepositorio;
 import Model.Filme;
+import com.sun.source.tree.Tree;
 
 import java.util.Calendar;
 import java.util.HashSet;
@@ -160,6 +161,48 @@ public class FilmeController {
         }
 
         return false;
+    }
+
+    public TreeSet<Filme> buscarFilmes(int categoria, String filtro) {
+        TreeSet<Filme> filmesEncontrados = new TreeSet<Filme>();
+        int filtroNum;
+
+        switch (categoria) {
+            case 1: // Título
+                filmesEncontrados = filmesR.buscarTitulo(filtro);
+                break;
+
+            case 2: // Ator
+                filmesEncontrados = filmesR.buscarAtor(filtro);
+                break;
+
+            case 3: // Gênero
+                for (Genero i : Genero.values()) {
+                    if (filtro.equalsIgnoreCase(i.getNomeFormatado())) {
+                        filmesEncontrados = filmesR.buscarGenero(i);
+                    }
+                }
+                break;
+
+            case 4: // Ano
+                filtroNum = Integer.parseInt(filtro);
+                filmesEncontrados = filmesR.buscarAno(filtroNum);
+                break;
+
+            case 5: // Diretor
+                filmesEncontrados = filmesR.buscarDiretor(filtro);
+                break;
+
+            case 6: // ID
+                filtroNum = Integer.parseInt(filtro);
+                filmesEncontrados.add(filmesR.buscarId(filtroNum));
+                break;
+
+            default:
+                System.out.println("Categoria Inexistente.");
+        }
+
+        return filmesEncontrados;
     }
 
     /**
