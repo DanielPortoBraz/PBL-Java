@@ -16,8 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-import static principal.DiarioCultural.changeScene;
-import static principal.DiarioCultural.livroController;
+import static principal.DiarioCultural.*;
 
 public class tela_principalController implements Initializable {
 
@@ -28,7 +27,8 @@ public class tela_principalController implements Initializable {
     private AcaoAtual acaoAtual = AcaoAtual.NENHUMA;
     private int RegistroAtual = 0;
 
-    public static String idRegistro;
+    public static String isbn;
+    public static int id;
 
     @FXML
     private Button bt_avaliar;
@@ -204,13 +204,13 @@ public class tela_principalController implements Initializable {
     void clicarConfirmarId(ActionEvent event){
         desativarEntradaIdentifcacao();
 
-        // Verificações para identificar se o espaço tf_idRegistro foi selecionado para livro, filme ou série
+        // Verificações para identificar se o espaço tf_id foi selecionado para livro, filme ou série
         if (RegistroAtual == 1) { // 1 para livro
-            idRegistro = tf_idRegistro.getText();
+            isbn = tf_idRegistro.getText();
 
             if (acaoAtual == AcaoAtual.AVALIAR) {
 
-                if (livroController.buscarLivros("5", idRegistro)) {
+                if (livroController.buscarLivros("5", isbn)) {
                     changeScene("/telas/livro/tela_avaliacao_livro.fxml");
                 } else {
                     Alert alerta = new Alert(Alert.AlertType.WARNING);
@@ -220,7 +220,7 @@ public class tela_principalController implements Initializable {
                 }
             }
             else if (acaoAtual == AcaoAtual.REMOVER) {
-                if (livroController.removerLivro(idRegistro)){
+                if (livroController.removerLivro(isbn)){
                     livroController.salvarLivros();
                     Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                     alerta.setTitle("Sucesso");
@@ -236,6 +236,43 @@ public class tela_principalController implements Initializable {
             }
         }
         else if (RegistroAtual == 2){ // 2 para filme
+
+            try {
+                id = Integer.parseInt(tf_idRegistro.getText());
+            } catch (NumberFormatException e) {
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Erro de Formato");
+                alerta.setContentText("Por favor, insira um ID válido (número inteiro).");
+                alerta.showAndWait();
+                return;
+            }
+
+            if (acaoAtual == AcaoAtual.AVALIAR) {
+
+                if (filmeController.buscarFilmes("6", String.valueOf(id))) {
+                    changeScene("/telas/filme/tela_avaliacao_filme.fxml");
+                } else {
+                    Alert alerta = new Alert(Alert.AlertType.WARNING);
+                    alerta.setTitle("Filme não encontrado");
+                    alerta.setContentText("Nenhum filme foi encontrado com o ID informado.");
+                    alerta.showAndWait();
+                }
+
+            } else if (acaoAtual == AcaoAtual.REMOVER) {
+
+                if (filmeController.removerFilme(id)) {
+                    filmeController.salvarFilmes();
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setTitle("Sucesso");
+                    alerta.setContentText("Filme removido com sucesso!");
+                    alerta.showAndWait();
+                } else {
+                    Alert alerta = new Alert(Alert.AlertType.WARNING);
+                    alerta.setTitle("Filme não encontrado");
+                    alerta.setContentText("Nenhum filme foi encontrado com o ID informado.");
+                    alerta.showAndWait();
+                }
+            }
 
         }
         else if (RegistroAtual == 3){ // 3 para série

@@ -1,20 +1,14 @@
-package principal.controller.livroC;
+package principal.controller.filmeC;
 
-import static principal.DiarioCultural.changeScene;
-import static principal.DiarioCultural.livroController;
-import static principal.controller.tela_principalController.isbn;
-
+import CustomExceptions.AnoInvalidoException;
+import CustomExceptions.PontuacaoInvalidaException;
 import javafx.event.ActionEvent;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-
-import CustomExceptions.*;
 import principal.controller.Validador;
 
 import java.net.URL;
@@ -23,7 +17,11 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
-public class tela_avaliacao_livroController implements Initializable {
+import static principal.DiarioCultural.changeScene;
+import static principal.DiarioCultural.filmeController;
+import static principal.controller.tela_principalController.id;
+
+public class tela_avaliacao_filmeController implements Initializable{
 
     @FXML
     private Button bt_confirmar;
@@ -40,7 +38,7 @@ public class tela_avaliacao_livroController implements Initializable {
     @FXML
     private TextField tf_review;
 
-    private String isbnLivro; // Recebido da tela anterior
+    private String idFilme; // Recebido da tela anterior
 
     @FXML
     void clicarConfirmar(ActionEvent event) {
@@ -67,11 +65,11 @@ public class tela_avaliacao_livroController implements Initializable {
             Calendar dataVisto = GregorianCalendar.from(dataSelecionada.atStartOfDay(Calendar.getInstance().getTimeZone().toZoneId()));
 
 
-            boolean sucesso = livroController.avaliarLivro(isbn, review, pontuacao, dataVisto);
+            boolean sucesso = filmeController.avaliarFilme(id, review, pontuacao, dataVisto);
 
             if (sucesso) {
-                livroController.salvarLivros();
-                mostrarAlerta(Alert.AlertType.INFORMATION, "Avaliação registrada", "Livro avaliado com sucesso!");
+                filmeController.salvarFilmes();
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Avaliação registrada", "Filme avaliado com sucesso!");
                 changeScene("/telas/tela_principal.fxml");
             } else {
                 mostrarAlerta(Alert.AlertType.ERROR, "Erro ao avaliar", "Não foi possível salvar a avaliação.");
