@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.controller.tela_cadastro_livroController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="main-pane" stylesheets="@../../css/diario.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.controller.tela_cadastro_livroController">
    <children>
       <HBox alignment="CENTER" layoutX="10.0" layoutY="9.0" prefHeight="83.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -31,7 +31,7 @@
             </Line>
          </children>
       </HBox>
-      <Button fx:id="bt_retornar" layoutX="35.0" layoutY="19.0" mnemonicParsing="false" onAction="#clicarRetornar" prefHeight="43.0" prefWidth="73.0" text="Retornar">
+      <Button fx:id="bt_retornar" layoutX="35.0" layoutY="19.0" mnemonicParsing="false" onAction="#clicarRetornar" prefHeight="43.0" prefWidth="116.0" text="Retornar">
          <font>
             <Font size="13.0" />
          </font>
@@ -144,7 +144,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutY="335.0" prefHeight="65.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="335.0">
          <children>
-            <Button fx:id="bt_confirmar" mnemonicParsing="false" onAction="#clicarConfirmar" prefHeight="43.0" prefWidth="152.0" text="Confirmar Cadastro">
+            <Button fx:id="bt_confirmar" mnemonicParsing="false" onAction="#clicarConfirmar" prefHeight="42.0" prefWidth="181.0" text="Confirmar Cadastro">
                <font>
                   <Font size="13.0" />
                </font>

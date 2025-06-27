@@ -1,0 +1,124 @@
+/* Estilo geral da janela */
+.root {
+    -fx-background-color: #f4e4b3;
+    -fx-font-family: "Courier Prime", monospace;
+    -fx-padding: 20;
+}
+
+/* Título principal */
+.label.titulo {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-underline: true;
+    -fx-text-alignment: center;
+    -fx-text-fill: #000000;
+}
+
+/* Estilo dos botões */
+.button {
+    -fx-background-color: #7c0f17;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 12;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0.3, 0, 2);
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Efeito de zoom suave no hover */
+.button:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-background-color: #5f0a12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 6, 0.4, 0, 3);
+}
+
+.radio-button {
+    -fx-font-family: "Courier Prime";
+    -fx-font-size: 16px;
+    -fx-text-fill: #000000;
+    -fx-cursor: hand;
+    -fx-padding: 5px;
+}
+
+/* Bolinha (marcador) do radio */
+.radio-button .radio {
+    -fx-border-color: #5f0a12;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-padding: 3px;
+}
+
+/* Quando selecionado */
+.radio-button:selected .radio {
+    -fx-background-color: #5a2e18;
+    -fx-border-color: #5f0a12;
+}
+
+/* Espaços reservados para imagens */
+.image-placeholder {
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-min-width: 100px;
+    -fx-min-height: 100px;
+    -fx-alignment: center;
+    -fx-padding: 10;
+}
+
+/* Descrição abaixo de cada item */
+.label.descricao {
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-padding: 4 0 10 0;
+}
+
+/* Container geral */
+.main-pane {
+    -fx-border-color: #5a2e18;
+    -fx-border-width: 8;
+    -fx-padding: 15;
+}
+
+/* Espaço entre os itens (HBox/VBox) */
+.hbox, .vbox {
+    -fx-spacing: 12;
+}
+
+/* Cabeçalho das colunas */
+.table-view .column-header {
+    -fx-background-color: #5f0a12;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-family: "Courier Prime";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Linhas da tabela */
+.table-row-cell {
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #5f0a12;
+    -fx-font-family: "Courier Prime";
+    -fx-font-size: 14px;
+    -fx-text-fill: #000000;
+}
+
+/* Linha selecionada */
+.table-row-cell:filled:selected,
+.table-row-cell:focused:selected {
+    -fx-background-color: #d43849;
+    -fx-text-fill: white;
+}
+
+/* Ajuste opcional para evitar bordas internas desnecessárias */
+.table-cell {
+    -fx-border-color: transparent;
+}

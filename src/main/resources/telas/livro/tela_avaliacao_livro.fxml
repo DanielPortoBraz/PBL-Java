@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.controller.tela_avaliacao_livroController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="main-pane" stylesheets="@../../css/diario.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.controller.tela_avaliacao_livroController">
    <children>
       <HBox alignment="CENTER" layoutX="-1.0" layoutY="100.0" prefHeight="226.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
@@ -30,7 +30,7 @@
                </rowConstraints>
                <children>
                   <TextField fx:id="tf_review" prefHeight="52.0" prefWidth="260.0" GridPane.columnIndex="1" />
-                  <Label layoutX="10.0" layoutY="9.0" text="Review">
+                  <Label layoutX="10.0" layoutY="9.0" text="Review:">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -55,9 +55,9 @@
             </GridPane>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutY="278.0" prefHeight="124.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="BOTTOM_CENTER" layoutX="69.0" layoutY="278.0" prefHeight="109.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="bt_confirmar" mnemonicParsing="false" onAction="#clicarConfirmar" prefHeight="43.0" prefWidth="152.0" text="Confirmar Avaliacao">
+            <Button fx:id="bt_confirmar" mnemonicParsing="false" onAction="#clicarConfirmar" prefHeight="43.0" prefWidth="186.0" text="Confirmar Avaliação">
                <font>
                   <Font size="13.0" />
                </font>
@@ -67,7 +67,7 @@
             </Button>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutY="-1.0" prefHeight="109.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="TOP_CENTER" layoutX="69.0" layoutY="8.0" prefHeight="88.0" prefWidth="508.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label prefWidth="215.0" text="Avaliação: Livro" textAlignment="CENTER">
                <font>
@@ -81,7 +81,7 @@
             </Line>
          </children>
       </HBox>
-      <Button fx:id="bt_retornar" layoutX="45.0" layoutY="29.0" mnemonicParsing="false" onAction="#clicarRetornar" prefHeight="43.0" prefWidth="73.0" text="Retornar">
+      <Button fx:id="bt_retornar" layoutX="45.0" layoutY="29.0" mnemonicParsing="false" onAction="#clicarRetornar" prefHeight="43.0" prefWidth="112.0" text="Retornar" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="29.0">
          <font>
             <Font size="13.0" />
          </font>
