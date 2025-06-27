@@ -2,7 +2,7 @@ package principal.controller.livroC;
 
 import static principal.DiarioCultural.changeScene;
 import static principal.DiarioCultural.livroController;
-import static principal.controller.livroC.tela_principalController.idRegistro;
+import static principal.controller.tela_principalController.idRegistro;
 
 import javafx.event.ActionEvent;
 

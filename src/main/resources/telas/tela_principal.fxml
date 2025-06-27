@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="450.0" prefWidth="633.0" styleClass="main-pane" stylesheets="@../css/diario.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.controller.livroC.tela_principalController">
+<AnchorPane prefHeight="450.0" prefWidth="633.0" styleClass="main-pane" stylesheets="@../css/diario.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.controller.tela_principalController">
    <children>
       <HBox alignment="CENTER" layoutX="35.0" layoutY="104.0" prefHeight="121.0" prefWidth="610.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>

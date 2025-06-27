@@ -10,4 +10,6 @@ module principal {
     exports Model;
     exports principal to javafx.graphics;
     opens principal.controller.livroC to javafx.fxml;
+    opens principal.controller.filmeC to javafx.fxml;
+
 }

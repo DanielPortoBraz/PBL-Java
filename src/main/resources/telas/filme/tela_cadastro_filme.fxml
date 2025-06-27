@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="462.0" prefWidth="641.0" styleClass="main-pane" stylesheets="@../../css/diario.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.controller.filmeC.tela_cadastro_filmeController">
+   <children>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="9.0" prefHeight="83.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label prefWidth="215.0" text="Cadastro: Filme" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="29.0" />
+               </font>
+            </Label>
+            <Line endX="125.0" startX="-100.0">
+               <HBox.margin>
+                  <Insets left="-221.0" top="40.0" />
+               </HBox.margin>
+            </Line>
+         </children>
+      </HBox>
+      <Button fx:id="bt_retornar" layoutX="35.0" layoutY="19.0" mnemonicParsing="false" onAction="#clicarRetornar" prefHeight="43.0" prefWidth="116.0" text="Retornar">
+         <font>
+            <Font size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <HBox alignment="CENTER" layoutX="69.0" layoutY="99.0" prefHeight="296.0" prefWidth="549.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="76.0">
+         <children>
+            <GridPane prefHeight="239.0" prefWidth="521.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <TextField fx:id="tf_anoLancamento" prefWidth="102.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets right="100.0" />
+                     </GridPane.margin></TextField>
+                  <Label layoutX="10.0" layoutY="9.0" text="Ano de lançamento:" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="42.0" text="Diretor(es):" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="75.0" text="Gênero(s):" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="9.0" text="Roteirista(s):" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="174.0" text="Onde assistir:" GridPane.rowIndex="9">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="240.0" text="Título original:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tf_titulo" GridPane.columnIndex="1" />
+                  <TextField fx:id="tf_duracao" layoutX="271.0" layoutY="93.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets right="100.0" />
+                     </GridPane.margin></TextField>
+                  <TextField fx:id="tf_roteiro" layoutX="271.0" layoutY="131.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label layoutX="10.0" layoutY="144.0" text="Visto:" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="rb_simVisto" mnemonicParsing="false" text="Sim" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="visto" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rb_naoVisto" layoutX="371.0" layoutY="244.0" mnemonicParsing="false" selected="true" text="Não" toggleGroup="$visto" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets left="100.0" />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets left="100.0" />
+                     </GridPane.margin>
+                  </RadioButton>
+                  <HBox fx:id="cb_generos" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Título:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tf_tituloOriginal" layoutX="271.0" layoutY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Duração (minutos):" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tf_ondeAssistir" layoutX="271.0" layoutY="130.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <Label layoutX="10.0" layoutY="186.0" text="Elenco:" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tf_elenco" layoutX="262.0" layoutY="189.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="tf_direcao" prefHeight="25.0" prefWidth="184.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+               </children>
+            </GridPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="46.0" layoutY="413.0" prefHeight="65.0" prefWidth="600.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="413.0">
+         <children>
+            <Button fx:id="bt_confirmar" mnemonicParsing="false" onAction="#clicarConfirmar" prefHeight="42.0" prefWidth="181.0" text="Confirmar Cadastro">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

@@ -1,4 +1,4 @@
-package principal.controller.livroC;
+package principal.controller;
 
 import javafx.scene.control.Alert;
 import javafx.scene.layout.HBox;
@@ -138,6 +138,31 @@ public class tela_principalController implements Initializable {
     @FXML
     void selecionarFilme(ActionEvent event) {
         RegistroAtual = 2;
+
+        switch (acaoAtual) {
+            case CADASTRAR:
+                DiarioCultural.changeScene("/telas/filme/tela_cadastro_filme.fxml");
+                break;
+
+            case AVALIAR:
+                ativarEntradaIdentificacao();
+                break;
+
+            case BUSCAR:
+
+                break;
+
+            case LISTAR:
+
+                break;
+
+            case REMOVER:
+                ativarEntradaIdentificacao();
+                break;
+
+            default:
+                break;
+        }
     }
 
     @FXML
