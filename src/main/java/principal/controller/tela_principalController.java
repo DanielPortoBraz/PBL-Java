@@ -198,6 +198,31 @@ public class tela_principalController implements Initializable {
     @FXML
     void selecionarSerie(ActionEvent event) {
         RegistroAtual = 3;
+
+        switch (acaoAtual) {
+            case CADASTRAR:
+                DiarioCultural.changeScene("/telas/serie/tela_cadastro_serie.fxml");
+                break;
+
+            case AVALIAR:
+                ativarEntradaIdentificacao();
+                break;
+
+            case BUSCAR:
+                DiarioCultural.changeScene("/telas/serie/tela_busca_serie.fxml");
+                break;
+
+            case LISTAR:
+                DiarioCultural.changeScene("/telas/serie/tela_lista_serie.fxml");
+                break;
+
+            case REMOVER:
+                ativarEntradaIdentificacao();
+                break;
+
+            default:
+                break;
+        }
     }
 
     @FXML

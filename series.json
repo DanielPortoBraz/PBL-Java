@@ -1,21 +1,161 @@
-[ {
-  "titulo" : "Série A",
-  "anoLancamento" : 2010,
-  "visto" : true,
-  "dataVisto" : 1545271200000,
-  "review" : "Muito boa!",
-  "pontuacao" : 3,
-  "anoEncerramento" : 0,
-  "elenco" : [ "Ator A", "Ator B" ],
-  "tituloOriginal" : "Series A",
-  "ondeAssistir" : [ "Plataforma A" ],
-  "temporadas" : [ {
-    "ano" : 2010,
-    "quantEpisodios" : 5,
-    "numero" : 1,
-    "pontuacao" : 3,
-    "review" : "Mediana"
-  } ],
-  "id" : 860,
-  "genero" : [ "ACAO" ]
-} ]
+[
+  {
+    "titulo": "Breaking Bad",
+    "anoLancamento": 2008,
+    "visto": true,
+    "dataVisto": 1609459200000,
+    "review": "Obra-prima da TV moderna.",
+    "pontuacao": 5,
+    "anoEncerramento": 2013,
+    "elenco": ["Bryan Cranston", "Aaron Paul", "Anna Gunn"],
+    "tituloOriginal": "Breaking Bad",
+    "ondeAssistir": ["Netflix"],
+    "temporadas": [
+      { "ano": 2008, "quantEpisodios": 7, "numero": 1, "pontuacao": 5, "review": "Excelente início." },
+      { "ano": 2009, "quantEpisodios": 13, "numero": 2, "pontuacao": 5, "review": "A série só melhora." }
+    ],
+    "id": 861,
+    "genero": ["DRAMA", "THRILLER"]
+  },
+  {
+    "titulo": "Stranger Things",
+    "anoLancamento": 2016,
+    "visto": true,
+    "dataVisto": 1654041600000,
+    "review": "Nostalgia com suspense sobrenatural.",
+    "pontuacao": 4,
+    "anoEncerramento": 0,
+    "elenco": ["Millie Bobby Brown", "Finn Wolfhard"],
+    "tituloOriginal": "Stranger Things",
+    "ondeAssistir": ["Netflix"],
+    "temporadas": [
+      { "ano": 2016, "quantEpisodios": 8, "numero": 1, "pontuacao": 4, "review": "Cheio de mistério." },
+      { "ano": 2017, "quantEpisodios": 9, "numero": 2, "pontuacao": 4, "review": "Ainda mais tensa." }
+    ],
+    "id": 862,
+    "genero": ["FANTASIA", "SUSPENSE"]
+  },
+  {
+    "titulo": "The Crown",
+    "anoLancamento": 2016,
+    "visto": false,
+    "dataVisto": null,
+    "review": "",
+    "pontuacao": 0,
+    "anoEncerramento": 2023,
+    "elenco": ["Claire Foy", "Olivia Colman", "Imelda Staunton"],
+    "tituloOriginal": "The Crown",
+    "ondeAssistir": ["Netflix"],
+    "temporadas": [
+      { "ano": 2016, "quantEpisodios": 10, "numero": 1, "pontuacao": 0, "review": "" },
+      { "ano": 2017, "quantEpisodios": 10, "numero": 2, "pontuacao": 0, "review": "" }
+    ],
+    "id": 863,
+    "genero": ["DRAMA", "HISTORICO"]
+  },
+  {
+    "titulo": "The Mandalorian",
+    "anoLancamento": 2019,
+    "visto": true,
+    "dataVisto": 1580515200000,
+    "review": "Diversão no universo Star Wars.",
+    "pontuacao": 4,
+    "anoEncerramento": 0,
+    "elenco": ["Pedro Pascal"],
+    "tituloOriginal": "The Mandalorian",
+    "ondeAssistir": ["Disney+"],
+    "temporadas": [
+      { "ano": 2019, "quantEpisodios": 8, "numero": 1, "pontuacao": 4, "review": "Muito promissora." },
+      { "ano": 2020, "quantEpisodios": 8, "numero": 2, "pontuacao": 4, "review": "Continua empolgante." }
+    ],
+    "id": 864,
+    "genero": ["FICCAO_CIENTIFICA", "AVENTURA"]
+  },
+  {
+    "titulo": "Sherlock",
+    "anoLancamento": 2010,
+    "visto": true,
+    "dataVisto": 1341100800000,
+    "review": "Inteligente e instigante.",
+    "pontuacao": 5,
+    "anoEncerramento": 2017,
+    "elenco": ["Benedict Cumberbatch", "Martin Freeman"],
+    "tituloOriginal": "Sherlock",
+    "ondeAssistir": ["Prime Video"],
+    "temporadas": [
+      { "ano": 2010, "quantEpisodios": 3, "numero": 1, "pontuacao": 5, "review": "Casos brilhantes." }
+    ],
+    "id": 865,
+    "genero": ["MISTERIO", "POLICIAL"]
+  },
+  {
+    "titulo": "The Office (US)",
+    "anoLancamento": 2005,
+    "visto": true,
+    "dataVisto": 1577836800000,
+    "review": "Engraçada e cheia de personalidade.",
+    "pontuacao": 4,
+    "anoEncerramento": 2013,
+    "elenco": ["Steve Carell", "John Krasinski", "Jenna Fischer"],
+    "tituloOriginal": "The Office",
+    "ondeAssistir": ["Prime Video"],
+    "temporadas": [
+      { "ano": 2005, "quantEpisodios": 6, "numero": 1, "pontuacao": 3, "review": "Começo tímido." }
+    ],
+    "id": 866,
+    "genero": ["COMEDIA"]
+  },
+  {
+    "titulo": "Band of Brothers",
+    "anoLancamento": 2001,
+    "visto": true,
+    "dataVisto": 1009843200000,
+    "review": "Intensa e comovente retratação da guerra.",
+    "pontuacao": 5,
+    "anoEncerramento": 2001,
+    "elenco": ["Damian Lewis", "Ron Livingston"],
+    "tituloOriginal": "Band of Brothers",
+    "ondeAssistir": ["HBO Max"],
+    "temporadas": [
+      { "ano": 2001, "quantEpisodios": 10, "numero": 1, "pontuacao": 5, "review": "Imersiva e forte." }
+    ],
+    "id": 867,
+    "genero": ["GUERRA", "DRAMA"]
+  },
+  {
+    "titulo": "Dark",
+    "anoLancamento": 2017,
+    "visto": true,
+    "dataVisto": 1606780800000,
+    "review": "Complexa e envolvente.",
+    "pontuacao": 5,
+    "anoEncerramento": 2020,
+    "elenco": ["Louis Hofmann", "Lisa Vicari"],
+    "tituloOriginal": "Dark",
+    "ondeAssistir": ["Netflix"],
+    "temporadas": [
+      { "ano": 2017, "quantEpisodios": 10, "numero": 1, "pontuacao": 5, "review": "Mind-blowing." },
+      { "ano": 2019, "quantEpisodios": 8, "numero": 2, "pontuacao": 5, "review": "A linha do tempo se intensifica." }
+    ],
+    "id": 868,
+    "genero": ["FICCAO_CIENTIFICA", "SUSPENSE"]
+  },
+  {
+    "titulo": "Fargo",
+    "anoLancamento": 2014,
+    "visto": false,
+    "dataVisto": null,
+    "review": "",
+    "pontuacao": 0,
+    "anoEncerramento": 0,
+    "elenco": ["Martin Freeman", "Billy Bob Thornton"],
+    "tituloOriginal": "Fargo",
+    "ondeAssistir": ["Star+"],
+    "temporadas": [
+      { "ano": 2014, "quantEpisodios": 10, "numero": 1, "pontuacao": 0, "review": "" },
+      { "ano": 2015, "quantEpisodios": 10, "numero": 2, "pontuacao": 0, "review": "" }
+    ],
+    "id": 869,
+    "genero": ["POLICIAL", "THRILLER"]
+  }
+]

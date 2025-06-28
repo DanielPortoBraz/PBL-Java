@@ -174,6 +174,49 @@ public class SerieController {
         }
     }
 
+    public TreeSet<Serie> buscarSeries(int categoria, String filtro){
+        TreeSet<Serie> seriesEncontradas = new TreeSet<>();
+        int filtroNum;
+
+        switch(categoria){
+            case 1: // Titulo
+                seriesEncontradas = seriesR.buscarTitulo(filtro);
+                break;
+
+            case 2: // Ator
+                seriesEncontradas = seriesR.buscarAtor(filtro);
+                break;
+
+            case 3: // Gênero
+                for (Genero i : Genero.values()){
+
+                    if (filtro.equalsIgnoreCase(i.getNomeFormatado())){
+                        seriesEncontradas = seriesR.buscarGenero(i);
+                    }
+                }
+                break;
+
+            case 4: // Ano
+                filtroNum = Integer.parseInt(filtro);
+                seriesEncontradas = seriesR.buscarAno(filtroNum);
+                break;
+
+            case 5: // Onde assistir
+                seriesEncontradas = seriesR.buscarOndeAssistir(filtro);
+                break;
+
+            case 6: // ID
+                filtroNum = Integer.parseInt(filtro);
+                seriesEncontradas.add(seriesR.buscarId(filtroNum));
+                break;
+
+            default:
+                System.out.println("Categoria inexistente.");
+        }
+
+        return seriesEncontradas;
+    }
+
     /**
      * Avalia uma série a partir do ID fornecido.
      *
