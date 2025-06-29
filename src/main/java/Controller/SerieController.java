@@ -263,6 +263,8 @@ public class SerieController {
                     if (i.getNumero() == numero) {
                         i.setReview(reviewTemporada); // Atualiza a review da temporada
                         i.setPontuacao(pontuacao); // Atualiza a pontuação da temporada
+                    } else {
+                        return false; // Retorna falso, pois não há temporada cadastrada com o número passado
                     }
 
                     if (i.getPontuacao() != 0) // Se a temporada foi avaliada
