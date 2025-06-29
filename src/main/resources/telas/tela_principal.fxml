@@ -121,11 +121,11 @@
             </Line>
          </children>
       </HBox>
-      <HBox fx:id="mn_SelecaoRegistro" alignment="CENTER" layoutX="46.0" layoutY="125.0" prefHeight="204.0" prefWidth="587.0" style="visibility: false;" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0">
+      <HBox fx:id="mn_SelecaoRegistro" alignment="CENTER" layoutX="46.0" layoutY="125.0" prefHeight="204.0" prefWidth="587.0" style="visibility: false;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <AnchorPane prefHeight="207.0" prefWidth="306.0" style="visibility: true; -fx-border-color: #5a2e18; -fx-border-width: 5; -fx-background-color: #f4e4b3;">
                <children>
-                  <Button fx:id="bt_livro" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="46.0" mnemonicParsing="false" onAction="#selecionarLivro" prefHeight="44.0" prefWidth="86.0" text="Livro">
+                  <Button fx:id="bt_livro" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="46.0" mnemonicParsing="false" onAction="#clicarSelecionarLivro" prefHeight="44.0" prefWidth="86.0" text="Livro">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -133,7 +133,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="bt_serie" alignment="CENTER" contentDisplay="CENTER" layoutX="111.0" layoutY="163.0" mnemonicParsing="false" onAction="#selecionarSerie" prefHeight="44.0" prefWidth="86.0" text="Série">
+                  <Button fx:id="bt_serie" alignment="CENTER" contentDisplay="CENTER" layoutX="111.0" layoutY="163.0" mnemonicParsing="false" onAction="#clicarSelecionarSerie" prefHeight="44.0" prefWidth="86.0" text="Série">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -141,7 +141,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="bt_filme" alignment="CENTER" contentDisplay="CENTER" layoutX="111.0" layoutY="104.0" mnemonicParsing="false" onAction="#selecionarFilme" prefHeight="44.0" prefWidth="86.0" text="Filme">
+                  <Button fx:id="bt_filme" alignment="CENTER" contentDisplay="CENTER" layoutX="111.0" layoutY="104.0" mnemonicParsing="false" onAction="#clicarSelecionarFilme" prefHeight="44.0" prefWidth="86.0" text="Filme">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -163,7 +163,41 @@
             </AnchorPane>
          </children>
       </HBox>
-      <HBox fx:id="ap_entradaIdentificacao" alignment="CENTER" layoutX="46.0" layoutY="109.0" prefHeight="63.0" prefWidth="595.0" style="visibility: false;" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="15.0">
+      <HBox fx:id="mn_SelecaoSerie" alignment="CENTER" layoutX="33.0" layoutY="135.0" prefHeight="204.0" prefWidth="587.0" style="visibility: false;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="207.0" prefWidth="330.0" style="visibility: true; -fx-border-color: #5a2e18; -fx-border-width: 5; -fx-background-color: #f4e4b3;">
+               <children>
+                  <Button fx:id="bt_serieSerie" alignment="CENTER" contentDisplay="CENTER" layoutX="111.0" layoutY="56.0" mnemonicParsing="false" onAction="#clicarSelecionarSerieSerie" prefHeight="44.0" prefWidth="86.0" text="Série">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="bt_serieTemporada" alignment="CENTER" contentDisplay="CENTER" layoutX="87.0" layoutY="128.0" mnemonicParsing="false" onAction="#clicarSelecionarSerieTemporada" prefHeight="44.0" prefWidth="133.0" text="Temporada">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" styleClass="titulo" text="Selecione:" textAlignment="CENTER">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="bt_fechaSelecaoSerie" layoutX="264.0" layoutY="14.0" mnemonicParsing="false" onAction="#clicarFecharSelecaoSerie" text="❌">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox fx:id="ap_entradaIdentificacao" alignment="CENTER" layoutX="46.0" layoutY="109.0" prefHeight="63.0" prefWidth="595.0" style="visibility: false;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <AnchorPane prefHeight="103.0" prefWidth="225.0" style="visibility: true; -fx-border-color: #5a2e18; -fx-border-width: 5; -fx-background-color: #f4e4b3;">
                <children>

@@ -31,6 +31,9 @@ public class tela_principalController implements Initializable {
     public static int id;
 
     @FXML
+    private HBox ap_entradaIdentificacao;
+
+    @FXML
     private Button bt_avaliar;
 
     @FXML
@@ -44,6 +47,9 @@ public class tela_principalController implements Initializable {
 
     @FXML
     private Button bt_fechaSelecaoRegistro;
+
+    @FXML
+    private Button bt_fechaSelecaoSerie;
 
     @FXML
     private Button bt_filme;
@@ -64,13 +70,19 @@ public class tela_principalController implements Initializable {
     private Button bt_serie;
 
     @FXML
+    private Button bt_serieSerie;
+
+    @FXML
+    private Button bt_serieTemporada;
+
+    @FXML
     private Text id_titulo;
 
     @FXML
     private HBox mn_SelecaoRegistro;
 
     @FXML
-    private HBox ap_entradaIdentificacao;
+    private HBox mn_SelecaoSerie;
 
     @FXML
     private TextField tf_idRegistro;
@@ -110,13 +122,19 @@ public class tela_principalController implements Initializable {
 
     }
 
-    @FXML
-    void ativarSelecaoRegistro(){
+    void ativarSelecaoRegistro() {
         mn_SelecaoRegistro.setVisible(true);
     }
 
-    @FXML
-    void desativarSelecaoRegistro(){
+    void ativarSelecaoSerie() {
+        mn_SelecaoSerie.setVisible(true);
+    }
+
+    void desativarSelecaoSerie() {
+        mn_SelecaoSerie.setVisible(false);
+    }
+
+    void desativarSelecaoRegistro() {
         mn_SelecaoRegistro.setVisible(false);
     }
 
@@ -126,17 +144,20 @@ public class tela_principalController implements Initializable {
     }
 
     @FXML
-    void ativarEntradaIdentificacao(){
+    void clicarFecharSelecaoSerie(ActionEvent event) {
+        desativarSelecaoSerie();
+    }
+
+    void ativarEntradaIdentificacao() {
         ap_entradaIdentificacao.setVisible(true);
     }
 
-    @FXML
-    void desativarEntradaIdentifcacao(){
+    void desativarEntradaIdentifcacao() {
         ap_entradaIdentificacao.setVisible(false);
     }
 
     @FXML
-    void selecionarFilme(ActionEvent event) {
+    void clicarSelecionarFilme(ActionEvent event) {
         RegistroAtual = 2;
 
         switch (acaoAtual) {
@@ -166,7 +187,7 @@ public class tela_principalController implements Initializable {
     }
 
     @FXML
-    void selecionarLivro(ActionEvent event) {
+    void clicarSelecionarLivro(ActionEvent event) {
         RegistroAtual = 1;
 
         switch (acaoAtual) {
@@ -196,16 +217,16 @@ public class tela_principalController implements Initializable {
     }
 
     @FXML
-    void selecionarSerie(ActionEvent event) {
+    void clicarSelecionarSerie(ActionEvent event) {
         RegistroAtual = 3;
 
         switch (acaoAtual) {
             case CADASTRAR:
-                DiarioCultural.changeScene("/telas/serie/tela_cadastro_serie.fxml");
+                ativarSelecaoSerie();
                 break;
 
             case AVALIAR:
-                ativarEntradaIdentificacao();
+                ativarSelecaoSerie();
                 break;
 
             case BUSCAR:
@@ -226,7 +247,43 @@ public class tela_principalController implements Initializable {
     }
 
     @FXML
-    void clicarConfirmarId(ActionEvent event){
+    void clicarSelecionarSerieSerie(ActionEvent event) {
+        RegistroAtual = 3;
+
+        switch (acaoAtual) {
+            case CADASTRAR:
+                DiarioCultural.changeScene("/telas/serie/tela_cadastro_serie.fxml");
+                break;
+
+            case AVALIAR:
+                ativarEntradaIdentificacao();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    @FXML
+    void clicarSelecionarSerieTemporada(ActionEvent event) {
+        RegistroAtual = 4;
+
+        switch (acaoAtual) {
+            case CADASTRAR:
+                DiarioCultural.changeScene("/telas/serie/tela_cadastro_temporada.fxml");
+                break;
+
+            case AVALIAR:
+                ativarEntradaIdentificacao();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    @FXML
+    void clicarConfirmarId(ActionEvent event) {
         desativarEntradaIdentifcacao();
 
         // Verificações para identificar se o espaço tf_id foi selecionado para livro, filme ou série
@@ -243,24 +300,21 @@ public class tela_principalController implements Initializable {
                     alerta.setContentText("Nenhum livro foi encontrado com o ISBN informado.");
                     alerta.showAndWait();
                 }
-            }
-            else if (acaoAtual == AcaoAtual.REMOVER) {
-                if (livroController.removerLivro(isbn)){
+            } else if (acaoAtual == AcaoAtual.REMOVER) {
+                if (livroController.removerLivro(isbn)) {
                     livroController.salvarLivros();
                     Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                     alerta.setTitle("Sucesso");
                     alerta.setContentText("Livro removido com sucesso!");
                     alerta.showAndWait();
-                }
-                else {
+                } else {
                     Alert alerta = new Alert(Alert.AlertType.WARNING);
                     alerta.setTitle("Livro não encontrado");
                     alerta.setContentText("Nenhum livro foi encontrado com o ISBN informado.");
                     alerta.showAndWait();
                 }
             }
-        }
-        else if (RegistroAtual == 2){ // 2 para filme
+        } else if (RegistroAtual == 2) { // 2 para filme
 
             try {
                 id = Integer.parseInt(tf_idRegistro.getText());
@@ -299,10 +353,51 @@ public class tela_principalController implements Initializable {
                 }
             }
 
-        }
-        else if (RegistroAtual == 3){ // 3 para série
+        } else if (RegistroAtual == 3 || RegistroAtual == 4) { // 3 para série e 4 para temporada
+            try {
+                id = Integer.parseInt(tf_idRegistro.getText());
+            } catch (NumberFormatException e) {
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Erro de Formato");
+                alerta.setContentText("Por favor, insira um ID válido (número inteiro).");
+                alerta.showAndWait();
+                return;
+            }
 
+            if (acaoAtual == AcaoAtual.AVALIAR) {
+
+                if (serieController.buscarSeries("6", String.valueOf(id))) {
+
+                    if (RegistroAtual == 3) {
+                        changeScene("/telas/serie/tela_avaliacao_serie.fxml");
+                    }
+                    else {
+                        changeScene("/telas/serie/tela_avaliacao_temporada.fxml");
+                    }
+
+                } else {
+                    Alert alerta = new Alert(Alert.AlertType.WARNING);
+                    alerta.setTitle("Série não encontrada");
+                    alerta.setContentText("Nenhuma série foi encontrada com o ID informado.");
+                    alerta.showAndWait();
+                }
+
+            } else if (acaoAtual == AcaoAtual.REMOVER){
+                if (serieController.removerSerie(id)) {
+                    serieController.salvarSeries();
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setTitle("Sucesso");
+                    alerta.setContentText("Série removida com sucesso!");
+                    alerta.showAndWait();
+                } else {
+                    Alert alerta = new Alert(Alert.AlertType.WARNING);
+                    alerta.setTitle("Série não encontrada");
+                    alerta.setContentText("Nenhuma série foi encontrada com o ID informado.");
+                    alerta.showAndWait();
+                }
+            }
         }
+        tf_idRegistro.clear();
     }
 
     @Override

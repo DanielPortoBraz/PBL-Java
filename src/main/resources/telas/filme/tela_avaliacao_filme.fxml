@@ -45,7 +45,7 @@
                         <Insets right="200.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Label text="Data de leitura:" GridPane.rowIndex="2">
+                  <Label text="Data em que foi visto:" GridPane.rowIndex="2">
                      <font>
                         <Font size="20.0" />
                      </font>
