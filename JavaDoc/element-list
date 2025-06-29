@@ -1,10 +1,10 @@
-module:principal
+module:View_GUI
 Controller
 CustomExceptions
 Model
-principal
-principal.controller
-principal.controller.filmeC
-principal.controller.livroC
-principal.controller.serieC
+View_GUI
+View_GUI.controller
+View_GUI.controller.filmeC
+View_GUI.controller.livroC
+View_GUI.controller.serieC
 View

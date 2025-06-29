@@ -27,7 +27,7 @@ public class Serie extends Registro{
      * @param anoLancamento Ano de lançamento da série.
      * @param visto Se a série foi vista ou não.
      * @param anoEncerramento Ano de encerramento da série (caso já tenha terminado).
-     * @param elenco Elenco principal da série.
+     * @param elenco Elenco View_GUI da série.
      * @param tituloOriginal Título original da série.
      * @param ondeAssistir Locais onde a série pode ser assistida.
      * @param temporadas Temporadas da série.

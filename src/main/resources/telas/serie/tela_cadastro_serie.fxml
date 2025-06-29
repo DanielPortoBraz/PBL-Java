@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="462.0" prefWidth="641.0" styleClass="main-pane" stylesheets="@../../css/diario.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principal.controller.serieC.tela_cadastro_serieController">
+<AnchorPane prefHeight="462.0" prefWidth="641.0" styleClass="main-pane" stylesheets="@../../css/diario.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_GUI.controller.serieC.tela_cadastro_serieController">
    <children>
       <HBox alignment="CENTER" layoutX="10.0" layoutY="9.0" prefHeight="83.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

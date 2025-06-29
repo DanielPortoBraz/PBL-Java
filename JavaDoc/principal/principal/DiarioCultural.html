@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2025-06-29">
-<meta name="description" content="declaration: module: principal, package: principal, class: DiarioCultural">
+<meta name="description" content="declaration: module: View_GUI, package: View_GUI, class: DiarioCultural">
 <meta name="generator" content="javadoc/ClassWriter">
 <link rel="stylesheet" type="text/css" href="../../resource-files/jquery-ui.min.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../resource-files/stylesheet.css" title="Style">
@@ -41,8 +41,8 @@ loadScripts(document, 'script');</script>
 <div class="sub-nav">
 <div class="nav-content">
 <ol class="sub-nav-list">
-<li><a href="../module-summary.html">principal</a></li>
-<li><a href="package-summary.html">principal</a></li>
+<li><a href="../module-summary.html">View_GUI</a></li>
+<li><a href="package-summary.html">View_GUI</a></li>
 <li><a href="DiarioCultural.html" class="current-selection">DiarioCultural</a></li>
 </ol>
 <div class="nav-list-search">
@@ -95,7 +95,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
 <div class="inheritance">javafx.application.Application
-<div class="inheritance">principal.DiarioCultural</div>
+<div class="inheritance">View_GUI.DiarioCultural</div>
 </div>
 </div>
 <section class="class-description" id="class-description">
@@ -103,13 +103,13 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">DiarioCultural</span>
 <span class="extends-implements">extends javafx.application.Application</span></div>
-<div class="block">Classe principal da aplicação Diário Cultural.
+<div class="block">Classe View_GUI da aplicação Diário Cultural.
 
  <p>Responsável por inicializar o JavaFX, importar os dados armazenados
- (ou criá-los, caso inexistentes), e carregar a interface gráfica inicial.
- Também fornece um método utilitário para trocar a cena exibida na janela principal.
+     (ou criá-los, caso inexistentes), e carregar a interface gráfica inicial.
+     Também fornece um método utilitário para trocar a cena exibida na janela View_GUI.
 
- <p>A aplicação permite ao usuário cadastrar, avaliar, buscar, listar e remover
+    <p>A aplicação permite ao usuário cadastrar, avaliar, buscar, listar e remover
  livros, filmes e séries.</div>
 <dl class="notes">
 <dt>Author:</dt>
@@ -145,7 +145,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color"><code>static javafx.stage.Stage</code></div>
 <div class="col-second odd-row-color"><code><a href="#janela" class="member-name-link">janela</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Janela principal da aplicação.</div>
+<div class="block">Janela View_GUI da aplicação.</div>
 </div>
 <div class="col-first even-row-color"><code>static <a href="../Controller/LivroController.html" title="class in Controller">LivroController</a></code></div>
 <div class="col-second even-row-color"><code><a href="#livroController" class="member-name-link">livroController</a></code></div>
@@ -190,7 +190,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#changeScene(java.lang.String)" class="member-name-link">changeScene</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;caminhoFXML)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Altera a cena atualmente exibida na janela principal.</div>
+<div class="block">Altera a cena atualmente exibida na janela View_GUI.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#start(javafx.stage.Stage)" class="member-name-link">start</a><wbr>(javafx.stage.Stage&nbsp;stage)</code></div>
@@ -222,7 +222,7 @@ loadScripts(document, 'script');</script>
 <h3>janela</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">javafx.stage.Stage</span>&nbsp;<span class="element-name">janela</span></div>
-<div class="block">Janela principal da aplicação.</div>
+<div class="block">Janela View_GUI da aplicação.</div>
 </div>
 </section>
 </li>
@@ -286,12 +286,12 @@ loadScripts(document, 'script');</script>
 <div class="block">Método de entrada da aplicação JavaFX.
 
  <p>Importa os dados salvos de livros, filmes e séries, ou os inicializa caso não existam,
- e exibe a tela principal.</div>
+     e exibe a tela View_GUI.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>start</code>&nbsp;in class&nbsp;<code>javafx.application.Application</code></dd>
 <dt>Parameters:</dt>
-<dd><code>stage</code> - O palco principal da aplicação.</dd>
+<dd><code>stage</code> - O palco View_GUI da aplicação.</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code> - se ocorrer erro ao carregar a interface gráfica.</dd>
 </dl>
@@ -303,7 +303,7 @@ loadScripts(document, 'script');</script>
 <h3>changeScene</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">changeScene</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;caminhoFXML)</span></div>
-<div class="block">Altera a cena atualmente exibida na janela principal.</div>
+<div class="block">Altera a cena atualmente exibida na janela View_GUI.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>caminhoFXML</code> - Caminho relativo do arquivo FXML que representa a nova interface.</dd>
