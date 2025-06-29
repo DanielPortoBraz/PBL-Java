@@ -119,7 +119,7 @@ public class tela_principalController implements Initializable {
 
     @FXML
     void clicarSair(ActionEvent event) {
-
+        DiarioCultural.janela.close();
     }
 
     void ativarSelecaoRegistro() {

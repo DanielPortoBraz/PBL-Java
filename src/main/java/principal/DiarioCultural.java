@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class DiarioCultural extends Application {
 
-    private static Stage janela;
+    public static Stage janela;
     private static Scene cenaPrincipal;
 
     public static LivroController livroController = new LivroController();

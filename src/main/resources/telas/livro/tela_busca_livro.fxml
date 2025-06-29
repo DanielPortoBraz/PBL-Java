@@ -31,17 +31,17 @@
       </Button>
       <TableView fx:id="tb_livros" layoutY="278.0" prefHeight="149.0" prefWidth="682.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="278.0">
          <columns>
-            <TableColumn fx:id="pontuacao" prefWidth="75.0" text="Pontuação" />
-            <TableColumn fx:id="isbn" prefWidth="75.0" text="ISBN" />
-            <TableColumn fx:id="titulo" prefWidth="75.0" text="Título" />
-            <TableColumn fx:id="autor" prefWidth="69.0" text="Autor" />
-            <TableColumn fx:id="editora" prefWidth="75.0" text="Editora" />
-            <TableColumn fx:id="ano" prefWidth="66.0" text="Ano" />
-            <TableColumn fx:id="dataVisto" prefWidth="84.0" text="Lido em" />
-            <TableColumn fx:id="genero" prefWidth="84.0" text="Genero" />
-            <TableColumn fx:id="exemplar" prefWidth="84.0" text="Exemplar" />
-            <TableColumn fx:id="visto" prefWidth="84.0" text="Visto" />
-            <TableColumn fx:id="review" prefWidth="84.0" text="Review" />
+            <TableColumn fx:id="pontuacao" prefWidth="75.0" sortable="false" text="Pontuação" />
+            <TableColumn fx:id="isbn" prefWidth="75.0" sortable="false" text="ISBN" />
+            <TableColumn fx:id="titulo" prefWidth="75.0" sortable="false" text="Título" />
+            <TableColumn fx:id="autor" prefWidth="69.0" sortable="false" text="Autor" />
+            <TableColumn fx:id="editora" prefWidth="75.0" sortable="false" text="Editora" />
+            <TableColumn fx:id="ano" prefWidth="66.0" sortable="false" text="Ano" />
+            <TableColumn fx:id="dataVisto" prefWidth="84.0" sortable="false" text="Lido em" />
+            <TableColumn fx:id="genero" prefWidth="84.0" sortable="false" text="Genero" />
+            <TableColumn fx:id="exemplar" prefWidth="84.0" sortable="false" text="Exemplar" />
+            <TableColumn fx:id="visto" prefWidth="84.0" sortable="false" text="Visto" />
+            <TableColumn fx:id="review" prefWidth="84.0" sortable="false" text="Review" />
          </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

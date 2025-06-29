@@ -1,5 +1,7 @@
 package principal.controller.livroC;
 
+import Model.Livro;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import Model.Livro;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -151,19 +152,125 @@ public class tela_busca_livroController implements Initializable {
 
     private void configurarColunas() {
         pontuacao.setCellValueFactory(new PropertyValueFactory<>("pontuacao"));
-        isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-        titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        autor.setCellValueFactory(new PropertyValueFactory<>("autor"));
-        editora.setCellValueFactory(new PropertyValueFactory<>("editora"));
         ano.setCellValueFactory(new PropertyValueFactory<>("anoLancamento"));
+        exemplar.setCellValueFactory(new PropertyValueFactory<>("exemplar"));
+        visto.setCellValueFactory(new PropertyValueFactory<>("visto"));
+
         dataVisto.setCellValueFactory(cellData -> {
             Calendar data = cellData.getValue().getDataVisto();
             String formatado = (data != null) ? sdf.format(data.getTime()) : "N/A";
             return new SimpleStringProperty(formatado);
         });
-        genero.setCellValueFactory(new PropertyValueFactory<>("genero"));
-        exemplar.setCellValueFactory(new PropertyValueFactory<>("exemplar"));
-        visto.setCellValueFactory(new PropertyValueFactory<>("visto"));
+
+        isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        isbn.setCellFactory(column -> new TableCell<Livro, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.isBlank()) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
+        titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+        titulo.setCellFactory(column -> new TableCell<Livro, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.isBlank()) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
+        autor.setCellValueFactory(new PropertyValueFactory<>("autor"));
+        autor.setCellFactory(column -> new TableCell<Livro, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.isBlank()) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
+        editora.setCellValueFactory(new PropertyValueFactory<>("editora"));
+        editora.setCellFactory(column -> new TableCell<Livro, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.isBlank()) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
+        genero.setCellValueFactory(cellData ->
+                new SimpleStringProperty(String.join(", ", cellData.getValue().getGenero().toString())));
+        genero.setCellFactory(column -> new TableCell<Livro, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
+
         review.setCellValueFactory(new PropertyValueFactory<>("review"));
+        review.setCellFactory(column -> new TableCell<Livro, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.isBlank()) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
     }
 }

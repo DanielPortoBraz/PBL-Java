@@ -1,6 +1,7 @@
 package principal.controller.serieC;
 
 import Model.Serie;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,6 +46,9 @@ public class tela_busca_serieController implements Initializable {
     private TableColumn<Serie, String> elenco;
 
     @FXML
+    private TableColumn<Serie, String> genero;
+
+    @FXML
     private TableColumn<Serie, String> id;
 
     @FXML
@@ -70,6 +74,9 @@ public class tela_busca_serieController implements Initializable {
 
     @FXML
     private RadioButton rb_titulo;
+
+    @FXML
+    private TableColumn<Serie, String> review;
 
     @FXML
     private TableView<Serie> tb_series;
@@ -254,6 +261,43 @@ public class tela_busca_serieController implements Initializable {
         ondeAssistir.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.join(", ", cellData.getValue().getOndeAssistir())));
         ondeAssistir.setCellFactory(column -> new TableCell<Serie, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
+        review.setCellValueFactory(new PropertyValueFactory<>("review"));
+        review.setCellFactory(column -> new TableCell<Serie, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.isBlank()) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
+        genero.setCellValueFactory(cellData ->
+                new SimpleStringProperty(String.join(", ", cellData.getValue().getGenero().toString())));
+        genero.setCellFactory(column -> new TableCell<Serie, String>() {
             private final Tooltip tooltip = new Tooltip();
 
             @Override

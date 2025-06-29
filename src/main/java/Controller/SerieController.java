@@ -251,6 +251,7 @@ public class SerieController {
     public boolean avaliarTemporada(int id, int numero, String reviewTemporada, int pontuacao){
         Serie serieAvaliada = seriesR.buscarId(id);
         int pontuacaoTotal = 0;
+        boolean numEncontrado = false;
 
         if (serieAvaliada != null) {
             HashSet<Temporada> temporadas = serieAvaliada.getTemporadas();
@@ -261,15 +262,17 @@ public class SerieController {
                 for (Temporada i : temporadas) {
 
                     if (i.getNumero() == numero) {
+                        numEncontrado = true;
                         i.setReview(reviewTemporada); // Atualiza a review da temporada
                         i.setPontuacao(pontuacao); // Atualiza a pontuação da temporada
-                    } else {
-                        return false; // Retorna falso, pois não há temporada cadastrada com o número passado
                     }
 
                     if (i.getPontuacao() != 0) // Se a temporada foi avaliada
                         pontuacaoTotal += i.getPontuacao();
                 }
+
+                if (!numEncontrado)
+                    return false; // Retorna falso, caso o número passado não esteja associado a uma temporada cadastrada
 
                 if (quantTemporadas != 0) {
                     seriesR.removeSerie(serieAvaliada);

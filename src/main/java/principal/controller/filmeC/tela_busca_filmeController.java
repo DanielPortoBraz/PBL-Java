@@ -1,6 +1,7 @@
 package principal.controller.filmeC;
 
 import Model.Filme;
+import Model.Serie;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -48,6 +49,9 @@ public class tela_busca_filmeController implements Initializable {
     private TableColumn<Filme, String> elenco;
 
     @FXML
+    private TableColumn<Filme, String> genero;
+
+    @FXML
     private TableColumn<Filme, String> id;
 
     @FXML
@@ -73,6 +77,9 @@ public class tela_busca_filmeController implements Initializable {
 
     @FXML
     private RadioButton rb_titulo;
+
+    @FXML
+    private TableColumn<Filme, String> review;
 
     @FXML
     private TableColumn<Filme, String> roteiro;
@@ -161,25 +168,166 @@ public class tela_busca_filmeController implements Initializable {
     }
 
     private void configurarColunas() {
-        titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        tituloOriginal.setCellValueFactory(new PropertyValueFactory<>("tituloOriginal"));
-        ano.setCellValueFactory(new PropertyValueFactory<>("anoLancamento"));
-        duracao.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getTempoDuracao() + " min"));
-        direcao.setCellValueFactory(cellData ->
-                new SimpleStringProperty(String.join(", ", cellData.getValue().getDirecao())));
-        roteiro.setCellValueFactory(cellData ->
-                new SimpleStringProperty(String.join(", ", cellData.getValue().getRoteiro())));
-        elenco.setCellValueFactory(cellData ->
-                new SimpleStringProperty(String.join(", ", cellData.getValue().getElenco())));
-        ondeAssistir.setCellValueFactory(cellData ->
-                new SimpleStringProperty(String.join(", ", cellData.getValue().getOndeAssistir())));
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         pontuacao.setCellValueFactory(new PropertyValueFactory<>("pontuacao"));
         dataVisto.setCellValueFactory(cellData -> {
             Calendar data = cellData.getValue().getDataVisto();
             String formatado = (data != null) ? sdf.format(data.getTime()) : "N/A";
             return new SimpleStringProperty(formatado);
+        });
+
+        // Título com Tooltip
+        titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+        titulo.setCellFactory(col -> new TableCell<Filme, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
+        tituloOriginal.setCellValueFactory(new PropertyValueFactory<>("tituloOriginal"));
+        tituloOriginal.setCellFactory(col -> new TableCell<Filme, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
+        ano.setCellValueFactory(new PropertyValueFactory<>("anoLancamento"));
+        duracao.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getTempoDuracao() + " min"));
+
+        direcao.setCellValueFactory(cellData ->
+                new SimpleStringProperty(String.join(", ", cellData.getValue().getDirecao())));
+        direcao.setCellFactory(column -> new TableCell<Filme, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
+        roteiro.setCellValueFactory(cellData ->
+                new SimpleStringProperty(String.join(", ", cellData.getValue().getRoteiro())));
+        roteiro.setCellFactory(column -> new TableCell<Filme, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
+        elenco.setCellValueFactory(cellData ->
+                new SimpleStringProperty(String.join(", ", cellData.getValue().getElenco())));
+        elenco.setCellFactory(column -> new TableCell<Filme, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
+        ondeAssistir.setCellValueFactory(cellData ->
+                new SimpleStringProperty(String.join(", ", cellData.getValue().getOndeAssistir())));
+        ondeAssistir.setCellFactory(column -> new TableCell<Filme, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
+        review.setCellValueFactory(new PropertyValueFactory<>("review"));
+        review.setCellFactory(column -> new TableCell<Filme, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.isBlank()) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
+        });
+
+        genero.setCellValueFactory(cellData ->
+                new SimpleStringProperty(String.join(", ", cellData.getValue().getGenero().toString())));
+        genero.setCellFactory(column -> new TableCell<Filme, String>() {
+            private final Tooltip tooltip = new Tooltip();
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setTooltip(null);
+                } else {
+                    setText(item.length() > 30 ? item.substring(0, 27) + "..." : item);
+                    tooltip.setText(item);
+                    setTooltip(tooltip);
+                }
+            }
         });
     }
 }
