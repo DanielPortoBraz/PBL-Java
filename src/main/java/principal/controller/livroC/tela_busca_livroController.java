@@ -20,8 +20,19 @@ import java.util.TreeSet;
 import static principal.DiarioCultural.changeScene;
 import static principal.DiarioCultural.livroController;
 
+/**
+ * Controlador da tela de busca de livros.
+ * Permite ao usuário realizar buscas por diferentes categorias (título, autor, gênero, ano de publicação e ISBN),
+ * exibindo os resultados em uma tabela com informações detalhadas.
+ *
+ * Inclui funcionalidades para configurar as colunas da tabela, formatar a exibição de dados,
+ * e gerenciar eventos de busca e navegação para a tela principal.
+ */
 public class tela_busca_livroController implements Initializable {
 
+    /**
+     * Formato para exibição de datas no padrão "dd/MM/yyyy".
+     */
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     @FXML
@@ -87,6 +98,15 @@ public class tela_busca_livroController implements Initializable {
     @FXML
     private TableColumn<Livro, Boolean> visto;
 
+    /**
+     * Evento acionado ao clicar no botão de buscar.
+     * Realiza a busca de livros conforme a categoria selecionada e o filtro informado,
+     * atualizando a tabela com os resultados encontrados.
+     *
+     * Exibe alertas em caso de filtro vazio ou erro durante a busca.
+     *
+     * @param event evento do clique no botão buscar
+     */
     @FXML
     void clicarBuscar(ActionEvent event) {
         String filtro = tf_filtro.getText().trim();
@@ -120,6 +140,12 @@ public class tela_busca_livroController implements Initializable {
         }
     }
 
+    /**
+     * Evento acionado ao clicar no botão retornar.
+     * Retorna para a tela principal da aplicação.
+     *
+     * @param event evento do clique no botão retornar
+     */
     @FXML
     void clicarRetornar(ActionEvent event) {
         changeScene("/telas/tela_principal.fxml");
@@ -127,29 +153,36 @@ public class tela_busca_livroController implements Initializable {
 
     @FXML
     void selecionarAnoPublicacao(ActionEvent event) {
+        // Métodos vazios para serem usados se necessário para eventos dos radio buttons
     }
 
     @FXML
-    void selecionarAutor(ActionEvent event) {
-    }
+    void selecionarAutor(ActionEvent event) {}
 
     @FXML
-    void selecionarGenero(ActionEvent event) {
-    }
+    void selecionarGenero(ActionEvent event) {}
 
     @FXML
-    void selecionarIsbn(ActionEvent event) {
-    }
+    void selecionarIsbn(ActionEvent event) {}
 
     @FXML
-    void selecionarTitulo(ActionEvent event) {
-    }
+    void selecionarTitulo(ActionEvent event) {}
 
+    /**
+     * Inicializa o controlador configurando as colunas da tabela.
+     *
+     * @param url URL do arquivo FXML (não utilizado)
+     * @param resourceBundle recursos adicionais (não utilizado)
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configurarColunas();
     }
 
+    /**
+     * Configura as colunas da tabela, vinculando as propriedades dos livros
+     * aos seus respectivos componentes visuais e configurando tooltips para textos longos.
+     */
     private void configurarColunas() {
         pontuacao.setCellValueFactory(new PropertyValueFactory<>("pontuacao"));
         ano.setCellValueFactory(new PropertyValueFactory<>("anoLancamento"));
@@ -253,7 +286,6 @@ public class tela_busca_livroController implements Initializable {
             }
         });
 
-
         review.setCellValueFactory(new PropertyValueFactory<>("review"));
         review.setCellFactory(column -> new TableCell<Livro, String>() {
             private final Tooltip tooltip = new Tooltip();
@@ -271,6 +303,5 @@ public class tela_busca_livroController implements Initializable {
                 }
             }
         });
-
     }
 }

@@ -20,8 +20,19 @@ import java.util.Set;
 
 import static principal.DiarioCultural.*;
 
+/**
+ * Controlador da interface para listagem de séries.
+ * Configura a tabela que exibe informações detalhadas das séries,
+ * como título, elenco, número de temporadas, pontuação, data de avaliação,
+ * ano de lançamento e identificador.
+ *
+ * Fornece funcionalidade para retorno à tela principal.
+ */
 public class tela_lista_serieController implements Initializable {
 
+    /**
+     * Formato para exibição das datas no padrão "dd/MM/yyyy".
+     */
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     @FXML
@@ -51,23 +62,41 @@ public class tela_lista_serieController implements Initializable {
     @FXML
     private TableColumn<Serie, String> titulo;
 
+    /**
+     * Trata o evento de clique no botão "Retornar",
+     * que muda a cena para a tela principal.
+     *
+     * @param event evento de clique
+     */
     @FXML
     void clicarRetornar(ActionEvent event) {
         changeScene("/telas/tela_principal.fxml");
     }
 
+    /**
+     * Inicializa o controlador configurando as colunas da tabela
+     * e carregando as séries para exibição.
+     *
+     * @param url URL do arquivo FXML (não utilizado)
+     * @param resourceBundle recursos adicionais (não utilizado)
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configurarColunas();
         carregarSeries();
     }
 
+    /**
+     * Configura o vínculo das colunas da tabela com as propriedades da classe Serie,
+     * além de definir comportamentos visuais como tooltip e truncamento para textos longos.
+     */
     private void configurarColunas() {
         pontuacao.setCellValueFactory(new PropertyValueFactory<>("pontuacao"));
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         anoLancamento.setCellValueFactory(new PropertyValueFactory<>("anoLancamento"));
+
         nTemporadas.setCellValueFactory(cellData -> {
-            Serie serie = cellData.getValue(); // Utiliza a série da mesma linha na Tabela
+            Serie serie = cellData.getValue();
             int quantidade = (serie != null && serie.getTemporadas() != null)
                     ? serie.getTemporadas().size()
                     : 0;
@@ -80,8 +109,7 @@ public class tela_lista_serieController implements Initializable {
             return new SimpleStringProperty(formatado);
         });
 
-        // Conversão do HashSet<String> para String nos atributos título e elenco
-
+        // Configuração da coluna título com tooltip e truncamento
         titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         titulo.setCellFactory(col -> new TableCell<Serie, String>() {
             private final Tooltip tooltip = new Tooltip();
@@ -100,9 +128,10 @@ public class tela_lista_serieController implements Initializable {
             }
         });
 
+        // Conversão e exibição do elenco com tooltip e truncamento
         elenco.setCellValueFactory(cellData -> {
             Set<String> elencoSet = cellData.getValue().getElenco();
-            String elencoStr = (elencoSet != null) ? String.join(", ", elencoSet) : ""; // Concatena Strings separadas por vírgula
+            String elencoStr = (elencoSet != null) ? String.join(", ", elencoSet) : "";
             return new SimpleStringProperty(elencoStr);
         });
         elenco.setCellFactory(column -> new TableCell<Serie, String>() {
@@ -123,6 +152,9 @@ public class tela_lista_serieController implements Initializable {
         });
     }
 
+    /**
+     * Carrega a lista de séries do controlador principal e popula a tabela da interface.
+     */
     public void carregarSeries() {
         ObservableList<Serie> series = FXCollections.observableArrayList(serieController.getSeriesR().getSeries());
         tb_series.setItems(series);

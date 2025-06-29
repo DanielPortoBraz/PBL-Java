@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -19,6 +20,10 @@ import principal.DiarioCultural;
 
 import static principal.DiarioCultural.livroController;
 
+/**
+ * Controlador da tela de cadastro de livros.
+ * Gerencia a entrada de dados e interação do usuário para cadastrar um novo livro no sistema.
+ */
 public class tela_cadastro_livroController implements Initializable {
 
     private CheckComboBox<Genero> checkComboBox;
@@ -59,14 +64,15 @@ public class tela_cadastro_livroController implements Initializable {
     @FXML
     private TextField tf_titulo;
 
+    /**
+     * Inicializa os componentes da interface, como o grupo de botões e a lista de gêneros.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Popula o ListView com os gêneros e ativa seleção múltipla
         ObservableList<Genero> generos = FXCollections.observableArrayList(Genero.values());
         checkComboBox = new CheckComboBox<>(generos);
         cb_generos.getChildren().add(checkComboBox);
 
-        // Agrupa os RadioButtons
         ToggleGroup grupoVisto = new ToggleGroup();
         rb_simVisto.setToggleGroup(grupoVisto);
         rb_naoVisto.setToggleGroup(grupoVisto);
@@ -75,10 +81,14 @@ public class tela_cadastro_livroController implements Initializable {
         rb_simExemplar.setToggleGroup(grupoExemplar);
         rb_naoExemplar.setToggleGroup(grupoExemplar);
 
-        // Restringe o campo de ano para somente caracteres numéricos
         Validador.entradaSomenteNumerica(tf_anoPublicacao);
     }
 
+    /**
+     * Ação do botão "Confirmar". Realiza as validações e tenta cadastrar o livro com os dados informados.
+     *
+     * @param event Evento de clique no botão.
+     */
     @FXML
     void clicarConfirmar(ActionEvent event) {
         String titulo = tf_titulo.getText().trim();
@@ -86,7 +96,6 @@ public class tela_cadastro_livroController implements Initializable {
         String editora = tf_editora.getText().trim();
         String isbn = tf_isbn.getText().trim();
 
-        // Validações de espaços vazios
         if (titulo.isEmpty() || autor.isEmpty() || editora.isEmpty() || isbn.isEmpty() || tf_anoPublicacao.getText().isEmpty()) {
             exibirAlerta("Erro", "Preencha todos os campos.");
             return;
@@ -124,6 +133,12 @@ public class tela_cadastro_livroController implements Initializable {
         limparCampos();
     }
 
+    /**
+     * Exibe uma caixa de diálogo com uma mensagem informativa.
+     *
+     * @param titulo   Título da janela de alerta.
+     * @param mensagem Mensagem a ser exibida.
+     */
     private void exibirAlerta(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
@@ -132,6 +147,9 @@ public class tela_cadastro_livroController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Limpa todos os campos da tela de cadastro, incluindo textos e seleções.
+     */
     private void limparCampos() {
         tf_titulo.clear();
         tf_autor.clear();
@@ -145,6 +163,11 @@ public class tela_cadastro_livroController implements Initializable {
         checkComboBox.getCheckModel().clearChecks();
     }
 
+    /**
+     * Ação do botão "Retornar". Redireciona o usuário de volta à tela principal.
+     *
+     * @param event Evento de clique no botão.
+     */
     @FXML
     void clicarRetornar(ActionEvent event) {
         DiarioCultural.changeScene("/telas/tela_principal.fxml");

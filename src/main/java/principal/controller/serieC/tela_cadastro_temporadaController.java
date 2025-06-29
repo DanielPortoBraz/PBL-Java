@@ -16,6 +16,12 @@ import static principal.DiarioCultural.serieController;
 import static principal.controller.tela_principalController.id;
 import static principal.DiarioCultural.changeScene;
 
+/**
+ * Controlador responsável pela interface de cadastro de uma nova temporada
+ * vinculada a uma série previamente registrada.
+ *
+ * Fornece validação, criação e envio da temporada ao controller principal.
+ */
 public class tela_cadastro_temporadaController implements Initializable {
 
     @FXML
@@ -33,6 +39,13 @@ public class tela_cadastro_temporadaController implements Initializable {
     @FXML
     private TextField tf_quantidadeEps;
 
+    /**
+     * Ação executada ao clicar no botão "Confirmar".
+     * Lê os dados da temporada, realiza a validação e tenta cadastrar a temporada
+     * na série correspondente.
+     *
+     * @param event Evento de clique do botão
+     */
     @FXML
     void clicarConfirmar(ActionEvent event) {
         try {
@@ -45,7 +58,7 @@ public class tela_cadastro_temporadaController implements Initializable {
             boolean sucesso = serieController.cadastrarTemporada(id, temporada);
             if (sucesso) {
                 exibirAlerta("Cadastro realizado", "Temporada cadastrada com sucesso!");
-                changeScene("/telas/tela_principal.fxml"); // Se quiser voltar após cadastrar
+                changeScene("/telas/tela_principal.fxml");
             } else {
                 exibirAlerta("Erro no cadastro", "Não foi possível cadastrar a temporada.");
             }
@@ -56,12 +69,23 @@ public class tela_cadastro_temporadaController implements Initializable {
         }
     }
 
-
+    /**
+     * Ação executada ao clicar no botão "Retornar".
+     * Volta para a tela principal sem realizar alterações.
+     *
+     * @param event Evento de clique do botão
+     */
     @FXML
     void clicarRetornar(ActionEvent event) {
         changeScene("/telas/tela_principal.fxml");
     }
 
+    /**
+     * Inicializa os campos da interface, aplicando validadores de entrada numérica.
+     *
+     * @param url            não utilizado
+     * @param resourceBundle não utilizado
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Validador.entradaSomenteNumerica(tf_ano);
@@ -69,6 +93,12 @@ public class tela_cadastro_temporadaController implements Initializable {
         Validador.entradaSomenteNumerica(tf_quantidadeEps);
     }
 
+    /**
+     * Exibe uma caixa de alerta com a mensagem fornecida.
+     *
+     * @param titulo   Título da janela de alerta
+     * @param mensagem Mensagem principal a ser exibida
+     */
     private void exibirAlerta(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);

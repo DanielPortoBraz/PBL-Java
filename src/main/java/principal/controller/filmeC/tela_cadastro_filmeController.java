@@ -19,6 +19,10 @@ import java.util.ResourceBundle;
 
 import static principal.DiarioCultural.filmeController;
 
+/**
+ * Controlador responsável por gerenciar a interface de cadastro de filmes.
+ * Lida com a entrada de dados, validações, e chamada do método de persistência.
+ */
 public class tela_cadastro_filmeController implements Initializable {
 
     private CheckComboBox<Genero> checkComboBox;
@@ -65,23 +69,32 @@ public class tela_cadastro_filmeController implements Initializable {
     @FXML
     private ToggleGroup visto;
 
+    /**
+     * Inicializa os componentes da interface, preenchendo o combo de gêneros e agrupando os botões de seleção.
+     *
+     * @param url            não utilizado
+     * @param resourceBundle não utilizado
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Inicializa CheckComboBox de gêneros
         ObservableList<Genero> generos = FXCollections.observableArrayList(Genero.values());
         checkComboBox = new CheckComboBox<>(generos);
         cb_generos.getChildren().add(checkComboBox);
 
-        // Agrupa os RadioButtons
         ToggleGroup grupoVisto = new ToggleGroup();
         rb_simVisto.setToggleGroup(grupoVisto);
         rb_naoVisto.setToggleGroup(grupoVisto);
 
-        // Restringe entradas numéricas
         entradaSomenteNumerica(tf_anoLancamento);
         entradaSomenteNumerica(tf_duracao);
     }
 
+    /**
+     * Ação executada ao clicar no botão Confirmar.
+     * Realiza validações dos campos e cadastra o filme.
+     *
+     * @param event evento de clique do botão
+     */
     @FXML
     void clicarConfirmar(ActionEvent event) {
         String titulo = tf_titulo.getText().trim();
@@ -93,7 +106,6 @@ public class tela_cadastro_filmeController implements Initializable {
         String elenco = tf_elenco.getText().trim();
         String ondeAssistir = tf_ondeAssistir.getText().trim();
 
-        // Validações de campos vazios
         if (titulo.isEmpty() || tituloOriginal.isEmpty() || anoStr.isEmpty()
                 || duracaoStr.isEmpty() || direcao.isEmpty() || roteiro.isEmpty()
                 || elenco.isEmpty() || ondeAssistir.isEmpty()) {
@@ -112,15 +124,14 @@ public class tela_cadastro_filmeController implements Initializable {
 
         boolean visto = rb_simVisto.isSelected();
 
-        // Gêneros
         ObservableList<Genero> generosSelecionados = checkComboBox.getCheckModel().getCheckedItems();
         HashSet<Genero> generoHashSet = new HashSet<>(generosSelecionados);
+
         if (generoHashSet.isEmpty()) {
             exibirAlerta("Erro", "Selecione pelo menos um gênero.");
             return;
         }
 
-        // Conversão dos campos de múltiplos valores
         HashSet<String> direcaoSet = entradaComMultiplasStrings(direcao);
         HashSet<String> roteiroSet = entradaComMultiplasStrings(roteiro);
         HashSet<String> elencoSet = entradaComMultiplasStrings(elenco);
@@ -140,6 +151,9 @@ public class tela_cadastro_filmeController implements Initializable {
         }
     }
 
+    /**
+     * Limpa todos os campos da interface após o cadastro.
+     */
     private void limparCampos() {
         tf_titulo.clear();
         tf_tituloOriginal.clear();
@@ -154,6 +168,12 @@ public class tela_cadastro_filmeController implements Initializable {
         checkComboBox.getCheckModel().clearChecks();
     }
 
+    /**
+     * Exibe uma caixa de alerta com o título e mensagem especificados.
+     *
+     * @param titulo   título do alerta
+     * @param mensagem conteúdo da mensagem
+     */
     private void exibirAlerta(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
@@ -162,6 +182,12 @@ public class tela_cadastro_filmeController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Ação executada ao clicar no botão Retornar.
+     * Volta à tela principal do sistema.
+     *
+     * @param event evento de clique do botão
+     */
     @FXML
     void clicarRetornar(ActionEvent event) {
         DiarioCultural.changeScene("/telas/tela_principal.fxml");

@@ -20,6 +20,10 @@ import java.util.ResourceBundle;
 import static principal.DiarioCultural.serieController;
 import static principal.DiarioCultural.changeScene;
 
+/**
+ * Controlador da tela de cadastro de séries.
+ * Gerencia a entrada de dados da série, temporadas e interação com o backend.
+ */
 public class tela_cadastro_serieController implements Initializable {
 
     private CheckComboBox<Genero> checkComboBox;
@@ -83,6 +87,12 @@ public class tela_cadastro_serieController implements Initializable {
     @FXML
     private ToggleGroup visto;
 
+    /**
+     * Ação executada ao clicar no botão de adicionar temporada.
+     * Cria uma nova temporada e adiciona à lista de temporadas, se ainda não existente.
+     *
+     * @param event Evento de clique do botão
+     */
     @FXML
     void clicarAdicionar(ActionEvent event) {
         try {
@@ -93,7 +103,6 @@ public class tela_cadastro_serieController implements Initializable {
             Temporada novaTemporada = new Temporada(ano, quantidadeEpisodios, numero);
             if (temporadasAdicionadas.add(novaTemporada)) {
                 exibirAlerta("Temporada adicionada", "A temporada foi adicionada com sucesso!");
-                // Limpa os campos após adição
                 tf_numero.clear();
                 tf_ano.clear();
                 tf_quantidadeEps.clear();
@@ -105,11 +114,22 @@ public class tela_cadastro_serieController implements Initializable {
         }
     }
 
+    /**
+     * Exibe o painel de adição de temporada.
+     *
+     * @param event Evento de clique do botão
+     */
     @FXML
     void clicarAdicionarTemporada(ActionEvent event) {
         mn_AdicaoTemporada.setVisible(true);
     }
 
+    /**
+     * Ação executada ao confirmar o cadastro da série.
+     * Realiza validações e envia os dados para persistência via controller.
+     *
+     * @param event Evento de clique do botão
+     */
     @FXML
     void clicarConfirmar(ActionEvent event) {
         try {
@@ -160,18 +180,32 @@ public class tela_cadastro_serieController implements Initializable {
         }
     }
 
-
-
+    /**
+     * Oculta o painel de adição de temporada.
+     *
+     * @param event Evento de clique do botão
+     */
     @FXML
     void clicarFecharAdicaoTemporada(ActionEvent event) {
         mn_AdicaoTemporada.setVisible(false);
     }
 
+    /**
+     * Volta à tela principal ao clicar no botão de retorno.
+     *
+     * @param event Evento de clique do botão
+     */
     @FXML
     void clicarRetornar(ActionEvent event) {
         changeScene("/telas/tela_principal.fxml");
     }
 
+    /**
+     * Inicializa os componentes da interface gráfica com restrições e preenchimentos iniciais.
+     *
+     * @param url            não utilizado
+     * @param resourceBundle não utilizado
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Validador.entradaSomenteNumerica(tf_ano);
@@ -182,12 +216,17 @@ public class tela_cadastro_serieController implements Initializable {
         Validador.entradaComMultiplasStrings(tf_elenco.getText());
         Validador.entradaComMultiplasStrings(tf_ondeAssistir.getText());
 
-        // Popula o ListView com os gêneros e ativa seleção múltipla
         ObservableList<Genero> generos = FXCollections.observableArrayList(Genero.values());
         checkComboBox = new CheckComboBox<>(generos);
         cb_generos.getChildren().add(checkComboBox);
     }
 
+    /**
+     * Exibe uma janela de alerta com o título e mensagem fornecidos.
+     *
+     * @param titulo   título da caixa de diálogo
+     * @param mensagem mensagem informativa
+     */
     private void exibirAlerta(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);

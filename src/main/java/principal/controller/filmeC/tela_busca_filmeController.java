@@ -20,8 +20,16 @@ import java.util.TreeSet;
 import static principal.DiarioCultural.changeScene;
 import static principal.DiarioCultural.filmeController;
 
+/**
+ * Controlador da tela de busca de filmes.
+ * Permite ao usuário buscar filmes por diferentes categorias (título, ator, gênero, ano de lançamento, diretor e ID),
+ * exibir os resultados em uma tabela formatada e navegar para outras telas.
+ */
 public class tela_busca_filmeController implements Initializable {
 
+    /**
+     * Formato padrão para exibição das datas (dd/MM/yyyy).
+     */
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     @FXML
@@ -96,6 +104,14 @@ public class tela_busca_filmeController implements Initializable {
     @FXML
     private TableColumn<Filme, String> tituloOriginal;
 
+    /**
+     * Evento acionado ao clicar no botão buscar.
+     * Obtém o filtro e categoria selecionados, realiza a busca via controlador e
+     * atualiza a tabela com os filmes encontrados.
+     * Exibe alertas caso o filtro seja vazio ou ocorra algum erro.
+     *
+     * @param event evento do clique no botão buscar
+     */
     @FXML
     void clicarBuscar(ActionEvent event) {
         String filtro = tf_filtro.getText().trim();
@@ -131,42 +147,54 @@ public class tela_busca_filmeController implements Initializable {
         }
     }
 
-
+    /**
+     * Evento acionado ao clicar no botão retornar.
+     * Realiza a troca da cena para a tela principal.
+     *
+     * @param event evento do clique no botão retornar
+     */
     @FXML
     void clicarRetornar(ActionEvent event) {
         changeScene("/telas/tela_principal.fxml");
     }
 
+    // Métodos vazios para eventos de seleção (podem ser implementados posteriormente)
+
     @FXML
     void selecionarAnoPublicacao(ActionEvent event) {
-
     }
 
     @FXML
     void selecionarAutor(ActionEvent event) {
-
     }
 
     @FXML
     void selecionarGenero(ActionEvent event) {
-
     }
 
     @FXML
     void selecionarIsbn(ActionEvent event) {
-
     }
 
     @FXML
     void selecionarTitulo(ActionEvent event) {
-
     }
 
+    /**
+     * Inicializa o controlador configurando as colunas da tabela.
+     *
+     * @param url            localização do recurso (não utilizado)
+     * @param resourceBundle recursos internacionais (não utilizado)
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configurarColunas();
     }
 
+    /**
+     * Configura as colunas da tabela com as propriedades do objeto Filme,
+     * incluindo formatação de datas e tooltips para textos longos.
+     */
     private void configurarColunas() {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         pontuacao.setCellValueFactory(new PropertyValueFactory<>("pontuacao"));
@@ -176,7 +204,7 @@ public class tela_busca_filmeController implements Initializable {
             return new SimpleStringProperty(formatado);
         });
 
-        // Título com Tooltip
+        // Configuração das colunas com tooltip para textos longos
         titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         titulo.setCellFactory(col -> new TableCell<Filme, String>() {
             private final Tooltip tooltip = new Tooltip();

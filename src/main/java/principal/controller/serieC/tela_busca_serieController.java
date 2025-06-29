@@ -20,8 +20,16 @@ import java.util.TreeSet;
 import static principal.DiarioCultural.changeScene;
 import static principal.DiarioCultural.serieController;
 
+/**
+ * Controlador da tela de busca de séries.
+ * Permite ao usuário buscar séries por diversas categorias (título, ator, gênero, ano de lançamento, onde assistir e ID),
+ * exibir os resultados em uma tabela formatada e navegar para outras telas.
+ */
 public class tela_busca_serieController implements Initializable {
 
+    /**
+     * Formato padrão para exibição das datas (dd/MM/yyyy).
+     */
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     @FXML
@@ -93,6 +101,14 @@ public class tela_busca_serieController implements Initializable {
     @FXML
     private TableColumn<Serie, String> tituloOriginal;
 
+    /**
+     * Evento acionado ao clicar no botão buscar.
+     * Obtém o filtro e a categoria selecionada, realiza a busca via controlador,
+     * e atualiza a tabela com as séries encontradas.
+     * Exibe alerta caso o filtro esteja vazio ou em caso de erro.
+     *
+     * @param event evento do clique no botão buscar
+     */
     @FXML
     void clicarBuscar(ActionEvent event) {
         String filtro = tf_filtro.getText().trim();
@@ -128,42 +144,54 @@ public class tela_busca_serieController implements Initializable {
         }
     }
 
-
+    /**
+     * Evento acionado ao clicar no botão retornar.
+     * Troca a cena para a tela principal.
+     *
+     * @param event evento do clique no botão retornar
+     */
     @FXML
     void clicarRetornar(ActionEvent event) {
         changeScene("/telas/tela_principal.fxml");
     }
 
+    // Métodos vazios para eventos de seleção (podem ser implementados no futuro)
+
     @FXML
     void selecionarAnoPublicacao(ActionEvent event) {
-
     }
 
     @FXML
     void selecionarAutor(ActionEvent event) {
-
     }
 
     @FXML
     void selecionarGenero(ActionEvent event) {
-
     }
 
     @FXML
     void selecionarOndeAssistir(ActionEvent event) {
-
     }
 
     @FXML
     void selecionarTitulo(ActionEvent event) {
-
     }
 
+    /**
+     * Inicializa o controlador configurando as colunas da tabela.
+     *
+     * @param url            localização do recurso (não utilizado)
+     * @param resourceBundle recursos internacionais (não utilizado)
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configurarColunas();
     }
 
+    /**
+     * Configura as colunas da tabela com as propriedades do objeto Série,
+     * incluindo formatação de datas, valores condicionais e tooltips para textos longos.
+     */
     private void configurarColunas() {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         anoLancamento.setCellValueFactory(new PropertyValueFactory<>("anoLancamento"));
@@ -179,7 +207,7 @@ public class tela_busca_serieController implements Initializable {
             return new SimpleStringProperty(formatado);
         });
 
-        // Título com Tooltip
+        // Configuração do título com tooltip para texto longo
         titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         titulo.setCellFactory(col -> new TableCell<Serie, String>() {
             private final Tooltip tooltip = new Tooltip();
@@ -198,7 +226,7 @@ public class tela_busca_serieController implements Initializable {
             }
         });
 
-        // Título Original com Tooltip
+        // Configuração do título original com tooltip para texto longo
         tituloOriginal.setCellValueFactory(new PropertyValueFactory<>("tituloOriginal"));
         tituloOriginal.setCellFactory(col -> new TableCell<Serie, String>() {
             private final Tooltip tooltip = new Tooltip();
@@ -217,7 +245,7 @@ public class tela_busca_serieController implements Initializable {
             }
         });
 
-        // Temporadas (com Tooltip sobre toString)
+        // Configuração da coluna de temporadas com tooltip
         temporadas.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getTemporadas().toString()));
         temporadas.setCellFactory(col -> new TableCell<Serie, String>() {
@@ -237,7 +265,7 @@ public class tela_busca_serieController implements Initializable {
             }
         });
 
-        // Elenco (Set<String>) com tooltip
+        // Configuração do elenco (Set<String>) com tooltip
         elenco.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.join(", ", cellData.getValue().getElenco())));
         elenco.setCellFactory(column -> new TableCell<Serie, String>() {
@@ -257,7 +285,7 @@ public class tela_busca_serieController implements Initializable {
             }
         });
 
-        // Onde Assistir (Set<String>) com tooltip
+        // Configuração da coluna onde assistir (Set<String>) com tooltip
         ondeAssistir.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.join(", ", cellData.getValue().getOndeAssistir())));
         ondeAssistir.setCellFactory(column -> new TableCell<Serie, String>() {
@@ -277,6 +305,7 @@ public class tela_busca_serieController implements Initializable {
             }
         });
 
+        // Configuração da coluna review com tooltip e tratamento de texto em branco
         review.setCellValueFactory(new PropertyValueFactory<>("review"));
         review.setCellFactory(column -> new TableCell<Serie, String>() {
             private final Tooltip tooltip = new Tooltip();
@@ -295,6 +324,7 @@ public class tela_busca_serieController implements Initializable {
             }
         });
 
+        // Configuração da coluna gênero com tooltip
         genero.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.join(", ", cellData.getValue().getGenero().toString())));
         genero.setCellFactory(column -> new TableCell<Serie, String>() {
@@ -315,4 +345,3 @@ public class tela_busca_serieController implements Initializable {
         });
     }
 }
-

@@ -8,15 +8,54 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Classe principal da aplicação Diário Cultural.
+ *
+ * <p>Responsável por inicializar o JavaFX, importar os dados armazenados
+ * (ou criá-los, caso inexistentes), e carregar a interface gráfica inicial.
+ * Também fornece um método utilitário para trocar a cena exibida na janela principal.
+ *
+ * <p>A aplicação permite ao usuário cadastrar, avaliar, buscar, listar e remover
+ * livros, filmes e séries.
+ *
+ * @author [Seu Nome]
+ */
 public class DiarioCultural extends Application {
 
+    /**
+     * Janela principal da aplicação.
+     */
     public static Stage janela;
+
+    /**
+     * Cena principal da aplicação, que será trocada dinamicamente.
+     */
     private static Scene cenaPrincipal;
 
+    /**
+     * Controlador responsável pelas operações com livros.
+     */
     public static LivroController livroController = new LivroController();
+
+    /**
+     * Controlador responsável pelas operações com filmes.
+     */
     public static FilmeController filmeController = new FilmeController();
+
+    /**
+     * Controlador responsável pelas operações com séries.
+     */
     public static SerieController serieController = new SerieController();
 
+    /**
+     * Método de entrada da aplicação JavaFX.
+     *
+     * <p>Importa os dados salvos de livros, filmes e séries, ou os inicializa caso não existam,
+     * e exibe a tela principal.
+     *
+     * @param stage O palco principal da aplicação.
+     * @throws Exception se ocorrer erro ao carregar a interface gráfica.
+     */
     @Override
     public void start(Stage stage) throws Exception {
         // Inicializa os dados
@@ -40,6 +79,11 @@ public class DiarioCultural extends Application {
         janela.show();
     }
 
+    /**
+     * Altera a cena atualmente exibida na janela principal.
+     *
+     * @param caminhoFXML Caminho relativo do arquivo FXML que representa a nova interface.
+     */
     public static void changeScene(String caminhoFXML) {
         try {
             Parent novoRoot = FXMLLoader.load(DiarioCultural.class.getResource(caminhoFXML));

@@ -16,6 +16,11 @@ import static principal.controller.tela_principalController.id;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador responsável pela interface de avaliação de temporadas de séries.
+ * Permite ao usuário informar o número da temporada, a pontuação e um comentário (review).
+ * Realiza validações e envia os dados para o controller principal da série.
+ */
 public class tela_avaliacao_temporadaController implements Initializable {
 
     @FXML
@@ -33,6 +38,13 @@ public class tela_avaliacao_temporadaController implements Initializable {
     @FXML
     private TextField tf_review;
 
+    /**
+     * Ação executada ao clicar no botão "Confirmar".
+     * Valida os campos de número da temporada e pontuação, lança exceções se inválidos,
+     * e tenta salvar a avaliação da temporada via controller.
+     *
+     * @param event Evento de clique no botão
+     */
     @FXML
     void clicarConfirmar(ActionEvent event) {
         try {
@@ -40,7 +52,7 @@ public class tela_avaliacao_temporadaController implements Initializable {
             int numeroTemporada = Integer.parseInt(tf_numero.getText());
             int pontuacao = Integer.parseInt(tf_pontuacao.getText());
 
-            // Valida pontuação (1 a 5)
+            // Validação da pontuação (deve estar entre 1 e 5)
             if (pontuacao < 1 || pontuacao > 5) {
                 throw new PontuacaoInvalidaException("Pontuação deve estar entre 1 e 5.");
             }
@@ -62,18 +74,36 @@ public class tela_avaliacao_temporadaController implements Initializable {
         }
     }
 
-
+    /**
+     * Ação executada ao clicar no botão "Retornar".
+     * Retorna à tela principal sem salvar alterações.
+     *
+     * @param event Evento de clique no botão
+     */
     @FXML
     void clicarRetornar(ActionEvent event) {
         changeScene("/telas/tela_principal.fxml");
     }
 
+    /**
+     * Inicializa o controlador da interface, aplicando restrições para aceitar somente números nos campos apropriados.
+     *
+     * @param url            não utilizado
+     * @param resourceBundle não utilizado
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Validador.entradaSomenteNumerica(tf_numero);
         Validador.entradaSomenteNumerica(tf_pontuacao);
     }
 
+    /**
+     * Exibe um alerta para o usuário com o tipo, título e mensagem especificados.
+     *
+     * @param tipo     Tipo do alerta (INFORMATION, WARNING, ERROR)
+     * @param titulo   Título da janela de alerta
+     * @param mensagem Conteúdo da mensagem exibida
+     */
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);

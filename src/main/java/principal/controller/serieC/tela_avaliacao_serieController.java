@@ -20,6 +20,11 @@ import static principal.DiarioCultural.*;
 import static principal.DiarioCultural.serieController;
 import static principal.controller.tela_principalController.id;
 
+/**
+ * Controlador responsável pela interface de avaliação de séries.
+ * Permite ao usuário inserir uma resenha textual e a data em que assistiu à série.
+ * Os dados são validados antes de serem enviados ao controller principal.
+ */
 public class tela_avaliacao_serieController implements Initializable {
 
     @FXML
@@ -34,12 +39,18 @@ public class tela_avaliacao_serieController implements Initializable {
     @FXML
     private TextField tf_review;
 
+    /**
+     * Ação executada ao clicar no botão "Confirmar".
+     * Realiza a validação dos campos e envia os dados para salvar a avaliação da série.
+     *
+     * @param event Evento de clique no botão
+     */
     @FXML
     void clicarConfirmar(ActionEvent event) {
         try {
             String review = tf_review.getText();
 
-            // Converte a data e valida o ano
+            // Valida a data selecionada
             LocalDate dataSelecionada = dp_dataLeitura.getValue();
             if (dataSelecionada == null) {
                 mostrarAlerta(Alert.AlertType.WARNING, "Data inválida", "Por favor, selecione uma data.");
@@ -50,9 +61,11 @@ public class tela_avaliacao_serieController implements Initializable {
                 throw new AnoInvalidoException("Ano não pode ser superior a 2025.");
             }
 
-            Calendar dataVisto = GregorianCalendar.from(dataSelecionada.atStartOfDay(Calendar.getInstance().getTimeZone().toZoneId()));
+            Calendar dataVisto = GregorianCalendar.from(
+                    dataSelecionada.atStartOfDay(Calendar.getInstance().getTimeZone().toZoneId())
+            );
 
-
+            // Envia os dados ao controller da série
             boolean sucesso = serieController.avaliarSerie(id, review, dataVisto);
 
             if (sucesso) {
@@ -62,21 +75,42 @@ public class tela_avaliacao_serieController implements Initializable {
             } else {
                 mostrarAlerta(Alert.AlertType.ERROR, "Erro ao avaliar", "Não foi possível salvar a avaliação.");
             }
+
         } catch (AnoInvalidoException e) {
             mostrarAlerta(Alert.AlertType.WARNING, "Dado inválido", e.getMessage());
         }
     }
 
+    /**
+     * Ação executada ao clicar no botão "Retornar".
+     * Retorna à tela principal sem salvar alterações.
+     *
+     * @param event Evento de clique no botão
+     */
     @FXML
     void clicarRetornar(ActionEvent event) {
         changeScene("/telas/tela_principal.fxml");
     }
 
+    /**
+     * Inicializa o controlador da interface.
+     * (Sem inicializações adicionais nesta tela.)
+     *
+     * @param url            não utilizado
+     * @param resourceBundle não utilizado
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        // Nenhuma inicialização necessária
     }
 
+    /**
+     * Exibe um alerta ao usuário com o tipo, título e mensagem fornecidos.
+     *
+     * @param tipo     Tipo de alerta (INFORMATION, WARNING, ERROR)
+     * @param titulo   Título da caixa de diálogo
+     * @param mensagem Mensagem principal do alerta
+     */
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
