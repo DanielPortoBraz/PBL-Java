@@ -270,7 +270,7 @@ public class tela_principalController implements Initializable {
 
         switch (acaoAtual) {
             case CADASTRAR:
-                DiarioCultural.changeScene("/telas/serie/tela_cadastro_temporada.fxml");
+                ativarEntradaIdentificacao();
                 break;
 
             case AVALIAR:
@@ -364,7 +364,24 @@ public class tela_principalController implements Initializable {
                 return;
             }
 
-            if (acaoAtual == AcaoAtual.AVALIAR) {
+            if (acaoAtual == AcaoAtual.CADASTRAR){
+                if (serieController.buscarSeries("6", String.valueOf(id))) {
+
+                    if (RegistroAtual == 3) {
+                        changeScene("/telas/serie/tela_avaliacao_serie.fxml");
+                    }
+                    else {
+                        changeScene("/telas/serie/tela_cadastro_temporada.fxml");
+                    }
+
+                } else {
+                    Alert alerta = new Alert(Alert.AlertType.WARNING);
+                    alerta.setTitle("Série não encontrada");
+                    alerta.setContentText("Nenhuma série foi encontrada com o ID informado.");
+                    alerta.showAndWait();
+                }
+
+            } else if (acaoAtual == AcaoAtual.AVALIAR) {
 
                 if (serieController.buscarSeries("6", String.valueOf(id))) {
 

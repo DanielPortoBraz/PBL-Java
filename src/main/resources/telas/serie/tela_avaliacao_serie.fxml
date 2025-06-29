@@ -50,7 +50,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <HBox alignment="CENTER" layoutX="9.0" layoutY="110.0" prefHeight="226.0" prefWidth="600.0">
+      <HBox alignment="CENTER" layoutX="9.0" layoutY="110.0" prefHeight="226.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <GridPane alignment="CENTER" prefHeight="239.0" prefWidth="521.0">
                <columnConstraints>
