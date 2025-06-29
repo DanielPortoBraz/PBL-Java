@@ -1,5 +1,10 @@
-unnamed package
+module:principal
 Controller
 CustomExceptions
 Model
+principal
+principal.controller
+principal.controller.filmeC
+principal.controller.livroC
+principal.controller.serieC
 View
