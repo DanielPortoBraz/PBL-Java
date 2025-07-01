@@ -65,7 +65,8 @@ class MenuCadastro implements Menu {
      * Para o cadastro de livro, por exemplo, são solicitados dados como título, gêneros, ano de lançamento,
      * se já foi visto, autor, editora, ISBN e se possui exemplar físico. Cada dado é validado
      * (por exemplo, campos vazios ou ano inválido) e, em caso de erro, uma mensagem é exibida.
-     * </p>
+     *
+     *
      */
     @Override
     public void exibir() {

@@ -58,7 +58,7 @@ public class DiarioCultural extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        // Inicializa os dados
+        // Carrega os dados de arquivos JSON
         if (!livroController.importarLivros())
             livroController.salvarLivros();
 
