@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"principal"}];updateSearchResults();
+moduleSearchIndex = [{"l":"View_GUI"}];updateSearchResults();

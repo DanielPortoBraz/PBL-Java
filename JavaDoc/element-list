@@ -2,9 +2,9 @@ module:View_GUI
 Controller
 CustomExceptions
 Model
+View
 View_GUI
 View_GUI.controller
 View_GUI.controller.filmeC
 View_GUI.controller.livroC
 View_GUI.controller.serieC
-View
